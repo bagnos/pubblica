@@ -1,0 +1,675 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F030E4A0-D05A-4996-89D0-51081FA0BC56}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>pa_taverne</RootNamespace>
+    <AssemblyName>pa-taverne</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FreeTextBox, Version=3.3.0.22838, Culture=neutral, PublicKeyToken=5962a4e684a48b87, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Documents and Settings\j002118\My Documents\FTBv3-3-1\Framework-3-5\FreeTextBox.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AggiungiIscrittoNL.aspx" />
+    <Content Include="Album.aspx" />
+    <Content Include="AlbumAdmin.aspx" />
+    <Content Include="Ambulatori.aspx" />
+    <Content Include="App_Data\pa-taverne.mdb">
+    </Content>
+    <Content Include="ArchivioNotizie.aspx" />
+    <Content Include="Associazione.aspx" />
+    <Content Include="CaricaDati.aspx" />
+    <Content Include="Cinquepermille.aspx" />
+    <Content Include="ComunicazioneNL.aspx" />
+    <Content Include="ConfermaIscrizione.aspx" />
+    <Content Include="Contattaci.aspx" />
+    <Content Include="CopiaDati.aspx" />
+    <Content Include="Default.aspx" />
+    <Content Include="Default2.aspx" />
+    <Content Include="DettaglioNotizia.aspx" />
+    <Content Include="DisattivaNL.aspx" />
+    <Content Include="Donatori.aspx" />
+    <Content Include="ElencoAlbum.aspx" />
+    <Content Include="ElencoIscrittiNL.aspx" />
+    <Content Include="ElencoLink.aspx" />
+    <Content Include="ElencoNewsAdmin.aspx" />
+    <Content Include="EsclusioneDonazioni.aspx" />
+    <Content Include="Footer.ascx" />
+    <Content Include="Foto.aspx" />
+    <Content Include="FotoAdmin.aspx" />
+    <Content Include="Giornalino.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Header.ascx" />
+    <Content Include="Home.aspx" />
+    <Content Include="images\bullet.gif" />
+    <Content Include="images\close.gif" />
+    <Content Include="images\closelabel.gif" />
+    <Content Include="images\loading.gif" />
+    <Content Include="images\nextlabel.gif" />
+    <Content Include="images\prevlabel.gif" />
+    <Content Include="Immagini\5xMille-10.jpg" />
+    <Content Include="Immagini\5XMille2010.bmp" />
+    <Content Include="Immagini\5xmille20100.png" />
+    <Content Include="Immagini\aerosol.jpg" />
+    <Content Include="Immagini\Agendona.jpg" />
+    <Content Include="Immagini\anpas_logo.jpg" />
+    <Content Include="Immagini\asta_flebo.jpg" />
+    <Content Include="Immagini\blocconote.png" />
+    <Content Include="Immagini\cancella.png" />
+    <Content Include="Immagini\carrozzina.jpg" />
+    <Content Include="Immagini\dettaglio.png" />
+    <Content Include="Immagini\donatori.jpg" />
+    <Content Include="Immagini\filtra 26x26.png" />
+    <Content Include="Immagini\frecciagiu.gif" />
+    <Content Include="Immagini\frecciasu.gif" />
+    <Content Include="Immagini\girello.jpg" />
+    <Content Include="Immagini\goccia.jpg" />
+    <Content Include="Immagini\graffetta.gif" />
+    <Content Include="Immagini\icona_stampa.gif" />
+    <Content Include="Immagini\Immagine_etichetta.JPG" />
+    <Content Include="Immagini\Inizio.gif" />
+    <Content Include="Immagini\letto_ort.jpg" />
+    <Content Include="Immagini\logo_giornalino.jpg" />
+    <Content Include="Immagini\logo_pa.jpg" />
+    <Content Include="Immagini\Mezzi\agila.jpg" />
+    <Content Include="Immagini\Mezzi\carrello.jpg" />
+    <Content Include="Immagini\Mezzi\Corsa.jpg" />
+    <Content Include="Immagini\Mezzi\fuoristrada.jpg" />
+    <Content Include="Immagini\Mezzi\Meriva.jpg" />
+    <Content Include="Immagini\Mezzi\mezzi.jpg" />
+    <Content Include="Immagini\Mezzi\opel_combo.jpg" />
+    <Content Include="Immagini\Mezzi\papa11.jpg" />
+    <Content Include="Immagini\Mezzi\papa12.jpg" />
+    <Content Include="Immagini\Mezzi\papa12_2.jpg" />
+    <Content Include="Immagini\Mezzi\papa59.jpg" />
+    <Content Include="Immagini\Mezzi\papa59_in.jpg" />
+    <Content Include="Immagini\Mezzi\porter.jpg" />
+    <Content Include="Immagini\Mezzi\prot_civ.jpg" />
+    <Content Include="Immagini\Mezzi\prot_civ2.jpg" />
+    <Content Include="Immagini\Mezzi\trasp_eme.jpg" />
+    <Content Include="Immagini\Mezzi\trasp_emo.jpg" />
+    <Content Include="Immagini\Mezzi\trasp_emo_2.jpg" />
+    <Content Include="Immagini\Mezzi\trasp_sociosan.jpg" />
+    <Content Include="Immagini\Mezzi\trasp_soc_carrello.jpg" />
+    <Content Include="Immagini\modifica.png" />
+    <Content Include="Immagini\NEW.gif" />
+    <Content Include="Immagini\nuovo.png" />
+    <Content Include="Immagini\toglifilto.png" />
+    <Content Include="Immagini\OrariAmb.jpg" />
+    <Content Include="Immagini\organigramma.JPG" />
+    <Content Include="Immagini\protciv_logo.jpg" />
+    <Content Include="Immagini\prot_civ3.jpg" />
+    <Content Include="Immagini\prot_civ4.jpg" />
+    <Content Include="Immagini\prot_civ5.jpg" />
+    <Content Include="Immagini\reader.jpg" />
+    <Content Include="Immagini\rigaceleste.jpg" />
+    <Content Include="Immagini\sede_ragazze.jpg" />
+    <Content Include="Immagini\stampelle.jpg" />
+    <Content Include="Immagini\Stop.gif" />
+    <Content Include="Immagini\tooltiparrow.gif" />
+    <Content Include="Immagini\Top.jpg" />
+    <Content Include="Immagini\volontari.jpg" />
+    <Content Include="IscrizioneNewsletter.aspx" />
+    <Content Include="js\builder.js" />
+    <Content Include="js\effects.js" />
+    <Content Include="js\lightbox.js" />
+    <Content Include="js\prototype.js" />
+    <Content Include="js\scriptaculous.js" />
+    <Content Include="Left.ascx" />
+    <Content Include="lightbox.css" />
+    <Content Include="LoadData.aspx" />
+    <Content Include="LoginLnx.aspx" />
+    <Content Include="Login.aspx" />
+    <Content Include="MaterialeOrtopedico.aspx" />
+    <Content Include="Mezzi.aspx" />
+    <Content Include="MezziProtCivile.aspx" />
+    <Content Include="MezziSoccorso.aspx" />
+    <Content Include="MezziSocioSanitari.aspx" />
+    <Content Include="ModificaFoto.aspx" />
+    <Content Include="ModificaLink.aspx" />
+    <Content Include="ModificaNotizia.aspx" />
+    <Content Include="Noabilitato.aspx" />
+    <Content Include="NuovaFoto.aspx" />
+    <Content Include="NuovaIniziativa.aspx" />
+    <Content Include="NuovoLink.aspx" />
+    <Content Include="OrganiSociali.aspx" />
+    <Content Include="Pagebasic.aspx" />
+    <Content Include="Prelievi.aspx" />
+    <Content Include="ProfiloLnx.aspx" />
+    <Content Include="Profilo.aspx" />
+    <Content Include="ProtezioneCivile.aspx" />
+    <Content Include="QuoteSociali.aspx" />
+    <Content Include="RegIscrDonatori.aspx" />
+    <Content Include="Right.ascx" />
+    <Content Include="Sede.aspx" />
+    <Content Include="Stampa5permille.aspx" />
+    <Content Include="Stili.css" />
+    <Content Include="TipiAlbumAdmin.aspx" />
+    <Content Include="Volontariato.aspx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccessoDati.cs" />
+    <Compile Include="AccessoDatiLnx.cs" />
+    <Compile Include="AccessoDatiScambio.cs" />
+    <Compile Include="AggiungiIscrittoNL.aspx.cs">
+      <DependentUpon>AggiungiIscrittoNL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AggiungiIscrittoNL.aspx.designer.cs">
+      <DependentUpon>AggiungiIscrittoNL.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Album.aspx.cs">
+      <DependentUpon>Album.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Album.aspx.designer.cs">
+      <DependentUpon>Album.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AlbumAdmin.aspx.cs">
+      <DependentUpon>AlbumAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AlbumAdmin.aspx.designer.cs">
+      <DependentUpon>AlbumAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ambulatori.aspx.cs">
+      <DependentUpon>Ambulatori.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ambulatori.aspx.designer.cs">
+      <DependentUpon>Ambulatori.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ArchivioNotizie.aspx.cs">
+      <DependentUpon>ArchivioNotizie.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ArchivioNotizie.aspx.designer.cs">
+      <DependentUpon>ArchivioNotizie.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Associazione.aspx.cs">
+      <DependentUpon>Associazione.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Associazione.aspx.designer.cs">
+      <DependentUpon>Associazione.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CaricaDati.aspx.cs">
+      <DependentUpon>CaricaDati.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CaricaDati.aspx.designer.cs">
+      <DependentUpon>CaricaDati.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cinquepermille.aspx.cs">
+      <DependentUpon>Cinquepermille.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cinquepermille.aspx.designer.cs">
+      <DependentUpon>Cinquepermille.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ComunicazioneNL.aspx.cs">
+      <DependentUpon>ComunicazioneNL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ComunicazioneNL.aspx.designer.cs">
+      <DependentUpon>ComunicazioneNL.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ConfermaIscrizione.aspx.cs">
+      <DependentUpon>ConfermaIscrizione.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ConfermaIscrizione.aspx.designer.cs">
+      <DependentUpon>ConfermaIscrizione.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Contattaci.aspx.cs">
+      <DependentUpon>Contattaci.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contattaci.aspx.designer.cs">
+      <DependentUpon>Contattaci.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CopiaDati.aspx.cs">
+      <DependentUpon>CopiaDati.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CopiaDati.aspx.designer.cs">
+      <DependentUpon>CopiaDati.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default2.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Default2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default2.aspx.designer.cs">
+      <DependentUpon>Default2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DettaglioNotizia.aspx.cs">
+      <DependentUpon>DettaglioNotizia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DettaglioNotizia.aspx.designer.cs">
+      <DependentUpon>DettaglioNotizia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DisattivaNL.aspx.cs">
+      <DependentUpon>DisattivaNL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DisattivaNL.aspx.designer.cs">
+      <DependentUpon>DisattivaNL.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Donatori.aspx.cs">
+      <DependentUpon>Donatori.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Donatori.aspx.designer.cs">
+      <DependentUpon>Donatori.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ElencoAlbum.aspx.cs">
+      <DependentUpon>ElencoAlbum.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ElencoAlbum.aspx.designer.cs">
+      <DependentUpon>ElencoAlbum.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ElencoIscrittiNL.aspx.cs">
+      <DependentUpon>ElencoIscrittiNL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ElencoIscrittiNL.aspx.designer.cs">
+      <DependentUpon>ElencoIscrittiNL.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ElencoLink.aspx.cs">
+      <DependentUpon>ElencoLink.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ElencoLink.aspx.designer.cs">
+      <DependentUpon>ElencoLink.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ElencoNewsAdmin.aspx.cs">
+      <DependentUpon>ElencoNewsAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ElencoNewsAdmin.aspx.designer.cs">
+      <DependentUpon>ElencoNewsAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EsclusioneDonazioni.aspx.cs">
+      <DependentUpon>EsclusioneDonazioni.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EsclusioneDonazioni.aspx.designer.cs">
+      <DependentUpon>EsclusioneDonazioni.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Footer.ascx.cs">
+      <DependentUpon>Footer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Footer.ascx.designer.cs">
+      <DependentUpon>Footer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Foto.aspx.cs">
+      <DependentUpon>Foto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Foto.aspx.designer.cs">
+      <DependentUpon>Foto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FotoAdmin.aspx.cs">
+      <DependentUpon>FotoAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FotoAdmin.aspx.designer.cs">
+      <DependentUpon>FotoAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Giornalino.aspx.cs">
+      <DependentUpon>Giornalino.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Giornalino.aspx.designer.cs">
+      <DependentUpon>Giornalino.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Header.ascx.cs">
+      <DependentUpon>Header.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Header.ascx.designer.cs">
+      <DependentUpon>Header.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IscrizioneNewsletter.aspx.cs">
+      <DependentUpon>IscrizioneNewsletter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IscrizioneNewsletter.aspx.designer.cs">
+      <DependentUpon>IscrizioneNewsletter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Left.ascx.cs">
+      <DependentUpon>Left.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Left.ascx.designer.cs">
+      <DependentUpon>Left.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="LoadData.aspx.cs">
+      <DependentUpon>LoadData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoadData.aspx.designer.cs">
+      <DependentUpon>LoadData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LoginLnx.aspx.cs">
+      <DependentUpon>LoginLnx.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoginLnx.aspx.designer.cs">
+      <DependentUpon>LoginLnx.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialeOrtopedico.aspx.cs">
+      <DependentUpon>MaterialeOrtopedico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MaterialeOrtopedico.aspx.designer.cs">
+      <DependentUpon>MaterialeOrtopedico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mezzi.aspx.cs">
+      <DependentUpon>Mezzi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mezzi.aspx.designer.cs">
+      <DependentUpon>Mezzi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MezziProtCivile.aspx.cs">
+      <DependentUpon>MezziProtCivile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MezziProtCivile.aspx.designer.cs">
+      <DependentUpon>MezziProtCivile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MezziSoccorso.aspx.cs">
+      <DependentUpon>MezziSoccorso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MezziSoccorso.aspx.designer.cs">
+      <DependentUpon>MezziSoccorso.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MezziSocioSanitari.aspx.cs">
+      <DependentUpon>MezziSocioSanitari.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MezziSocioSanitari.aspx.designer.cs">
+      <DependentUpon>MezziSocioSanitari.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModificaFoto.aspx.cs">
+      <DependentUpon>ModificaFoto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModificaFoto.aspx.designer.cs">
+      <DependentUpon>ModificaFoto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModificaLink.aspx.cs">
+      <DependentUpon>ModificaLink.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModificaLink.aspx.designer.cs">
+      <DependentUpon>ModificaLink.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModificaNotizia.aspx.cs">
+      <DependentUpon>ModificaNotizia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModificaNotizia.aspx.designer.cs">
+      <DependentUpon>ModificaNotizia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Noabilitato.aspx.cs">
+      <DependentUpon>Noabilitato.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Noabilitato.aspx.designer.cs">
+      <DependentUpon>Noabilitato.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NuovaFoto.aspx.cs">
+      <DependentUpon>NuovaFoto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NuovaFoto.aspx.designer.cs">
+      <DependentUpon>NuovaFoto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NuovaIniziativa.aspx.cs">
+      <DependentUpon>NuovaIniziativa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NuovaIniziativa.aspx.designer.cs">
+      <DependentUpon>NuovaIniziativa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NuovoLink.aspx.cs">
+      <DependentUpon>NuovoLink.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NuovoLink.aspx.designer.cs">
+      <DependentUpon>NuovoLink.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OrganiSociali.aspx.cs">
+      <DependentUpon>OrganiSociali.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrganiSociali.aspx.designer.cs">
+      <DependentUpon>OrganiSociali.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pagebasic.aspx.cs">
+      <DependentUpon>Pagebasic.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pagebasic.aspx.designer.cs">
+      <DependentUpon>Pagebasic.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Prelievi.aspx.cs">
+      <DependentUpon>Prelievi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Prelievi.aspx.designer.cs">
+      <DependentUpon>Prelievi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProfiloLnx.aspx.cs">
+      <DependentUpon>ProfiloLnx.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProfiloLnx.aspx.designer.cs">
+      <DependentUpon>ProfiloLnx.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profilo.aspx.cs">
+      <DependentUpon>Profilo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profilo.aspx.designer.cs">
+      <DependentUpon>Profilo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProtezioneCivile.aspx.cs">
+      <DependentUpon>ProtezioneCivile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProtezioneCivile.aspx.designer.cs">
+      <DependentUpon>ProtezioneCivile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Query.cs" />
+    <Compile Include="QueryScambio.cs" />
+    <Compile Include="QuoteSociali.aspx.cs">
+      <DependentUpon>QuoteSociali.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QuoteSociali.aspx.designer.cs">
+      <DependentUpon>QuoteSociali.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegIscrDonatori.aspx.cs">
+      <DependentUpon>RegIscrDonatori.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegIscrDonatori.aspx.designer.cs">
+      <DependentUpon>RegIscrDonatori.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Right.ascx.cs">
+      <DependentUpon>Right.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Right.ascx.designer.cs">
+      <DependentUpon>Right.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Sede.aspx.cs">
+      <DependentUpon>Sede.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sede.aspx.designer.cs">
+      <DependentUpon>Sede.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Stampa5permille.aspx.cs">
+      <DependentUpon>Stampa5permille.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Stampa5permille.aspx.designer.cs">
+      <DependentUpon>Stampa5permille.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TipiAlbumAdmin.aspx.cs">
+      <DependentUpon>TipiAlbumAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TipiAlbumAdmin.aspx.designer.cs">
+      <DependentUpon>TipiAlbumAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Utility.cs" />
+    <Compile Include="Volontariato.aspx.cs">
+      <DependentUpon>Volontariato.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Volontariato.aspx.designer.cs">
+      <DependentUpon>Volontariato.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Immagini\AgendaDona_sito.pdf" />
+    <None Include="public\Doc\RegIscrizioneDon.doc" />
+    <None Include="public\Doc\TabEsclusioneDon.doc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+    <Folder Include="public\Allegati\" />
+    <Folder Include="public\Dati\" />
+    <Folder Include="public\Foto\" />
+    <Folder Include="public\Giornalino\" />
+    <Folder Include="public\Img\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>46836</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

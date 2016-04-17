@@ -1,0 +1,6 @@
+<%
+Response.redirect("Home.aspx")
+%>
+
+
+

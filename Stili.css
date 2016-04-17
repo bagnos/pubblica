@@ -1,0 +1,130 @@
+﻿body
+{
+    background-color:#E6E6FA;
+}
+
+.margin10 {
+    margin-top:10px;  
+}
+
+.errorMessage {
+      display:block;
+      margin-top:10px;
+      color:red;
+}
+
+.MainTable
+{
+	width: 950px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top: 0;
+	margin-bottom:auto;
+	vertical-align: middle;
+	background-color:#ffffff;
+	border-color:#0000FF;
+	border-style:solid;
+	border-width:1px;
+}
+.TabellaGenerica
+{
+    border-color:#0000FF;
+	border-style:solid;
+	border-width:1px;
+    }
+.TdBordoDxBottom
+{
+    border-right-color:#0000FF;
+	border-right-style:solid;
+	border-right-width:1px;
+    border-bottom-color:#0000FF;
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+    }
+.TdBordoBottom
+{
+    border-bottom-color:#0000FF;
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+    }
+.TdBordoDx
+{
+    border-right-color:#0000FF;
+	border-right-style:solid;
+	border-right-width:1px;
+    }
+.TrHeader
+{
+    background-color:#0000AA; 
+    color:White;
+    }
+.TrHeaderChiara
+{
+    background-color:#99CBFF; 
+    color:Black;
+    }
+.TDNews
+{
+    background-image:url("Immagini/rigaceleste.jpg");
+    background-repeat:repeat-x;
+    }
+.TdMainHeader
+{}
+
+.TdMainLeft
+{
+    width:20%;
+    }
+
+.TdMainCorpo
+{
+    width:55%;
+    }
+
+.TdMainRight
+{
+    width:25%;
+    }
+
+.TdMainFooter
+{}
+
+.TestoG
+{
+    font-family:Tahoma;
+    font-size:14pt;
+}
+
+.TestoM
+{
+    font-family:Tahoma ;
+    font-size:12pt;
+}
+
+.TestoP
+{
+    font-family:Tahoma ;
+    font-size:10pt;
+}
+.Bottoni
+{
+    background-color:#0000AA; 
+    color:White;
+    font-family:Tahoma ;
+    font-size:10pt;
+    font-weight:bold;
+    border:0;
+    }
+
+.TextBox
+{
+    font-family:Tahoma;
+    font-size:10pt;
+    border-style:solid;
+    border-width:1px;
+    border-color:#666666;
+    }
+
+#area-riservate .form-group {
+    margin-bottom:0px !important;
+}
