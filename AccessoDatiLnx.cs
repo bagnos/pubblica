@@ -25,10 +25,22 @@ namespace pa_taverne
             //StrConnect = "Server=62.149.150.71;Database=Sql178902_2;Uid=Sql178902;Pwd=2af698be;";
             //StrConnect = "Provider=MySQLProv; Data Source=62.149.150.71; User ID =Sql178902; Password=2af698be; Initial Catalog=Sql178902_2;";
             //StrConnect = "Driver={MySQL ODBC 3.51 Driver};Server=62.149.150.71;Database=Sql178902_2;User=Sql178902; Password=2af698be;Option=3;";
-            StrConnect = "SERVER=localhost;DATABASE=sql178902_2;User=root;Password=root;";
-            //StrConnect = "SERVER=62.149.150.71;DATABASE=sql178902_2;User=Sql178902;Password=2af698be;";
-            
+            //StrConnect = "SERVER=localhost;DATABASE=sql178902_2;User=root;Password=root;";
+            //Driver ={ MySQL ODBC 3.51 Driver}; Server = 62.149.150.71; Database = Sql178902_2; User = Sql178902; Password = 2af698be; Option = 3
+            // StrConnect = "SERVER=62.149.150.71;DATABASE=Sql178902_2;User=Sql178902;Password=2af698be;";
+            StrConnect = getConnecctionString();
 
+
+        }
+
+        private String getConnecctionString()
+        {
+            MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
+            builder.UserID = "Sql178902";
+            builder.Password = "2af698be";
+            builder.Server = "62.149.150.71";
+            builder.Database = "Sql178902_2";
+            return builder.ConnectionString;
         }
 
         public override DataTable getDT(string SQL)
@@ -47,7 +59,7 @@ namespace pa_taverne
                 return dt;
             }
 
-            finally 
+            finally
             {
                 if (cnn != null)
                 {
@@ -59,6 +71,7 @@ namespace pa_taverne
         public override int Esegui(string SQL)
         {
             cnn = new MySql.Data.MySqlClient.MySqlConnection();
+            cnn.ConnectionString = StrConnect;
             cnn.Open();
             try
             {

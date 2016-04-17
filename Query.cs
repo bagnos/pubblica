@@ -13,7 +13,7 @@ namespace pa_taverne
         AccessoDati objAcc = null;
         public Query()
         {
-            AccessoDati objAcc = new AccessoDati();
+            objAcc = new AccessoDatiLnx();
         }
 
         public Query(AccessoDati accesso)

@@ -26,7 +26,8 @@ namespace pa_taverne
             {
                 //StrConnect = "Server=62.149.150.71;Database=Sql178902_2;Uid=Sql178902;Pwd=2af698be;";
                 //StrConnect = "Provider=MySQLProv; Data Source=62.149.150.71; User ID =Sql178902; Password=2af698be; Initial Catalog=Sql178902_2;";
-                StrConnect = "Driver={MySQL ODBC 3.51 Driver};Server=62.149.150.71;Database=Sql178902_2;User=Sql178902; Password=2af698be;Option=3;";
+                //StrConnect = "Driver={MySQL ODBC 3.51 Driver};Server=62.149.150.71;Database=Sql178902_2;User=Sql178902; Password=2af698be;Option=3;";
+                StrConnect = "Driver ={MySQL ODBC 3.51 Driver}; Server = 62.149.150.71; Database = Sql178902_2; User = Sql178902; Password = 2af698be; Option = 3; ";
             }
         }
 

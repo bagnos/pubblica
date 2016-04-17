@@ -10,7 +10,7 @@ namespace pa_taverne
     public class QueryScambio
     {
         AccessoDatiScambio objAccS = new AccessoDatiScambio();
-        AccessoDati objAcc = new AccessoDati();
+        AccessoDati objAcc = new AccessoDatiLnx();
 
         public QueryScambio()
         {
