@@ -12,7 +12,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>pa_taverne</RootNamespace>
     <AssemblyName>pa-taverne</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -24,6 +24,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,6 +34,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -41,6 +43,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FreeTextBox, Version=3.3.0.22838, Culture=neutral, PublicKeyToken=5962a4e684a48b87, processorArchitecture=MSIL">
@@ -53,18 +56,11 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Data.DataSetExtensions">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Web.Extensions">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
@@ -72,12 +68,14 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.Mobile" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AggiungiIscrittoNL.aspx" />
     <Content Include="Album.aspx" />
     <Content Include="AlbumAdmin.aspx" />
     <Content Include="Ambulatori.aspx" />
+    <Content Include="APIError.aspx" />
     <Content Include="App_Data\pa-taverne.mdb">
     </Content>
     <Content Include="ArchivioNotizie.aspx" />
@@ -98,6 +96,7 @@
     <Content Include="ElencoLink.aspx" />
     <Content Include="ElencoNewsAdmin.aspx" />
     <Content Include="EsclusioneDonazioni.aspx" />
+    <Content Include="expresscheckout.aspx" />
     <Content Include="Footer.ascx" />
     <Content Include="Foto.aspx" />
     <Content Include="FotoAdmin.aspx" />
@@ -198,6 +197,7 @@
     <Content Include="NuovoLink.aspx" />
     <Content Include="OrganiSociali.aspx" />
     <Content Include="Pagebasic.aspx" />
+    <Content Include="PayPalConfirmPayment.aspx" />
     <Content Include="Prelievi.aspx" />
     <Content Include="ProfiloLnx.aspx" />
     <Content Include="Profilo.aspx" />
@@ -243,6 +243,10 @@
     </Compile>
     <Compile Include="Ambulatori.aspx.designer.cs">
       <DependentUpon>Ambulatori.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="APIError.aspx.cs">
+      <DependentUpon>APIError.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ArchivioNotizie.aspx.cs">
       <DependentUpon>ArchivioNotizie.aspx</DependentUpon>
@@ -369,6 +373,10 @@
     </Compile>
     <Compile Include="EsclusioneDonazioni.aspx.designer.cs">
       <DependentUpon>EsclusioneDonazioni.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="expresscheckout.aspx.cs">
+      <DependentUpon>expresscheckout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Footer.ascx.cs">
       <DependentUpon>Footer.ascx</DependentUpon>
@@ -548,6 +556,14 @@
     <Compile Include="Pagebasic.aspx.designer.cs">
       <DependentUpon>Pagebasic.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PayPalConfirmPayment.aspx.cs">
+      <DependentUpon>PayPalConfirmPayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PayPalConfirmPayment.aspx.designer.cs">
+      <DependentUpon>PayPalConfirmPayment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="paypalfunctions.cs" />
     <Compile Include="Prelievi.aspx.cs">
       <DependentUpon>Prelievi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

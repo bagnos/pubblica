@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="QuoteSociali.aspx.cs" Inherits="pa_taverne.QuoteSociali" %>
+﻿gl<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="QuoteSociali.aspx.cs" Inherits="pa_taverne.QuoteSociali" %>
 <%@ Register Tagprefix="Layout" TagName="Header" Src="Header.ascx" %>
 <%@ Register Tagprefix="Layout" TagName="Left" Src="Left.ascx" %>
 <%@ Register Tagprefix="Layout" TagName="Right" Src="Right.ascx" %>

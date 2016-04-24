@@ -62,13 +62,14 @@ namespace pa_taverne
             DataTable dtTipoVolontariato = new DataTable();
             DataTable dtVolAttivita = new DataTable();
             DataTable dtVolontari = new DataTable();
+            DataTable dtReferenti = new DataTable();
 
             DataTable dtErroriLettura = new DataTable();  
 
             try
             {
                 string filePath = ConfigurationManager.AppSettings["PathDati"];
-
+               
                 if (flDati.HasFile)
                 {
                     if (flDati.FileName == "DatiXsito.mdb")
@@ -190,6 +191,14 @@ namespace pa_taverne
                         {
                             dtErroriLettura.Rows.Add("Volontari", Ex.Message);
                         }
+                        try
+                        {
+                            dtReferenti = objQrySC.Referenti();
+                        }
+                        catch (Exception Ex)
+                        {
+                            dtErroriLettura.Rows.Add("Referenti", Ex.Message);
+                        }
                         #endregion
 
                         if (dtErroriLettura.Rows.Count == 0)
@@ -239,6 +248,7 @@ namespace pa_taverne
             DataTable dtTipoVolontariato = new DataTable();
             DataTable dtVolAttivita = new DataTable();
             DataTable dtVolontari = new DataTable();
+            DataTable dtReferenti = new DataTable();
 
             DataTable dtErroriLettura = new DataTable();
 
@@ -357,13 +367,21 @@ namespace pa_taverne
                 {
                     dtErroriLettura.Rows.Add("Volontari", Ex.Message);
                 }
+                try
+                {
+                    dtReferenti = objQrySC.Referenti();
+                }
+                catch (Exception Ex)
+                {
+                    dtErroriLettura.Rows.Add("Referenti", Ex.Message);
+                }
 
                 #endregion
 
                 if (dtErroriLettura.Rows.Count == 0)
                 {
                     Path = @"d:\\inetpub\\webs\\pa-taverneit\\public\\dati\\";
-
+                    //Path = @"c:\\sito\\";
                     #region CREAFILES
 
                     // Consiglio
@@ -775,6 +793,40 @@ namespace pa_taverne
                         err = true;
                     }
 
+                    //Referenti
+                    try
+                    {
+                        PathCompleto = Path + "E_Referenti.txt";
+                        if (System.IO.File.Exists(PathCompleto))
+                        {
+                            sw = new StreamWriter(PathCompleto);
+                            sw.Write(string.Empty);
+
+
+                            for (int i = 0; i < dtReferenti.Rows.Count; i++)
+                            {
+                                riga = dtReferenti.Rows[i]["N_FAMI"].ToString() + ";";
+                                riga = riga + dtReferenti.Rows[i]["N_SOCIO"].ToString() + ";";
+                                riga = riga + dtReferenti.Rows[i]["S_Mail"].ToString() + ";";
+                                riga = riga + dtReferenti.Rows[i]["DATA_FINE"].ToString();
+                                sw.WriteLine(riga);
+                            }
+
+                            sw.Close();
+                            log = log + "File E_Referenti creato correttamente <BR /><BR />";
+                        }
+                        else
+                        {
+                            log = log + "Il File E_Referenti.txt non esiste <BR /><BR />";
+                            err = true;
+                        }
+                    }
+                    catch (Exception Ex)
+                    {
+                        log = log + "File E_Referenti: " + Ex.Message + " <BR /><BR />";
+                        err = true;
+                    }
+
 
                     #endregion
 
@@ -1027,6 +1079,27 @@ namespace pa_taverne
                         catch (Exception Ex)
                         {
                             log = log + "File Volontari: " + Ex.Message + " <BR /><BR />";
+                            err = true;
+                        }
+
+                        //referenti
+                        try
+                        {
+                            PathCompleto = Path + "E_Referenti.txt";
+                            if (System.IO.File.Exists(PathCompleto))
+                            {
+                                objQry.CaricaDati(PathCompleto, "APP_Referenti");
+                                log = log + "File Referenti caricato correttamente <BR /><BR />";
+                            }
+                            else
+                            {
+                                log = log + "Il File E_Referenti.txt non esiste <BR /><BR />";
+                                err = true;
+                            }
+                        }
+                        catch (Exception Ex)
+                        {
+                            log = log + "File Referenti: " + Ex.Message + " <BR /><BR />";
                             err = true;
                         }
 

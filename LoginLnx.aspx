@@ -15,12 +15,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" />
 
 </head>
-<body>
-    <div class="container" style="margin-top: 20px">
-        <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-xs-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4>Accesso Area Riservata</h4>
+<body class="body-iframe">
+    <div class="" style="margin-top: 20px">
+        <div class="col-sm-6 col-sm-offset-3 col-md-5 col-md-offset-3 col-xs-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading text-center">
+                    <h4>ACCESSO</h4>
                 </div>
                 <div class="panel-body">
                     <form id="form1" runat="server">
@@ -36,8 +36,9 @@
                             <asp:TextBox ID="txSocio" CssClass="form-control  col-md-4 col-sm-4 col-xs-12" runat="server" TextMode="Password"></asp:TextBox>
 
                         </div>
-
-                        <asp:Button ID="btnLogin" runat="server" CssClass="margin10 btn btn-default" Text="Login" OnClick="btnLogin_Click" />
+                        
+                        <asp:Button ID="btnLogin" runat="server" CssClass="margin10 btn btn-md btn-primary" Text="Login" OnClick="btnLogin_Click" />
+                        
 
                         <div class="form-group">
                             

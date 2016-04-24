@@ -324,7 +324,7 @@ namespace pa_taverne
             string SQL;
 
             SQL = "SELECT * FROM (SELECT 9999 AS ANNO_EVN FROM DUAL UNION SELECT DISTINCT YEAR(DT_EVENTO) AS ANNO_EVN FROM E_NOTIZIE) A ORDER BY ANNO_EVN DESC ";
-                        
+
             try
             {
                 return objAcc.getDT(SQL);
@@ -355,7 +355,7 @@ namespace pa_taverne
             {
                 throw Ex;
             }
-        
+
         }
 
         public DataTable Consiglio()
@@ -605,7 +605,7 @@ namespace pa_taverne
                 throw Ex;
             }
         }
-                
+
         public string EtaMediaDonatori()
         {
             string SQL;
@@ -828,7 +828,7 @@ namespace pa_taverne
             else
             {
                 SQL = "SELECT COUNT(*) AS TOT FROM E_Soci WHERE (DataFineIscrizione IS NULL OR DataFineIscrizione=DATE('0000-00-00'))";
-                
+
             }
             try
             {
@@ -846,7 +846,7 @@ namespace pa_taverne
             {
                 throw Ex;
             }
-        
+
         }
 
         public string TotDonatori()
@@ -1529,7 +1529,25 @@ namespace pa_taverne
             catch (Exception Ex)
             {
                 throw Ex;
-            }            
+            }
+        }
+
+        public void incassoTesseraSocio(String idSocio, String imTessera)
+        {
+            string SQL;
+
+            SQL = "INSERT INTO E_QUOTE ";
+            SQL = SQL + "values (" + idSocio + ",CURRENT_DATE,'PAYPAL'," + imTessera + ")";
+
+
+            try
+            {
+                objAcc.Esegui(SQL);
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
         }
 
         public void InserisciAlbum(string id_tipo, string id_album, string descrizione)
@@ -1552,7 +1570,7 @@ namespace pa_taverne
             }
         }
 
-        public void InserisciFotoGallery(string id_album, string id_foto, string nomefile,string titolo, string descrizione, string ordine)
+        public void InserisciFotoGallery(string id_album, string id_foto, string nomefile, string titolo, string descrizione, string ordine)
         {
             string SQL;
 
@@ -1634,7 +1652,7 @@ namespace pa_taverne
                 SQL = "DELETE FROM E_ALBUM_FOTO WHERE ID_FOTO=" + id_foto;
             }
 
-            
+
 
             try
             {
@@ -1662,12 +1680,12 @@ namespace pa_taverne
                 throw Ex;
             }
         }
-        
+
         public void RinominaTipoAlbum(string id_tipo, string nome)
         {
             string SQL;
 
-            SQL = "UPDATE E_ALBUM_TIPO SET TX_TIPO_ALBUM='" + nome.Replace("'", "`") + "' WHERE ID_TIPO_ALBUM=" + id_tipo;            
+            SQL = "UPDATE E_ALBUM_TIPO SET TX_TIPO_ALBUM='" + nome.Replace("'", "`") + "' WHERE ID_TIPO_ALBUM=" + id_tipo;
 
 
             try
@@ -1790,7 +1808,7 @@ namespace pa_taverne
                 SQL = SQL + "  ON E_Soci.NSocio = Anpas.NSocio ";
                 SQL = SQL + " WHERE E_Soci.NSocio= " + id_socio;
             }
-            else 
+            else
             {
                 SQL = "SELECT E_Soci.NSocio   ";
                 SQL = SQL + ", E_Soci.NumFamiglia   ";
@@ -1860,7 +1878,7 @@ namespace pa_taverne
             }
             else
             {
-                SQL = "SELECT *   ";
+                SQL = "SELECT *";
                 SQL = SQL + "FROM (   ";
                 SQL = SQL + "SELECT A.NSocio   ";
                 SQL = SQL + ", A.NumFamiglia   ";
@@ -1875,11 +1893,29 @@ namespace pa_taverne
                 SQL = SQL + "FROM E_Soci A   ";
                 SQL = SQL + "LEFT JOIN (SELECT * FROM E_Donatori WHERE (DataFineDon Is Null OR DataFineDon=DATE('0000-00-00'))) B ON A.NSocio = B.NSocio    ";
                 SQL = SQL + "LEFT JOIN (SELECT DISTINCT NVolInt FROM E_VolAttivita WHERE (DataFineVolAtt Is Null OR DataFineVolAtt=DATE('0000-00-00'))) C ON A.NumVolontario = C.NVolInt   ";
-                SQL = SQL + ") A ";
-                SQL = SQL + "WHERE NumFamiglia=" + famiglia;
+                SQL = SQL + ") A";
+                SQL = SQL + " WHERE NumFamiglia=" + famiglia;
                 SQL = SQL + " AND NSocio<>" + socio;
+
             }
 
+
+            try
+            {
+                return objAcc.getDT(SQL);
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
+        }
+
+        public DataTable DatiReferente(String famiglia)
+        {
+            String SQL = "SELECT CONCAT_WS(' ',A.Nome,A.Cognome) as NomeCognome,E.S_MAIL ";
+            SQL = SQL + "FROM E_Soci A, E_Referenti E   ";
+            SQL = SQL + "WHERE A.NumFamiglia=" + famiglia;
+            SQL = SQL + " AND A.NSocio=E.N_SOCIO";
 
             try
             {
@@ -2214,7 +2250,7 @@ namespace pa_taverne
             }
             else
             {
-                SQL = "SELECT *  ";
+                SQL = "SELECT coalesce(sum(QuotaRisc),0) as QuotaRisc  ";
                 SQL = SQL + "FROM E_Quote  ";
                 SQL = SQL + "where Year(DataPagamento)=Year(CURDATE())  ";
                 SQL = SQL + "and NSocio=" + socio;
@@ -2225,12 +2261,14 @@ namespace pa_taverne
                 dt = objAcc.getDT(SQL);
                 if (dt.Rows.Count > 0)
                 {
-                    return true;
+                    if (dt.Rows[0]["QuotaRisc"].ToString() != "0")
+                    {
+                        return true;
+                    }
                 }
-                else
-                {
-                    return false;
-                }
+
+                return false;
+
             }
             catch (Exception Ex)
             {
@@ -2259,7 +2297,7 @@ namespace pa_taverne
                 SQL = "SELECT A.NSocio  ";
                 SQL = SQL + ", CONCAT_WS('-',CAST(Day(DataPagamento) as CHAR),CAST(Month(DataPagamento)  as CHAR),CAST(Year(DataPagamento) as CHAR)) AS DTPAG  ";
                 SQL = SQL + ", A.LuogoPagamento  ";
-                SQL = SQL + ", CONCAT(CAST(A.QuotaRisc as CHAR) ,'€') as QUOTA  ";
+                SQL = SQL + ", CAST(A.QuotaRisc as CHAR) as QUOTA  ";
                 SQL = SQL + "FROM E_Quote AS A  ";
                 SQL = SQL + "WHERE A.NSocio=" + socio;
                 SQL = SQL + " AND Year(DataPagamento)> " + (DateTime.Now.Year - 5).ToString();
@@ -2297,7 +2335,7 @@ namespace pa_taverne
             {
                 throw Ex;
             }
-            
+
         }
 
         public DataTable TipiIniziativeConNullo()
@@ -2388,7 +2426,7 @@ namespace pa_taverne
             }
         }
 
-        
+
         public void InserisciFoto(string id_foto, string nomefoto, string descfoto)
         {
             string SQL;
@@ -2695,7 +2733,7 @@ namespace pa_taverne
             DataTable dt = new DataTable();
 
             SQL = "SELECT FL_COPIA FROM E_CARICAMENTI";
-            
+
 
             try
             {
@@ -2737,7 +2775,7 @@ namespace pa_taverne
             {
                 throw Ex;
             }
-        
+
         }
 
         public void AggiornaCopia()
@@ -2745,7 +2783,7 @@ namespace pa_taverne
             string SQL;
 
             SQL = "UPDATE E_CARICAMENTI SET FL_COPIA=1";
-            
+
             try
             {
                 objAcc.Esegui(SQL);
@@ -2990,7 +3028,7 @@ namespace pa_taverne
             }
 
 
-            
+
 
             try
             {
@@ -3042,7 +3080,7 @@ namespace pa_taverne
             {
                 throw Ex;
             }
-                
+
         }
 
         public DataTable ElencoIscrittiNL()

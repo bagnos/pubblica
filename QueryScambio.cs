@@ -327,6 +327,26 @@ namespace pa_taverne
 
         }
 
+        public DataTable Referenti()
+        {
+            string SQL;
+
+            SQL = "SELECT N_FAMI ";
+            SQL = SQL + ", N_SOCIO ";
+            SQL = SQL + ", S_Mail ";
+            SQL = SQL + ", DATA_FINE ";
+            SQL = SQL + "FROM Referenti ";
+            try
+            {
+                return objAccS.getDT(SQL);
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
+
+        }
+
         public void InsConsiglio(string ID_SOCIO, string ID_STRUTTURA, string ID_CARICA, string NUM_VOTI
             , string TX_RESPONSABILITA)
         {
@@ -909,6 +929,32 @@ namespace pa_taverne
             }
         }
 
+        public void InsReferenti(string nFam, string nSocio, string sMail, string dataFine)
+        {
+            string SQL;
+
+            
+            
+                SQL = "INSERT INTO APP_Volontari ";
+                SQL = SQL + "SELECT " + nFam + " AS N_FAMI ";
+                SQL = SQL + ", " + nSocio + " AS N_SOCIO ";
+                SQL = SQL + ", " + sMail + " AS S_MAIL ";
+                if (dataFine!=null && dataFine.Trim()!=string.Empty)
+                    SQL = SQL + ", DATE('" + dataFine + "') AS DATA_FINE ";
+                
+
+
+            try
+            {
+                objAcc.Esegui(SQL);
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
+        }
+
+
         public void SvuotaDB()
         {
             string SQL1;
@@ -922,6 +968,7 @@ namespace pa_taverne
             string SQL9;
             string SQL10;
             string SQL11;
+            string SQL12;
 
             if (ConfigurationManager.AppSettings["DB"] == "Access")
             {
@@ -936,6 +983,7 @@ namespace pa_taverne
                 SQL9 = "DELETE * FROM E_TipoVolontariato";
                 SQL10 = "DELETE * FROM E_VolAttivita";
                 SQL11 = "DELETE * FROM E_Volontari";
+                SQL12 = "DELETE * FROM E_Referenti";
             }
             else
             {
@@ -950,6 +998,7 @@ namespace pa_taverne
                 SQL9 = "DELETE FROM D_TipoVolontariato";
                 SQL10 = "DELETE FROM E_VolAttivita";
                 SQL11 = "DELETE FROM E_Volontari";
+                SQL12 = "DELETE FROM E_Referenti";
             }
 
             try
@@ -965,6 +1014,7 @@ namespace pa_taverne
                 objAcc.Esegui(SQL9);
                 objAcc.Esegui(SQL10);
                 objAcc.Esegui(SQL11);
+                objAcc.Esegui(SQL12);
             }
             catch (Exception Ex)
             {
@@ -1052,6 +1102,7 @@ namespace pa_taverne
             string SQL9;
             string SQL10;
             string SQL11;
+            string SQL12;
 
             if (ConfigurationManager.AppSettings["DB"] == "Access")
             {
@@ -1066,6 +1117,7 @@ namespace pa_taverne
                 SQL9 = "INSERT INTO E_TipoVolontariato SELECT * FROM E_TipoVolontariato";
                 SQL10 = "INSERT INTO E_VolAttivita SELECT * FROM E_VolAttivita";
                 SQL11 = "INSERT INTO E_Volontari SELECT * FROM E_Volontari";
+                SQL12 = "INSERT INTO E_Referenti SELECT * FROM E_Referenti";
             }
             else
             {
@@ -1080,6 +1132,7 @@ namespace pa_taverne
                 SQL9 = "INSERT INTO D_TipoVolontariato SELECT * FROM APP_TipoVolontariato";
                 SQL10 = "INSERT INTO E_VolAttivita SELECT * FROM APP_VolAttivita";
                 SQL11 = "INSERT INTO E_Volontari SELECT * FROM APP_Volontari";
+                SQL12 = "INSERT INTO E_Referenti SELECT * FROM APP_Referenti";
             }
 
             try
@@ -1095,6 +1148,7 @@ namespace pa_taverne
                 objAcc.Esegui(SQL9);
                 objAcc.Esegui(SQL10);
                 objAcc.Esegui(SQL11);
+                objAcc.Esegui(SQL12);
             }
             catch (Exception Ex)
             {

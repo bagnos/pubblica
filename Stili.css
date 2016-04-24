@@ -7,6 +7,10 @@
     margin-top:10px;  
 }
 
+.margin20 {
+    margin-top:20px;  
+}
+
 .errorMessage {
       display:block;
       margin-top:10px;
@@ -127,4 +131,8 @@
 
 #area-riservate .form-group {
     margin-bottom:0px !important;
+}
+
+.body-iframe {
+    background-color:#f1f1f1
 }

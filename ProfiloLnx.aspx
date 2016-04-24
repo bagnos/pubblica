@@ -12,28 +12,81 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" />
 
 </head>
-<body>
-    <div id="area-riservate" class="container">
+<body class="body-iframe">
+    <div id="area-riservate" class="">
+
         <form id="form1" runat="server" class="form-horizontal">
+
 
             <div style="border-radius: 5px; box-shadow: 0 5px 15px 2px rgba(150,150, 150, 0.4); padding: 20px; margin: 20px">
                 <div class="row">
+                    <!--
                     <div class="col-sm-11">
                         <h3 class="text-center" style="color: #2e5894; font-size: 2.5em;">AREA RISERVATA</h3>
                     </div>
-                    <div class="col-sm-1">
+                    -->
+
+
+
+
+                    <div class="col-sm-1 col-sm-offset-11 text-right">
+                        <!--
                         <asp:Button ID="btnLogout" runat="server" CssClass="Bo btn btn-primary" Text="ESCI"
-                            OnClick="btnLogout_Click"></asp:Button>
-
-
-
-
+                            OnClick="btnLogout_Click"></asp:Button>-->
+                        <button runat="server" id="Button1" type="button" class="btn btn-default btn-md" onserverclick="btnLogout_Click">
+                            <span class=" glyphicon glyphicon-off" aria-hidden="true"></span> Esci</button>
                     </div>
-                </div>
-                <div style="margin-top:10px">
-                    <asp:Label ID="lblErr" runat="server" Font-Bold="True"></asp:Label>
+
                 </div>
 
+                <div style="margin-top: 10px">
+                    <asp:Panel ID="pnlMessaggiError" runat="server" Visible="false">
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <strong>Attenzione! </strong>
+                            <asp:Label ID="lblErr" runat="server" Font-Bold="True"></asp:Label>
+                        </div>
+                    </asp:Panel>
+                    <asp:Panel ID="pnlMessaggiSuccess" runat="server" Visible="false">
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <strong>Ben Fatto! </strong>
+                            <asp:Label ID="lblEsitoPositivo" runat="server"></asp:Label>
+                        </div>
+                    </asp:Panel>
+                </div>
+
+
+                <asp:Panel ID="pnlCaricamento" runat="server">
+                    <div class="panel panel-primary ">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">CARICAMENTO DATI</h4>
+                        </div>
+                        <div class="panel-body">
+
+                            <table cellpadding="3" class="table" cellspacing="0" width="100%">
+
+                                <tr>
+                                    <td class="TestoP" align="center">Il file da caricare si deve chiamare DatiXsito.mdb<br />
+                                        <br />
+                                        <asp:Label ID="Label3" runat="server" Font-Bold="True" ForeColor="#EE0000"></asp:Label>
+                                        <asp:Panel ID="pnlUpload" runat="server">
+                                            <asp:FileUpload ID="flDati" runat="server" />
+                                            <br />
+                                            <br />
+                                            <asp:Button ID="btnSalva" runat="server" CssClass="btn btn-primary"
+                                                OnClick="btnSalva_Click" Text="Aggiorna i Dati" />
+                                        </asp:Panel>
+                                        <br />
+                                        <asp:Label ID="lblLog" runat="server" Font-Bold="True"></asp:Label>
+
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+                </asp:Panel>
 
                 <div class="panel panel-primary">
                     <div class="panel-heading">
@@ -109,8 +162,20 @@
                                 Text="ALTRI COMPONENTI DELLA FAMIGLIA ISCRITTI"></asp:Label></h4>
                     </div>
                     <div class="panel-body">
-
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label for="lblMedico">Referente Famiglia:</label>
+                                <asp:Label ID="lblReferente" runat="server"></asp:Label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label for="lblMedico">Mail Referente:</label>
+                                <asp:Label ID="lblMailReferente" runat="server"></asp:Label>
+                            </div>
+                        </div>
                         <div class="table-responsive">
+
                             <asp:GridView ID="dgFamiglia" runat="server" AutoGenerateColumns="False"
                                 CellPadding="1" CssClass="table table-bordered"
                                 OnRowDataBound="dgFamiglia_RowDataBound">
@@ -134,6 +199,7 @@
                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:BoundField>
                                     <asp:BoundField DataField="FL_FINEISCR" HeaderText="FL_FINEISCR" />
+
                                 </Columns>
                                 <HeaderStyle CssClass="" />
                             </asp:GridView>
@@ -260,12 +326,37 @@
                                 <asp:Label ID="lblDaVersare" runat="server" Font-Bold="True"></asp:Label>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-sm-6">
                                 <asp:Label ID="lblVersato" runat="server" Font-Bold="True"></asp:Label>
                             </div>
                         </div>
-                        <div class="table-responsive">
+
+                        <asp:Panel ID="frmPayPal" Visible="false" runat="server" CssClass="margin20">
+                            <h2 class="panel-title margin10">PAGAMENTO ONLINE TESSERA SOCIO ANNO IN CORSO</h2>
+                            <div class="row">
+                                <div class="col-sm-4 col-md-2">
+                                    <label for="txtAnno" class="control-label">Anno Tessera</label>
+                                    <asp:TextBox ReadOnly="true" ID="txtAnno" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+
+
+                                <div class="col-sm-4 col-md-2">
+
+                                    <label for="txtImporto" class="control-label">Importo (&euro;)</label>
+                                    <asp:TextBox ID="txtImporto" MaxLength="16" ReadOnly="true" CssClass="form-control col-md-4 col-sm-6 col-xs-12 " runat="server"></asp:TextBox>
+
+                                </div>
+                              
+                              
+                              
+                            </div>
+                                  <asp:ImageButton OnClick="pagaClick" CssClass="margin10" runat="server" ImageUrl="https://www.paypal.com/it_IT/i/btn/btn_xpressCheckout.gif" BorderStyle="None" />
+
+                        </asp:Panel>
+
+                        <div class="table-responsive margin20">
                             <asp:GridView ID="dgQuote" runat="server" AutoGenerateColumns="False"
                                 CellPadding="1" CssClass="table table-bordered">
                                 <Columns>
@@ -275,14 +366,17 @@
                                     <asp:BoundField DataField="LuogoPagamento" HeaderText="Luogo Pagamento">
                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:BoundField>
-                                    <asp:BoundField DataField="QUOTA" HeaderText="Quota versata" />
+                                    <asp:BoundField DataFormatString="{0:c} &euro;" DataField="QUOTA" HeaderText="Quota versata">
+                                     
+                                    </asp:BoundField>
+                                    
                                 </Columns>
                                 <HeaderStyle CssClass="" />
                             </asp:GridView>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-bordered" cellpadding="5" cellspacing="0">
-                                <caption>QUOTE SOCIALI</caption>
+                                <caption>QUOTE SOCIALI ANNO IN CORSO</caption>
                                 <tr>
                                     <th class="">Descrizione</th>
                                     <th class="">Quota</th>
@@ -312,9 +406,17 @@
                         </div>
                     </div>
                 </div>
+
+
+
             </div>
+
+
         </form>
+
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </body>
 </html>
 
