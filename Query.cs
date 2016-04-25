@@ -1550,6 +1550,38 @@ namespace pa_taverne
             }
         }
 
+        public void inserisciTxNid(String idSocio, String txn)
+        {
+            string SQL;
+
+            SQL = "INSERT INTO E_TXN ";
+            SQL = SQL + "values (" + idSocio + "," + txn + ")";
+            try
+            {
+                objAcc.Esegui(SQL);
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
+        }
+
+        public DataTable verificaTxNid(String idSocio, String txn)
+        {
+            string SQL;
+
+            SQL = "select * from E_TXN ";
+            SQL = SQL + "where  nsocio=" + idSocio + " and txPayPal='" + txn + "'";
+            try
+            {
+                return objAcc.getDT(SQL);
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
+        }
+
         public void InserisciAlbum(string id_tipo, string id_album, string descrizione)
         {
             string SQL;

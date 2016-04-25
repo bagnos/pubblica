@@ -39,7 +39,7 @@ namespace pa_taverne
         //    string Testo;
         //    try
         //    {
-                                
+
         //        message.From = mail;
         //        message.To = ConfigurationManager.AppSettings["MailContatti"];
 
@@ -48,7 +48,7 @@ namespace pa_taverne
         //        //Imposto contenuto
         //        Testo = "Salve sono " + Nome + ",<br /> residente in " + Indirizzo + ", " + Citta + " - " + CAP + ". Il mio numero di telefono è " + Telefono + "e il numero di fax è " + Fax + ".<br /> Ho scritto per comunicarvi il seguente messaggio: <br />" + Messaggio + "";
         //        message.Body = Testo;
-                                
+
         //        //Imposto il Server Smtp
 
         //        //SmtpClient SmtpMail = new SmtpClient();
@@ -60,6 +60,16 @@ namespace pa_taverne
         //        throw Ex;
         //    }
         //}
+
+
+        public void invioMailIncassoOnline(String nSocio)
+        {
+            string testo = "salve, <br /> il socio numero #socio# ha effettuato il pagamento online della tessera per l'anno in corso.";
+            testo = testo.Replace("#socio#", nSocio);
+            Utility util = new Utility();
+            //util.InvioMail("pa.taverne.amni@virgilio.it", "Pagamento Tessera Online", testo);
+            util.InvioMail("simone.bagnolesi@gmail.com", "Pagamento Tessera Online", testo);
+        }
 
         public void InvioMailContatti(string Nome, string Indirizzo, string Citta, string CAP, string Telefono
             , string mail, string Messaggio)

@@ -172,6 +172,7 @@
     <Content Include="Immagini\tooltiparrow.gif" />
     <Content Include="Immagini\Top.jpg" />
     <Content Include="Immagini\volontari.jpg" />
+    <Content Include="ipnPayPal.aspx" />
     <Content Include="IscrizioneNewsletter.aspx" />
     <Content Include="js\builder.js" />
     <Content Include="js\effects.js" />
@@ -422,6 +423,13 @@
     </Compile>
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ipnPayPal.aspx.cs">
+      <DependentUpon>ipnPayPal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ipnPayPal.aspx.designer.cs">
+      <DependentUpon>ipnPayPal.aspx</DependentUpon>
     </Compile>
     <Compile Include="IscrizioneNewsletter.aspx.cs">
       <DependentUpon>IscrizioneNewsletter.aspx</DependentUpon>

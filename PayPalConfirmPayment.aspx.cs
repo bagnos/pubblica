@@ -9,8 +9,8 @@ namespace pa_taverne
 {
     public partial class PayPalConfirmPayment : System.Web.UI.Page
     {
-        String custom = null;
-        String txUtente = null;
+        
+        
         String token = null;
         String paymentAmt=null;
         String payerId = null;
@@ -18,8 +18,6 @@ namespace pa_taverne
         Query query = new Query();
         protected void Page_Load(object sender, EventArgs e)
         {
-            custom = HttpContext.Current.Session["custom"].ToString();
-            txUtente = HttpContext.Current.Session["custom"].ToString();
             token = Request.QueryString["token"];
             paymentAmt = HttpContext.Current.Session["payment_amt"].ToString();
             payerId=Request.QueryString["PayerID"];
@@ -36,11 +34,24 @@ namespace pa_taverne
             if (esito)
             {                
                 query.incassoTesseraSocio(nSocio, paymentAmt);
+                try
+                {
+                    Utility ut = new Utility();
+                    ut.invioMailIncassoOnline(nSocio);
+
+                }
+                catch (Exception e)
+                { 
+                    Response.Redirect("ProfiloLnx.aspx?esitoPagamento=Pagamento effettuato con successo ma comunicate alla Pubblica di Taverne il pagamento effettuato online&esito=ok&eccezione="+e.Message);
+                    return;
+                }
                 Response.Redirect("ProfiloLnx.aspx?esitoPagamento=Pagamento effettuato con successo&esito=ok");
             }
             else {
                 Response.Redirect("ProfiloLnx.aspx?esitoPagamento="+ retMsg+ "&esito=ko");
             }
         }
+
+        
     }
 }
