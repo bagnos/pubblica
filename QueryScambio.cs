@@ -333,6 +333,7 @@ namespace pa_taverne
 
             SQL = "SELECT N_FAMI ";
             SQL = SQL + ", N_SOCIO ";
+            SQL = SQL + ", IMP_FAM ";
             SQL = SQL + ", S_Mail ";
             SQL = SQL + ", DATA_FINE ";
             SQL = SQL + "FROM Referenti ";

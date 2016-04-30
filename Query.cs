@@ -2878,7 +2878,7 @@ namespace pa_taverne
         {
             string SQL;
 
-            SQL = "LOAD DATA LOCAL INFILE '" + file + "' INTO TABLE Sql178902_2." + tabella + " FIELDS TERMINATED BY ';' ENCLOSED BY '\"\' LINES TERMINATED BY '\\n'";
+            SQL = "LOAD DATA LOCAL INFILE '" + file + "' REPLACE INTO TABLE Sql178902_2." + tabella + " FIELDS TERMINATED BY ';' ENCLOSED BY '\"\' LINES TERMINATED BY '\\n'";
 
             try
             {

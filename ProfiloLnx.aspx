@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" />
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
 <body class="body-iframe">
     <div id="area-riservate" class="">
@@ -34,7 +34,7 @@
                         <asp:Button ID="btnLogout" runat="server" CssClass="Bo btn btn-primary" Text="ESCI"
                             OnClick="btnLogout_Click"></asp:Button>-->
                         <button runat="server" id="Button1" type="button" class="btn btn-default btn-md" onserverclick="btnLogout_Click">
-                            <span class=" glyphicon glyphicon-off" aria-hidden="true"></span> Esci</button>
+                            <span class=" glyphicon glyphicon-off" aria-hidden="true"></span>Esci</button>
                     </div>
 
                 </div>
@@ -348,11 +348,11 @@
                                     <asp:TextBox ID="txtImporto" MaxLength="16" ReadOnly="true" CssClass="form-control col-md-4 col-sm-6 col-xs-12 " runat="server"></asp:TextBox>
 
                                 </div>
-                              
-                              
-                              
+
+
+
                             </div>
-                                  <asp:ImageButton OnClick="pagaClick" CssClass="margin10" runat="server" ImageUrl="https://www.paypal.com/it_IT/i/btn/btn_xpressCheckout.gif" BorderStyle="None" />
+                            <asp:ImageButton OnClick="pagaClick" CssClass="margin10" runat="server" ImageUrl="https://www.paypal.com/it_IT/i/btn/btn_xpressCheckout.gif" BorderStyle="None" />
 
                         </asp:Panel>
 
@@ -366,10 +366,8 @@
                                     <asp:BoundField DataField="LuogoPagamento" HeaderText="Luogo Pagamento">
                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:BoundField>
-                                    <asp:BoundField DataFormatString="{0:c} &euro;" DataField="QUOTA" HeaderText="Quota versata">
-                                     
-                                    </asp:BoundField>
-                                    
+                                    <asp:BoundField DataFormatString="{0:c} &euro;" DataField="QUOTA" HeaderText="Quota versata"></asp:BoundField>
+
                                 </Columns>
                                 <HeaderStyle CssClass="" />
                             </asp:GridView>
@@ -411,12 +409,26 @@
 
             </div>
 
+            <div class="loading" id="loading" align="center">
 
+                <img src="./images/loading.gif" alt="" />
+            </div>
         </form>
-
+        <div class="modal" id="modal" style="display: none"></div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('form').submit(function (event) {
+                setTimeout(function () {
+                    $('#modal').show();
+                    var loading = $("#loading");
+                    loading.show();
+                }, 200);
+            });
+        });
+
+    </script>
 </body>
 </html>
-

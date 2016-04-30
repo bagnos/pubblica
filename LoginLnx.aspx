@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 </head>
 <body class="body-iframe">
@@ -36,21 +37,37 @@
                             <asp:TextBox ID="txSocio" CssClass="form-control  col-md-4 col-sm-4 col-xs-12" runat="server" TextMode="Password"></asp:TextBox>
 
                         </div>
-                        
+
                         <asp:Button ID="btnLogin" runat="server" CssClass="margin10 btn btn-md btn-primary" Text="Login" OnClick="btnLogin_Click" />
-                        
+
 
                         <div class="form-group">
-                            
-                                <asp:Label ID="lblErr" CssClass="errorMessage" runat="server" Text=""></asp:Label>
-                            
+
+                            <asp:Label ID="lblErr" CssClass="errorMessage" runat="server" Text=""></asp:Label>
+
                         </div>
 
+                        <div class="loading" id="loading" align="center">
+
+                            <img src="./images/loading.gif" alt="" />
+                        </div>
                     </form>
+                    <div class="modal" id="modal" style="display: none"></div>
                 </div>
             </div>
         </div>
-    </div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('form').submit(function (event) {
+                    setTimeout(function () {
+                        $('#modal').show();
+                        var loading = $("#loading");
+                        loading.show();
+                    }, 200);
+                });
+            });
+
+        </script>
 </body>
 </html>
 

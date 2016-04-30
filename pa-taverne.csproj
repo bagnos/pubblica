@@ -107,6 +107,7 @@
     <Content Include="images\bullet.gif" />
     <Content Include="images\close.gif" />
     <Content Include="images\closelabel.gif" />
+    <Content Include="images\loader.gif" />
     <Content Include="images\loading.gif" />
     <Content Include="images\nextlabel.gif" />
     <Content Include="images\prevlabel.gif" />
@@ -211,7 +212,9 @@
     <Content Include="Stili.css" />
     <Content Include="TipiAlbumAdmin.aspx" />
     <Content Include="Volontariato.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessoDati.cs" />

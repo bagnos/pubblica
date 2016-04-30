@@ -80,7 +80,7 @@ namespace pa_taverne
                 }
 
                 pnlCaricamento.Visible = true;
-                if (Session["fladmin"].ToString() == "0")
+                if (Session["fladmin"]!=null && Session["fladmin"].ToString() == "0")
                 {
                     pnlCaricamento.Visible = false;
 
@@ -679,8 +679,8 @@ namespace pa_taverne
 
                 if (dtErroriLettura.Rows.Count == 0)
                 {
-                    Path = @"d:\\inetpub\\webs\\pa-taverneit\\public\\dati\\";
-                    //Path = @"c:\\sito\\";
+                    //Path = @"d:\\inetpub\\webs\\pa-taverneit\\public\\dati\\";
+                    Path = @"c:\\sito\\";
                     #region CREAFILES
 
                     // Consiglio
@@ -1106,8 +1106,16 @@ namespace pa_taverne
                             {
                                 riga = dtReferenti.Rows[i]["N_FAMI"].ToString() + ";";
                                 riga = riga + dtReferenti.Rows[i]["N_SOCIO"].ToString() + ";";
+                                riga = riga + dtReferenti.Rows[i]["IMP_FAM"].ToString() + ";";
                                 riga = riga + dtReferenti.Rows[i]["S_Mail"].ToString() + ";";
-                                riga = riga + dtReferenti.Rows[i]["DATA_FINE"].ToString();
+                                if (dtReferenti.Rows[i]["DATA_FINE"] != null && dtReferenti.Rows[i]["DATA_FINE"].ToString().Length > 8)
+                                {
+                                    riga = riga + dtReferenti.Rows[i]["DATA_FINE"].ToString().Substring(0, 8) ;
+                                }
+                                else
+                                {
+                                    riga = riga + dtReferenti.Rows[i]["DATA_FINE"].ToString() ;
+                                }
                                 sw.WriteLine(riga);
                             }
 

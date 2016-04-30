@@ -808,7 +808,7 @@ namespace pa_taverne
                                 riga = dtReferenti.Rows[i]["N_FAMI"].ToString() + ";";
                                 riga = riga + dtReferenti.Rows[i]["N_SOCIO"].ToString() + ";";
                                 riga = riga + dtReferenti.Rows[i]["S_Mail"].ToString() + ";";
-                                riga = riga + dtReferenti.Rows[i]["DATA_FINE"].ToString();
+                                riga = riga + dtReferenti.Rows[i]["DATA_FINE"].ToString().Substring(0,7);
                                 sw.WriteLine(riga);
                             }
 
