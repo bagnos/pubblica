@@ -14,7 +14,7 @@ using System.Web;
 public class NVPAPICaller
 {
     //private static readonly ILog log = LogManager.GetLogger(typeof(NVPAPICaller));
-	
+
     private string pendpointurl = "https://api-3t.paypal.com/nvp";
     private const string CVV2 = "CVV2";
 
@@ -28,12 +28,12 @@ public class NVPAPICaller
     //Replace <API_USERNAME> with your API Username
     //Replace <API_PASSWORD> with your API Password
     //Replace <API_SIGNATURE> with your Signature
-    
+
     public string APIUsername = "othalaBusines2_api1.othala.it";
     private string APIPassword = "1401144172";
     private string APISignature = "Arn.ArK3PQZHb0dhe4Iiiho9z4kmAZqz9IGTatMji0-4GXfaQEx4I-2S";
     private string Subject = "";
-	private string BNCode = "PP-ECWizard";
+    private string BNCode = "PP-ECWizard";
 
     //HttpWebRequest Timeout specified in milliseconds 
     private const int Timeout = 5000;
@@ -61,22 +61,23 @@ public class NVPAPICaller
     /// <param ref name="token"></param>
     /// <param ref name="retMsg"></param>
     /// <returns></returns>
-    public bool ShortcutExpressCheckout(string amt, ref string token, ref string retMsg,String socio,String anno,String nome)
+    public bool ShortcutExpressCheckout(string amt, ref string token, ref string retMsg, String anno, DataTable dtFamiglia, string nome, string socio, string amtSocio)
     {
-		string host = "www.paypal.com";
-		if (bSandbox)
-		{
-			pendpointurl = "https://api-3t.sandbox.paypal.com/nvp";
-			host = "www.sandbox.paypal.com";
-		}
+        string host = "www.paypal.com";
+        if (bSandbox)
+        {
+            pendpointurl = "https://api-3t.sandbox.paypal.com/nvp";
+            host = "www.sandbox.paypal.com";
+        }
 
         //String baseUrl = "http://localhost:46836";
-        String baseUrl = "http://win.pa-taverne.it";
+        //String baseUrl = "http://win.pa-taverne.it";
+        string baseUrl = ConfigurationManager.AppSettings["baseUrl"];
 
-        string returnURL = baseUrl+"/PayPalConfirmPayment.aspx";
+        string returnURL = baseUrl + "/PayPalConfirmPayment.aspx";
 
         string cancelURL = "http://lnx.pa-taverne.it/area-riservata-2/";
-
+        String custom = "";
 
 
 
@@ -85,17 +86,33 @@ public class NVPAPICaller
         encoder["RETURNURL"] = returnURL;
         encoder["CANCELURL"] = cancelURL;
         encoder["PAYMENTREQUEST_0_AMT"] = amt;
-        encoder["PAYMENTREQUEST_0_ITEMAMT"]= amt;
+        encoder["PAYMENTREQUEST_0_ITEMAMT"] = amt;
         encoder["PAYMENTREQUEST_0_PAYMENTACTION"] = "Sale";
         encoder["PAYMENTREQUEST_0_CURRENCYCODE"] = "EUR";
-        encoder["PAYMENTREQUEST_0_CUSTOM"] = socio+"-"+anno;
-
-
-        encoder["L_PAYMENTREQUEST_0_DESC0"] = "Tessera Pubblica assistenza Anno " + anno + " per " + nome;
-        encoder["L_PAYMENTREQUEST_0_AMT0"] = amt;
-        encoder["L_PAYMENTREQUEST_0_NUMER0"] = socio;
         
+        int j = 0;
+        DataTable dtSociDaRiscuotre = new DataTable();
 
+        for (int i = 0; i <= dtFamiglia.Rows.Count - 1; i++)
+        {
+            if (dtFamiglia.Rows[i]["quotaRisc"].ToString() == "0")
+            {
+                encoder["L_PAYMENTREQUEST_0_DESC" + j] = dtFamiglia.Rows[i]["NomeCognome"] + " Tessera  Anno " + anno;
+                encoder["L_PAYMENTREQUEST_0_AMT" + j] = dtFamiglia.Rows[i]["quota"].ToString() + ".00";
+                encoder["L_PAYMENTREQUEST_0_NUMER" + j] = dtFamiglia.Rows[i]["nsocio"].ToString();
+                custom += " " + dtFamiglia.Rows[i]["nsocio"].ToString()+"-"+dtFamiglia.Rows[i]["quota"].ToString();
+                j++;
+            }
+        }
+        if (amtSocio != "0")
+        {
+            encoder["L_PAYMENTREQUEST_0_DESC" + j] = nome + " Tessera  Anno " + anno;
+            encoder["L_PAYMENTREQUEST_0_AMT" + j] = amtSocio+".00";
+            encoder["L_PAYMENTREQUEST_0_NUMER" + j] = socio;
+            custom += " " + socio+"-"+amtSocio;
+        }
+        String nrFamiglia = dtFamiglia.Rows[0]["NumFamiglia"].ToString();
+        encoder["PAYMENTREQUEST_0_CUSTOM"] = nrFamiglia+"-"+amt+":"+custom.Trim();
 
 
         string pStrrequestforNvp = encoder.Encode();
@@ -116,7 +133,7 @@ public class NVPAPICaller
         }
         else
         {
-            retMsg= "esito=ko&esitoPagamento="+decoder["L_ERRORCODE0"]+ ":"+decoder["L_LONGMESSAGE0"];
+            retMsg = "esito=ko&esitoPagamento=" + decoder["L_ERRORCODE0"] + ":" + decoder["L_LONGMESSAGE0"];
             /*
             retMsg = "ErrorCode=" + decoder["L_ERRORCODE0"] + "&" +
                 "Desc=" + decoder["L_SHORTMESSAGE0"] + "&" +
@@ -134,17 +151,17 @@ public class NVPAPICaller
     /// <param ref name="token"></param>
     /// <param ref name="retMsg"></param>
     /// <returns></returns>
-    public bool MarkExpressCheckout(string amt, 
+    public bool MarkExpressCheckout(string amt,
                         string shipToName, string shipToStreet, string shipToStreet2,
-                        string shipToCity, string shipToState, string shipToZip, 
-                        string shipToCountryCode,ref string token, ref string retMsg)
+                        string shipToCity, string shipToState, string shipToZip,
+                        string shipToCountryCode, ref string token, ref string retMsg)
     {
-		string host = "www.paypal.com";
-		if (bSandbox)
-		{
-			pendpointurl = "https://api-3t.sandbox.paypal.com/nvp";
-			host = "www.sandbox.paypal.com";
-		}
+        string host = "www.paypal.com";
+        if (bSandbox)
+        {
+            pendpointurl = "https://api-3t.sandbox.paypal.com/nvp";
+            host = "www.sandbox.paypal.com";
+        }
 
         string returnURL = "http://win.pa-taverne.it/PayPalConfirmPayment.aspx";
         string cancelURL = "http://win.pa-taverne.it/ProfiloLnx.aspx";
@@ -155,17 +172,17 @@ public class NVPAPICaller
         encoder["CANCELURL"] = cancelURL;
         encoder["PAYMENTREQUEST_0_AMT"] = amt;
         encoder["PAYMENTREQUEST_0_PAYMENTACTION"] = "Sale";
-        encoder["PAYMENTREQUEST_0_CURRENCYCODE"]  = "EUR";
+        encoder["PAYMENTREQUEST_0_CURRENCYCODE"] = "EUR";
 
         //Optional Shipping Address entered on the merchant site
-        encoder["PAYMENTREQUEST_0_SHIPTONAME"]       = shipToName;
-        encoder["PAYMENTREQUEST_0_SHIPTOSTREET"]     = shipToStreet;
-        encoder["PAYMENTREQUEST_0_SHIPTOSTREET2"]    = shipToStreet2;
-        encoder["PAYMENTREQUEST_0_SHIPTOCITY"]       = shipToCity;
-        encoder["PAYMENTREQUEST_0_SHIPTOSTATE"]      = shipToState;
-        encoder["PAYMENTREQUEST_0_SHIPTOZIP"]        = shipToZip;
-        encoder["PAYMENTREQUEST_0_SHIPTOCOUNTRYCODE"]= shipToCountryCode;
-	
+        encoder["PAYMENTREQUEST_0_SHIPTONAME"] = shipToName;
+        encoder["PAYMENTREQUEST_0_SHIPTOSTREET"] = shipToStreet;
+        encoder["PAYMENTREQUEST_0_SHIPTOSTREET2"] = shipToStreet2;
+        encoder["PAYMENTREQUEST_0_SHIPTOCITY"] = shipToCity;
+        encoder["PAYMENTREQUEST_0_SHIPTOSTATE"] = shipToState;
+        encoder["PAYMENTREQUEST_0_SHIPTOZIP"] = shipToZip;
+        encoder["PAYMENTREQUEST_0_SHIPTOCOUNTRYCODE"] = shipToCountryCode;
+
 
         string pStrrequestforNvp = encoder.Encode();
         string pStresponsenvp = HttpCall(pStrrequestforNvp);
@@ -205,20 +222,20 @@ public class NVPAPICaller
     public bool GetShippingDetails(string token, ref string PayerId, ref string ShippingAddress, ref string retMsg)
     {
 
-		if (bSandbox)
-		{
-			pendpointurl = "https://api-3t.sandbox.paypal.com/nvp";
-		}
-		
+        if (bSandbox)
+        {
+            pendpointurl = "https://api-3t.sandbox.paypal.com/nvp";
+        }
+
         NVPCodec encoder = new NVPCodec();
         encoder["METHOD"] = "GetExpressCheckoutDetails";
         encoder["TOKEN"] = token;
 
         string pStrrequestforNvp = encoder.Encode();
-        string pStresponsenvp = HttpCall( pStrrequestforNvp );
+        string pStresponsenvp = HttpCall(pStrrequestforNvp);
 
         NVPCodec decoder = new NVPCodec();
-        decoder.Decode( pStresponsenvp );
+        decoder.Decode(pStresponsenvp);
 
         string strAck = decoder["ACK"].ToLower();
         if (strAck != null && (strAck == "success" || strAck == "successwithwarning"))
@@ -255,20 +272,20 @@ public class NVPAPICaller
     /// <param name="token"></param>
     /// <param ref name="retMsg"></param>
     /// <returns></returns>
-    public bool ConfirmPayment(string finalPaymentAmount, string token, string PayerId, ref NVPCodec decoder, ref string retMsg )
+    public bool ConfirmPayment(string finalPaymentAmount, string token, string PayerId, ref NVPCodec decoder, ref string retMsg)
     {
-		if (bSandbox)
-		{
-			pendpointurl = "https://api-3t.sandbox.paypal.com/nvp";
-		}
-		
+        if (bSandbox)
+        {
+            pendpointurl = "https://api-3t.sandbox.paypal.com/nvp";
+        }
+
         NVPCodec encoder = new NVPCodec();
         encoder["METHOD"] = "DoExpressCheckoutPayment";
         encoder["TOKEN"] = token;
         encoder["PAYMENTREQUEST_0_PAYMENTACTION"] = "Sale";
         encoder["PAYERID"] = PayerId;
         encoder["PAYMENTREQUEST_0_AMT"] = finalPaymentAmount;
-		encoder["PAYMENTREQUEST_0_CURRENCYCODE"] = "EUR";
+        encoder["PAYMENTREQUEST_0_CURRENCYCODE"] = "EUR";
 
         string pStrrequestforNvp = encoder.Encode();
         string pStresponsenvp = HttpCall(pStrrequestforNvp);
@@ -303,28 +320,19 @@ public class NVPAPICaller
 
         //To Add the credentials from the profile
         string strPost = NvpRequest + "&" + buildCredentialsNVPString();
-		//strPost = strPost + "&BUTTONSOURCE=" + HttpUtility.UrlEncode( BNCode );
+        //strPost = strPost + "&BUTTONSOURCE=" + HttpUtility.UrlEncode( BNCode );
         ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
         HttpWebRequest objRequest = (HttpWebRequest)WebRequest.Create(url);
         objRequest.Timeout = Timeout;
         objRequest.Method = "POST";
         objRequest.ContentLength = strPost.Length;
 
-        try
+        using (StreamWriter myWriter = new StreamWriter(objRequest.GetRequestStream()))
         {
-            using (StreamWriter myWriter = new StreamWriter(objRequest.GetRequestStream()))
-            {
-                myWriter.Write(strPost);
-            }
+            myWriter.Write(strPost);
         }
-        catch (Exception e)
-        {
-            /*
-            if (log.IsFatalEnabled)
-            {
-                log.Fatal(e.Message, this);
-            }*/
-        }
+
+
 
         //Retrieve the Response returned from the NVP API call to PayPal
         HttpWebResponse objResponse = (HttpWebResponse)objRequest.GetResponse();

@@ -70,15 +70,17 @@ namespace pa_taverne
                 }
                 String receiver_email = "othalaBusines2@othala.it";
                 String custom = responseMap["custom"];
-                String socio = custom.Split('-')[0];
-                String anno = custom.Split('-')[1];
+                String[] items = custom.Split(':');
+                String famiglia = items[0].Split('-')[0]; ;
+                String quota = items[0].Split('-')[1]; ;
+                String[] soci = items[1].Split(' ');
                 Query query = new Query();
-                String quota = query.Quota(socio) + ".00";
+               
                 bool errori = false;
                 String descrErrore = "";
 
                 //check that txn_id has not been previously processed
-                DataTable dtTxn= query.verificaTxNid(socio,(responseMap["txn_id"]));
+                DataTable dtTxn= query.verificaTxNid(famiglia, (responseMap["txn_id"]));
                 if (dtTxn.Rows.Count>0)
                 {
                     errori = true;
@@ -111,12 +113,17 @@ namespace pa_taverne
                 if (errori==false)
                 {
                     //process payment
-                    query.inserisciTxNid(socio, responseMap["txn_id"]);
-                    query.incassoTesseraSocio(socio, quota);
+                    query.inserisciTxNid(famiglia, responseMap["txn_id"]);
+                    String[] itemSoci;
+                    foreach (String socio in soci)
+                    {
+                        itemSoci = socio.Split('-');
+                        query.incassoTesseraSocio(itemSoci[0], itemSoci[1]);
+                    }
                     Utility ut = new Utility();
                     try
                     {
-                        ut.invioMailIncassoOnline(socio);
+                       // ut.invioMailIncassoOnline(socio);
                     }
                     catch (Exception ex)
                     {

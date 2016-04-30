@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,16 +13,20 @@ namespace pa_taverne
         
         
         String token = null;
-        String paymentAmt=null;
+        String amtSocio=null;
         String payerId = null;
         String nSocio = null;
+        String paymentAmt = null;
         Query query = new Query();
+        DataTable dtFamiglia;
         protected void Page_Load(object sender, EventArgs e)
         {
             token = Request.QueryString["token"];
-            paymentAmt = HttpContext.Current.Session["payment_amt"].ToString();
+            amtSocio = HttpContext.Current.Session["amt_socio"].ToString();
             payerId=Request.QueryString["PayerID"];
+            paymentAmt = Session["payment_amt"].ToString();
             nSocio = Session["idsocio"].ToString();
+            dtFamiglia = (DataTable)Session["famiglia"];
             payNow();            
         }
 
@@ -32,12 +37,23 @@ namespace pa_taverne
             NVPAPICaller test = new NVPAPICaller();
             bool esito=test.ConfirmPayment(paymentAmt, token, payerId, ref nvpCodec, ref retMsg);
             if (esito)
-            {                
-                query.incassoTesseraSocio(nSocio, paymentAmt);
+            {
+                if (amtSocio != "0")
+                {
+                    query.incassoTesseraSocio(nSocio, amtSocio);
+                }
+                for (int i = 0; i <= dtFamiglia.Rows.Count - 1; i++)
+                {
+                    if (dtFamiglia.Rows[i]["quotaRisc"].ToString() == "0")
+                    {
+                        query.incassoTesseraSocio(dtFamiglia.Rows[i]["nsocio"].ToString(), dtFamiglia.Rows[i]["quota"].ToString());
+                    }
+                }
+
                 try
                 {
                     Utility ut = new Utility();
-                    ut.invioMailIncassoOnline(nSocio);
+                    //ut.invioMailIncassoOnline(nSocio);
 
                 }
                 catch (Exception e)

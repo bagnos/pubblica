@@ -14,17 +14,22 @@
     display: none;
     z-index: 999;
     left: 45%;
-    top: 45%;
+    top: 5%;
     position:fixed;
 }
 
+
 .modal {    
-    background-color: rgba(0,0,0,0.6);;
+   /*
+     background-color: rgba(0,0,0,0.6);;
     z-index: 99;
     opacity: 0.8;
     filter: alpha(opacity=80);
     -moz-opacity: 0.8;
     min-height: 100%;
+    width: 100%;
+    display: block;*/
+   min-height: 100%;
     width: 100%;
     display: block;
 }

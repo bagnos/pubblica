@@ -15,6 +15,13 @@ namespace pa_taverne
         public string id_famiglia = string.Empty;
         public Utility objUti = new Utility();
         private DataTable dtPagamenti;
+        private DataTable dtFamiglia;
+        private DataTable dtPagamentiDaFare;
+        private int daDareSocio;
+        private int quotaSocioLogin;
+        private int totaleFamigliaRiscosso;
+        private int totaleFamigliaDaPagare;
+        private int totaleFamigliaQuota;
 
         public Query objQry = new Query(new AccessoDatiLnx());
         QueryScambio objQrySC = new QueryScambio();
@@ -33,6 +40,7 @@ namespace pa_taverne
             {
                 Response.Redirect("LoginLnx.aspx");
             }
+            lblNumeroSocio.Text = Session["idsocio"].ToString();
         }
 
         protected void btnLogout_Click(object sender, EventArgs e)
@@ -52,7 +60,8 @@ namespace pa_taverne
                 pnlMessaggiError.Visible = true;
                 pnlMessaggiSuccess.Visible = false;
             }
-            else {
+            else
+            {
                 lblEsitoPositivo.Text = testo;
                 pnlMessaggiError.Visible = false;
                 pnlMessaggiSuccess.Visible = true;
@@ -69,7 +78,7 @@ namespace pa_taverne
                 {
                     if (Request.QueryString["esito"] == "ko")
                     {
-                        
+
                         scriviAlert(Request.QueryString["esitoPagamento"], true);
                     }
                     else
@@ -80,7 +89,7 @@ namespace pa_taverne
                 }
 
                 pnlCaricamento.Visible = true;
-                if (Session["fladmin"]!=null && Session["fladmin"].ToString() == "0")
+                if (Session["fladmin"] != null && Session["fladmin"].ToString() == "0")
                 {
                     pnlCaricamento.Visible = false;
 
@@ -96,38 +105,31 @@ namespace pa_taverne
                 DatiDonatore();
                 FlagUltima();
                 Donazioni();
-                String daDare = objQry.Quota(Session["idsocio"].ToString());
-                lblDaVersare.Text = "Ti ricordiamo che la tua quota annuale ammonta a " + daDare + " €";
+
+                lblDaVersare.Text = "Ti ricordiamo che la tua quota annuale ammonta a " + quotaSocioLogin + " €";
 
                 Pagamenti();
-                if (objQry.Pagato(Session["idsocio"].ToString()))
+                if (totaleFamigliaDaPagare == 0)
                 {
                     //verifichiamo la quuota annuale
-                    if (daDare != "0")
-                    {
-                        lblVersato.Visible = false;
-                    }
-
+                    lblVersato.Visible = false;
                 }
                 else
                 {
-
-                    txtImporto.Text = daDare;
-                    if (daDare != "0")
+                    frmPayPal.Visible = true;
+                    txtAnno.Text = DateTime.Now.Year.ToString();
+                    txtImporto.Text = totaleFamigliaDaPagare.ToString();
+                    if (daDareSocio != 0)
                     {
-                        frmPayPal.Visible = true;
-                        txtAnno.Text = DateTime.Now.Year.ToString();
+
                         lblVersato.Text = "Ricorda che devi ancora versare la quota associativa relativa all'anno in corso.<br />Provvedi quanto prima!";
                     }
-                    
+
                 }
-
-
-
             }
             catch (Exception Ex)
             {
-               scriviAlert(Ex.Message, true);
+                scriviAlert(Ex.Message, true);
             }
         }
 
@@ -142,6 +144,7 @@ namespace pa_taverne
                 {
                     lblNome.Text = dtDatiSocio.Rows[0]["Nome"].ToString();
                     lblCognome.Text = dtDatiSocio.Rows[0]["Cognome"].ToString();
+                    lblSocioQuote.Text = lblNome.Text + " " + lblCognome.Text;
                     lblNascita.Text = dtDatiSocio.Rows[0]["LuogoNascita"].ToString() + " " + dtDatiSocio.Rows[0]["DTNASC"].ToString();
                     lblIndirizzo.Text = dtDatiSocio.Rows[0]["Indirizzo"].ToString() + " " + dtDatiSocio.Rows[0]["Frazione"].ToString() + " " + dtDatiSocio.Rows[0]["Comune"].ToString();
                     lblIscrizione.Text = dtDatiSocio.Rows[0]["DTISCR"].ToString(); ;
@@ -169,23 +172,61 @@ namespace pa_taverne
 
         public void DatiFamiglia(string id_famiglia)
         {
-            DataTable dtFamiglia = new DataTable();
+            dtFamiglia = new DataTable();
 
             try
             {
                 dtFamiglia = objQry.DatiFamiglia(id_famiglia, Session["idsocio"].ToString());
+                dtFamiglia.Columns.Add(new DataColumn("quotaRisc"));
+                dtFamiglia.Columns.Add(new DataColumn("quota"));
+                dtPagamentiDaFare = dtFamiglia.Clone();
+                int quotaSocio;
                 if (dtFamiglia.Rows.Count > 0)
                 {
+                    for (int i = 0; i <= dtFamiglia.Rows.Count - 1; i++)
+                    {
+                        dtFamiglia.Rows[i]["quota"] = objQry.Quota(dtFamiglia.Rows[i]["NSocio"].ToString());
+                        dtFamiglia.Rows[i]["quotaRisc"] = objQry.Pagato(dtFamiglia.Rows[i]["NSocio"].ToString()) == true ? dtFamiglia.Rows[i]["quota"].ToString() : "0";
+                        Int32.TryParse(dtFamiglia.Rows[i]["quotaRisc"].ToString(), out quotaSocio);
+                        if (quotaSocio==0)
+                        {
+                            dtPagamentiDaFare.ImportRow(dtFamiglia.Rows[i]);
+                        }
+                        totaleFamigliaRiscosso += quotaSocio;
+                    }
+                    Int32.TryParse(objQry.Quota(Session["idsocio"].ToString()), out quotaSocio);
+                    quotaSocioLogin = quotaSocio;
+                    daDareSocio = objQry.Pagato(Session["idsocio"].ToString()) == true ? 0 : quotaSocio;
+                    if (daDareSocio == 0)
+                    {
+                        totaleFamigliaRiscosso += quotaSocio;
+                    }
+                    else
+                    {
+                        DataRow rowSocio = dtPagamentiDaFare.NewRow();
+                        rowSocio["quota"] = quotaSocio;
+                        rowSocio["NomeCognome"] = lblSocioQuote.Text;
+                        rowSocio["nsocio"] = Session["idsocio"].ToString();
+                        dtPagamentiDaFare.Rows.Add(rowSocio);
+                        
+                    }
+                    if (dtPagamentiDaFare.Rows.Count!=0)
+                    {
+                        dgDaPagare.DataSource = dtPagamentiDaFare;
+                        dgDaPagare.DataBind();
+                    }
+
                     dgFamiglia.DataSource = dtFamiglia;
                     dgFamiglia.DataBind();
                     DataTable dtReferente = new DataTable();
                     dtReferente = objQry.DatiReferente(id_famiglia);
-                    if (dtReferente.Rows.Count > 0)
-                    {
-                        lblReferente.Text = dtReferente.Rows[0]["NomeCognome"].ToString();
-                        lblMailReferente.Text = dtReferente.Rows[0]["S_Mail"].ToString();
-                    }
 
+                    lblReferente.Text = dtReferente.Rows[0]["NomeCognome"].ToString();
+                    lblMailReferente.Text = dtReferente.Rows[0]["S_Mail"].ToString();
+
+                    txtImporto.Text = totaleFamigliaDaPagare.ToString();
+                    Int32.TryParse(dtReferente.Rows[0]["impFamiglia"].ToString(), out totaleFamigliaQuota);
+                    totaleFamigliaDaPagare = totaleFamigliaQuota - totaleFamigliaRiscosso;
                 }
                 else
                 {
@@ -322,19 +363,22 @@ namespace pa_taverne
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                if (e.Row.Cells[6].Text == "1")
+
+                if (e.Row.Cells[7].Text == "1")
                 {
                     e.Row.BackColor = System.Drawing.Color.Red;
                 }
             }
-            e.Row.Cells[6].Visible = false;
+            e.Row.Cells[7].Visible = false;
         }
 
         public void pagaClick(object sender, EventArgs e)
         {
-            HttpContext.Current.Session["payment_amt"] = txtImporto.Text + ".00";            
+            HttpContext.Current.Session["payment_amt"] = txtImporto.Text + ".00";
             HttpContext.Current.Session["anno"] = txtAnno.Text;
+            HttpContext.Current.Session["amt_socio"] = daDareSocio;
             HttpContext.Current.Session["nome"] = lblNome.Text + " " + lblCognome.Text;
+            HttpContext.Current.Session["famiglia"] = dtFamiglia;
             Response.Redirect("expresscheckout.aspx");
         }
 
@@ -510,7 +554,7 @@ namespace pa_taverne
                     }
                     else
                     {
-                        String testoErr="Attenzione il nome del file è diverso da quello richiesto!!";
+                        String testoErr = "Attenzione il nome del file è diverso da quello richiesto!!";
                         scriviAlert(testoErr, true);
                     }
                 }
@@ -518,7 +562,7 @@ namespace pa_taverne
             }
             catch (Exception Ex)
             {
-                
+
                 scriviAlert(Ex.Message, true);
             }
             finally
@@ -679,8 +723,9 @@ namespace pa_taverne
 
                 if (dtErroriLettura.Rows.Count == 0)
                 {
-                    //Path = @"d:\\inetpub\\webs\\pa-taverneit\\public\\dati\\";
-                    Path = @"c:\\sito\\";
+                    Path = @"d:\\inetpub\\webs\\pa-taverneit\\public\\dati\\";
+                    //Path = @"c:\\sito\\";
+                   
                     #region CREAFILES
 
                     // Consiglio
@@ -890,6 +935,7 @@ namespace pa_taverne
                     }
 
                     //TabDimissioni
+                    /*
                     try
                     {
                         PathCompleto = Path + "D_TabDimissioni.txt";
@@ -919,7 +965,7 @@ namespace pa_taverne
                     {
                         log = log + "File TabDimissioni: " + Ex.Message + " <BR /><BR />";
                         err = true;
-                    }
+                    }*/
 
                     //TessereAnpas
                     try
@@ -1110,11 +1156,11 @@ namespace pa_taverne
                                 riga = riga + dtReferenti.Rows[i]["S_Mail"].ToString() + ";";
                                 if (dtReferenti.Rows[i]["DATA_FINE"] != null && dtReferenti.Rows[i]["DATA_FINE"].ToString().Length > 8)
                                 {
-                                    riga = riga + dtReferenti.Rows[i]["DATA_FINE"].ToString().Substring(0, 8) ;
+                                    riga = riga + dtReferenti.Rows[i]["DATA_FINE"].ToString().Substring(0, 8);
                                 }
                                 else
                                 {
-                                    riga = riga + dtReferenti.Rows[i]["DATA_FINE"].ToString() ;
+                                    riga = riga + dtReferenti.Rows[i]["DATA_FINE"].ToString();
                                 }
                                 sw.WriteLine(riga);
                             }
@@ -1264,6 +1310,7 @@ namespace pa_taverne
                         }
 
                         //TabDimissioni
+                        /*
                         try
                         {
                             PathCompleto = Path + "D_TabDimissioni.txt";
@@ -1282,7 +1329,7 @@ namespace pa_taverne
                         {
                             log = log + "File TabDimissioni: " + Ex.Message + " <BR /><BR />";
                             err = true;
-                        }
+                        }*/
 
                         //TessereAnpas
                         try
@@ -1452,7 +1499,7 @@ namespace pa_taverne
         }
     }
 
-    
+
 
 
 }

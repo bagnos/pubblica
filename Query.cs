@@ -1944,7 +1944,7 @@ namespace pa_taverne
 
         public DataTable DatiReferente(String famiglia)
         {
-            String SQL = "SELECT CONCAT_WS(' ',A.Nome,A.Cognome) as NomeCognome,E.S_MAIL ";
+            String SQL = "SELECT CONCAT_WS(' ',A.Nome,A.Cognome) as NomeCognome,E.S_MAIL,E.imp_fam as impFamiglia ";
             SQL = SQL + "FROM E_Soci A, E_Referenti E   ";
             SQL = SQL + "WHERE A.NumFamiglia=" + famiglia;
             SQL = SQL + " AND A.NSocio=E.N_SOCIO";
@@ -2878,7 +2878,7 @@ namespace pa_taverne
         {
             string SQL;
 
-            SQL = "LOAD DATA LOCAL INFILE '" + file + "' REPLACE INTO TABLE Sql178902_2." + tabella + " FIELDS TERMINATED BY ';' ENCLOSED BY '\"\' LINES TERMINATED BY '\\n'";
+            SQL = "LOAD DATA LOCAL INFILE '" + file + "' INTO TABLE Sql178902_2." + tabella + " FIELDS TERMINATED BY ';' ENCLOSED BY '\"\' LINES TERMINATED BY '\\n'";
 
             try
             {

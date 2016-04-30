@@ -238,6 +238,15 @@ namespace pa_taverne {
         protected global::System.Web.UI.WebControls.Label lblMedico;
         
         /// <summary>
+        /// lblNumeroSocio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNumeroSocio;
+        
+        /// <summary>
         /// lblFamiglia1 control.
         /// </summary>
         /// <remarks>
@@ -364,6 +373,15 @@ namespace pa_taverne {
         protected global::System.Web.UI.WebControls.Label lblUltima;
         
         /// <summary>
+        /// lblSocioQuote control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSocioQuote;
+        
+        /// <summary>
         /// lblQuote control.
         /// </summary>
         /// <remarks>
@@ -398,6 +416,15 @@ namespace pa_taverne {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel frmPayPal;
+        
+        /// <summary>
+        /// dgDaPagare control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView dgDaPagare;
         
         /// <summary>
         /// txtAnno control.

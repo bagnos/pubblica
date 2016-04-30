@@ -1,8 +1,10 @@
 using System;
+using System.Data;
 using System.Web;
 
 public partial class PayPalEC : System.Web.UI.Page 
 {
+
     protected void Page_Load(object sender, EventArgs e)
     {
         NVPAPICaller test = new NVPAPICaller();
@@ -13,7 +15,7 @@ public partial class PayPalEC : System.Web.UI.Page
         {
             string amt = HttpContext.Current.Session["payment_amt"].ToString();
 
-            bool ret = test.ShortcutExpressCheckout(amt, ref token, ref retMsg, Session["idsocio"].ToString(), Session["anno"].ToString(), Session["nome"].ToString());
+            bool ret = test.ShortcutExpressCheckout(amt, ref token, ref retMsg, Session["anno"].ToString(), ((DataTable)Session["famiglia"]), Session["nome"].ToString(), Session["idsocio"].ToString(), Session["amt_socio"].ToString());
             if (ret)
             {
 				HttpContext.Current.Session["token"] = token;

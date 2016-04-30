@@ -6,7 +6,7 @@
 <head id="Head1" runat="server">
     <title>Pubblica Assistenza Taverne D'Arbia</title>
 
-    <link href="Stili.css" rel="Stylesheet" />
+    <link href="Stili.css?010516" rel="Stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" />
@@ -34,7 +34,7 @@
                         <asp:Button ID="btnLogout" runat="server" CssClass="Bo btn btn-primary" Text="ESCI"
                             OnClick="btnLogout_Click"></asp:Button>-->
                         <button runat="server" id="Button1" type="button" class="btn btn-default btn-md" onserverclick="btnLogout_Click">
-                            <span class=" glyphicon glyphicon-off" aria-hidden="true"></span>Esci</button>
+                            <span class=" glyphicon glyphicon-off" aria-hidden="true"></span> Esci</button>
                     </div>
 
                 </div>
@@ -152,6 +152,12 @@
                                 <asp:Label ID="lblMedico" runat="server"></asp:Label>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label for="lblNumeroSocio">Numero Socio:</label>
+                                <asp:Label ID="lblNumeroSocio" runat="server"></asp:Label>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -180,6 +186,8 @@
                                 CellPadding="1" CssClass="table table-bordered"
                                 OnRowDataBound="dgFamiglia_RowDataBound">
                                 <Columns>
+
+                                    <asp:BoundField DataField="nsocio" HeaderText="Nr.Socio" />
                                     <asp:BoundField DataField="NomeCognome" HeaderText="Nome">
                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:BoundField>
@@ -199,6 +207,9 @@
                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:BoundField>
                                     <asp:BoundField DataField="FL_FINEISCR" HeaderText="FL_FINEISCR" />
+                                    <asp:BoundField DataFormatString="{0:c} &euro;" DataField="quota" HeaderText="Quota" />
+                                    <asp:BoundField DataFormatString="{0:c} &euro;" DataField="quotaRisc" HeaderText="Pagato" />
+
 
                                 </Columns>
                                 <HeaderStyle CssClass="" />
@@ -307,9 +318,17 @@
 
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h4 class="panel-title">QUOTE VERSATE</h4>
+                        <h4 class="panel-title">PAGAMENTI</h4>
                     </div>
                     <div class="panel-body">
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <asp:Label ID="lblSocioQuote" runat="server"
+                                    Font-Bold="True"></asp:Label>
+                            </div>
+
+                        </div>
 
 
                         <div class="row">
@@ -332,32 +351,42 @@
                                 <asp:Label ID="lblVersato" runat="server" Font-Bold="True"></asp:Label>
                             </div>
                         </div>
-
                         <asp:Panel ID="frmPayPal" Visible="false" runat="server" CssClass="margin20">
-                            <h2 class="panel-title margin10">PAGAMENTO ONLINE TESSERA SOCIO ANNO IN CORSO</h2>
+                            <h2 class="panel-title margin10">PAGAMENTO ONLINE TESSERE FAMIGLIA</h2>
+                            <div class="row">
+                                <div class="table-responsive margin10 col-sm-6">
+                                    <asp:GridView ID="dgDaPagare" runat="server" AutoGenerateColumns="False" Caption="Tessere da Pagare"
+                                        CellPadding="1" CssClass="table table-bordered">
+                                        <Columns>
+                                            <asp:BoundField DataField="NomeCognome" HeaderText="Socio">
+                                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            </asp:BoundField>
+                                            <asp:BoundField DataFormatString="{0:c} &euro;" DataField="quota" HeaderText="Quota"></asp:BoundField>
+
+                                        </Columns>
+                                        <HeaderStyle CssClass="" />
+                                    </asp:GridView>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-sm-4 col-md-2">
                                     <label for="txtAnno" class="control-label">Anno Tessera</label>
                                     <asp:TextBox ReadOnly="true" ID="txtAnno" CssClass="form-control" runat="server"></asp:TextBox>
                                 </div>
+                                <div class="col-sm-4 col-md-3">
 
-
-                                <div class="col-sm-4 col-md-2">
-
-                                    <label for="txtImporto" class="control-label">Importo (&euro;)</label>
+                                    <label for="txtImporto" class="control-label">Importo Famiglia da Pagare (&euro;)</label>
                                     <asp:TextBox ID="txtImporto" MaxLength="16" ReadOnly="true" CssClass="form-control col-md-4 col-sm-6 col-xs-12 " runat="server"></asp:TextBox>
 
                                 </div>
-
-
-
                             </div>
                             <asp:ImageButton OnClick="pagaClick" CssClass="margin10" runat="server" ImageUrl="https://www.paypal.com/it_IT/i/btn/btn_xpressCheckout.gif" BorderStyle="None" />
 
                         </asp:Panel>
 
-                        <div class="table-responsive margin20">
-                            <asp:GridView ID="dgQuote" runat="server" AutoGenerateColumns="False"
+
+                        <div class="table-responsive margin10">
+                            <asp:GridView ID="dgQuote" runat="server" AutoGenerateColumns="False" Caption="Ultimi Pagamenti"
                                 CellPadding="1" CssClass="table table-bordered">
                                 <Columns>
                                     <asp:BoundField DataField="DTPAG" HeaderText="Data Pagamento">
@@ -372,7 +401,8 @@
                                 <HeaderStyle CssClass="" />
                             </asp:GridView>
                         </div>
-                        <div class="table-responsive">
+
+                        <div class="table-responsive margin20">
                             <table class="table table-bordered" cellpadding="5" cellspacing="0">
                                 <caption>QUOTE SOCIALI ANNO IN CORSO</caption>
                                 <tr>
