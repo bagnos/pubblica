@@ -41,12 +41,14 @@ namespace pa_taverne
                 if (amtSocio != "0")
                 {
                     query.incassoTesseraSocio(nSocio, amtSocio);
+                    query.inserisciPagamentoOnline(nSocio, amtSocio);
                 }
                 for (int i = 0; i <= dtFamiglia.Rows.Count - 1; i++)
                 {
                     if (dtFamiglia.Rows[i]["quotaRisc"].ToString() == "0")
                     {
                         query.incassoTesseraSocio(dtFamiglia.Rows[i]["nsocio"].ToString(), dtFamiglia.Rows[i]["quota"].ToString());
+                        query.inserisciPagamentoOnline(dtFamiglia.Rows[i]["nsocio"].ToString(), dtFamiglia.Rows[i]["quota"].ToString());
                     }
                 }
 

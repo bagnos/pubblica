@@ -1566,6 +1566,38 @@ namespace pa_taverne
             }
         }
 
+        public void inserisciPagamentoOnline(String idSocio, String importo)
+        {
+            string SQL;
+
+            SQL = "INSERT INTO e_pagati_online ";
+            SQL = SQL + "values (" + idSocio + ",current_date(),'" + importo + "')";
+            try
+            {
+                objAcc.Esegui(SQL);
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
+        }
+
+        public DataTable ricercaPagamentiOnline(int anno)
+        {
+            string SQL;
+
+            SQL = "select * from e_pagati_online ";
+            SQL = SQL + "where  year(data)=" + anno;
+            try
+            {
+                return objAcc.getDT(SQL);
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
+        }
+
         public DataTable verificaTxNid(String idSocio, String txn)
         {
             string SQL;

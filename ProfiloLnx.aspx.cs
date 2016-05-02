@@ -52,6 +52,22 @@ namespace pa_taverne
             Response.Redirect("LoginLnx.aspx");
         }
 
+        protected void btnPagamentiOnline_click(object sender, EventArgs e)
+        {
+            try
+            {
+                int anno = DateTime.Now.Year;
+                Query q = new Query();
+                DataTable dt = q.ricercaPagamentiOnline(anno);
+                dgPagamentiOnline.DataSource = dt;
+                dgPagamentiOnline.DataBind();
+            }
+            catch (Exception ex)
+            {
+                lblErr.Text = ex.Message;
+            }
+        }
+
         private void scriviAlert(String testo, bool ko)
         {
             if (ko)
@@ -89,9 +105,11 @@ namespace pa_taverne
                 }
 
                 pnlCaricamento.Visible = true;
+                pnlPagamentiOnline.Visible = true;
                 if (Session["fladmin"] != null && Session["fladmin"].ToString() == "0")
                 {
                     pnlCaricamento.Visible = false;
+                    pnlPagamentiOnline.Visible = false;
 
                 }
 
@@ -126,6 +144,7 @@ namespace pa_taverne
                     }
 
                 }
+               
             }
             catch (Exception Ex)
             {

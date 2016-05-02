@@ -30,9 +30,6 @@
 
 
                     <div class="col-sm-1 col-sm-offset-11 text-right">
-                        <!--
-                        <asp:Button ID="btnLogout" runat="server" CssClass="Bo btn btn-primary" Text="ESCI"
-                            OnClick="btnLogout_Click"></asp:Button>-->
                         <button runat="server" id="Button1" type="button" class="btn btn-default btn-md" onserverclick="btnLogout_Click">
                             <span class=" glyphicon glyphicon-off" aria-hidden="true"></span> Esci</button>
                     </div>
@@ -57,33 +54,89 @@
                 </div>
 
 
+
                 <asp:Panel ID="pnlCaricamento" runat="server">
                     <div class="panel panel-primary ">
                         <div class="panel-heading">
-                            <h4 class="panel-title">CARICAMENTO DATI</h4>
+                            <h4 class="panel-title">AMMINISTRAZIONE</h4>
                         </div>
                         <div class="panel-body">
+                            <div class="row">
+                                <asp:ScriptManager ID="ScriptManager"
+                                    runat="server" />
+                                <div class="col-sm-6">
+                                    <div class="panel panel-default ">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">Carica Dati</h4>
+                                        </div>
+                                        <div class="panel-body">
+                                            <asp:UpdatePanel ID="updCaricaDati"
+                                                UpdateMode="Always"
+                                                runat="server">
+                                                <ContentTemplate>
+                                                    <table cellpadding="3" class="table" cellspacing="0" width="100%">
 
-                            <table cellpadding="3" class="table" cellspacing="0" width="100%">
+                                                        <tr>
+                                                            <td style="border: none" align="center">Il file da caricare si deve chiamare DatiXsito.mdb<br />
+                                                                <br />
+                                                                <asp:Label ID="Label3" runat="server" Font-Bold="True" ForeColor="#EE0000"></asp:Label>
+                                                                <asp:Panel ID="pnlUpload" runat="server">
+                                                                    <asp:FileUpload ID="flDati" runat="server" />
+                                                                    <br />
+                                                                    <br />
+                                                                    <asp:Button ID="btnSalva"  runat="server" CssClass="btn btn-primary"
+                                                                        OnClick="btnSalva_Click" Text="Aggiorna i Dati" />
+                                                                </asp:Panel>
+                                                                <br />
+                                                                <asp:Label ID="lblLog" runat="server" Font-Bold="True"></asp:Label>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </ContentTemplate>
+                                                <Triggers>
+                                                    <asp:PostBackTrigger ControlID="btnSalva" />
+                                                </Triggers>
 
-                                <tr>
-                                    <td class="TestoP" align="center">Il file da caricare si deve chiamare DatiXsito.mdb<br />
-                                        <br />
-                                        <asp:Label ID="Label3" runat="server" Font-Bold="True" ForeColor="#EE0000"></asp:Label>
-                                        <asp:Panel ID="pnlUpload" runat="server">
-                                            <asp:FileUpload ID="flDati" runat="server" />
-                                            <br />
-                                            <br />
-                                            <asp:Button ID="btnSalva" runat="server" CssClass="btn btn-primary"
-                                                OnClick="btnSalva_Click" Text="Aggiorna i Dati" />
-                                        </asp:Panel>
-                                        <br />
-                                        <asp:Label ID="lblLog" runat="server" Font-Bold="True"></asp:Label>
+                                            </asp:UpdatePanel>
 
-                                    </td>
-                                </tr>
-                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="panel panel-default ">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">Pagamenti Online</h4>
+                                        </div>
+                                        <div class="panel-body">
 
+                                            <asp:UpdatePanel ID="pnlPagamentiOnline"
+                                                UpdateMode="Always"
+                                                runat="server">
+                                                <ContentTemplate>
+                                                    <br />
+                                                    <asp:Button CssClass="btn btn-primary" ID="btnPagamentiOnline" OnClick="btnPagamentiOnline_click"
+                                                        Text="Visualizza"
+                                                        runat="server" />
+                                                    </fieldset>
+
+                                            <asp:GridView ID="dgPagamentiOnline" runat="server" ShowHeaderWhenEmpty="True" EmptyDataText="No records Found" AutoGenerateColumns="False"
+                                                CellPadding="1" CssClass="table table-bordered margin10">
+                                                <Columns>
+
+                                                    <asp:BoundField DataField="nsocio" HeaderText="Nr.Socio" />
+                                                    <asp:BoundField DataFormatString="{0:dd/MM/yyyy}" DataField="data" HeaderText="Data">
+                                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                    </asp:BoundField>
+                                                  <asp:BoundField DataFormatString="{0:c} &euro;" DataField="importo" HeaderText="Quota" />
+                                                </Columns>
+                                            </asp:GridView>
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </asp:Panel>
@@ -449,16 +502,11 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            $('form').submit(function (event) {
-                setTimeout(function () {
-                    $('#modal').show();
-                    var loading = $("#loading");
-                    loading.show();
-                }, 200);
-            });
-        });
-
+      
+        
+        
+        
     </script>
+
 </body>
 </html>

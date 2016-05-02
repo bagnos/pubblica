@@ -58,15 +58,7 @@
             </div>
         </div>
         <script type="text/javascript">
-            $(document).ready(function () {
-                $('form').submit(function (event) {
-                    setTimeout(function () {
-                        $('#modal').show();
-                        var loading = $("#loading");
-                        loading.show();
-                    }, 200);
-                });
-            });
+           
 
         </script>
 </body>
