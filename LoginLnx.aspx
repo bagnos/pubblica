@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link href="Stili.css?010516" rel="Stylesheet" />
+    <link href="Stili.css?050516" rel="Stylesheet" />
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <!-- Optional theme -->
@@ -18,6 +18,8 @@
 
 </head>
 <body class="body-iframe">
+    
+
     <div class="" style="margin-top: 20px">
         <div class="col-sm-6 col-sm-offset-3 col-md-5 col-md-offset-3 col-xs-12">
             <div class="panel panel-primary">
@@ -57,9 +59,13 @@
                 </div>
             </div>
         </div>
+        </div>
         <script type="text/javascript">
-           
-
+          /* 
+            $(window).load(function () {
+                // Animate loader off screen
+                $(".se-pre-con").fadeOut("slow");;
+            });*/
         </script>
 </body>
 </html>

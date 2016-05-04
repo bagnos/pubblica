@@ -6,17 +6,19 @@
 <head id="Head1" runat="server">
     <title>Pubblica Assistenza Taverne D'Arbia</title>
 
-    <link href="Stili.css?010516" rel="Stylesheet" />
+    <link href="Stili.css?050516" rel="Stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
 <body class="body-iframe">
+    
     <div id="area-riservate" class="">
 
         <form id="form1" runat="server" class="form-horizontal">
-
+            <asp:ScriptManager ID="ScriptManager1" runat="server">
+            </asp:ScriptManager>
 
             <div style="border-radius: 5px; box-shadow: 0 5px 15px 2px rgba(150,150, 150, 0.4); padding: 20px; margin: 20px">
                 <div class="row">
@@ -31,7 +33,7 @@
 
                     <div class="col-sm-1 col-sm-offset-11 text-right">
                         <button runat="server" id="Button1" type="button" class="btn btn-default btn-md" onserverclick="btnLogout_Click">
-                            <span class=" glyphicon glyphicon-off" aria-hidden="true"></span> Esci</button>
+                            <span class=" glyphicon glyphicon-off" aria-hidden="true"></span>Esci</button>
                     </div>
 
                 </div>
@@ -62,18 +64,13 @@
                         </div>
                         <div class="panel-body">
                             <div class="row">
-                                <asp:ScriptManager ID="ScriptManager"
-                                    runat="server" />
+
                                 <div class="col-sm-6">
                                     <div class="panel panel-default ">
                                         <div class="panel-heading">
                                             <h4 class="panel-title">Carica Dati</h4>
                                         </div>
                                         <div class="panel-body">
-                                            <asp:UpdatePanel ID="updCaricaDati"
-                                                UpdateMode="Always"
-                                                runat="server">
-                                                <ContentTemplate>
                                                     <table cellpadding="3" class="table" cellspacing="0" width="100%">
 
                                                         <tr>
@@ -84,7 +81,7 @@
                                                                     <asp:FileUpload ID="flDati" runat="server" />
                                                                     <br />
                                                                     <br />
-                                                                    <asp:Button ID="btnSalva"  runat="server" CssClass="btn btn-primary"
+                                                                    <asp:Button ID="btnSalva" runat="server" CssClass="btn btn-primary"
                                                                         OnClick="btnSalva_Click" Text="Aggiorna i Dati" />
                                                                 </asp:Panel>
                                                                 <br />
@@ -92,12 +89,7 @@
                                                             </td>
                                                         </tr>
                                                     </table>
-                                                </ContentTemplate>
-                                                <Triggers>
-                                                    <asp:PostBackTrigger ControlID="btnSalva" />
-                                                </Triggers>
-
-                                            </asp:UpdatePanel>
+                                            
 
                                         </div>
                                     </div>
@@ -109,29 +101,30 @@
                                         </div>
                                         <div class="panel-body">
 
-                                            <asp:UpdatePanel ID="pnlPagamentiOnline"
-                                                UpdateMode="Always"
-                                                runat="server">
-                                                <ContentTemplate>
-                                                    <br />
-                                                    <asp:Button CssClass="btn btn-primary" ID="btnPagamentiOnline" OnClick="btnPagamentiOnline_click"
-                                                        Text="Visualizza"
-                                                        runat="server" />
-                                                    </fieldset>
+                                            <asp:Panel ID="pnlPagamentiOnline" runat="server">
 
-                                            <asp:GridView ID="dgPagamentiOnline" runat="server" ShowHeaderWhenEmpty="True" EmptyDataText="No records Found" AutoGenerateColumns="False"
-                                                CellPadding="1" CssClass="table table-bordered margin10">
-                                                <Columns>
+                                                <asp:Button CssClass="btn btn-primary" ID="btnPagamentiOnline" OnClick="btnPagamentiOnline_click"
+                                                    Text="Visualizza"
+                                                    runat="server" />
 
-                                                    <asp:BoundField DataField="nsocio" HeaderText="Nr.Socio" />
-                                                    <asp:BoundField DataFormatString="{0:dd/MM/yyyy}" DataField="data" HeaderText="Data">
-                                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                                    </asp:BoundField>
-                                                  <asp:BoundField DataFormatString="{0:c} &euro;" DataField="importo" HeaderText="Quota" />
-                                                </Columns>
-                                            </asp:GridView>
-                                                </ContentTemplate>
-                                            </asp:UpdatePanel>
+
+                                                <asp:GridView ID="dgPagamentiOnline" runat="server" ShowHeaderWhenEmpty="True" EmptyDataText="Dati non presenti" AutoGenerateColumns="False"
+                                                    CellPadding="1" CssClass="table table-bordered margin10" AllowPaging="True"
+                                                    OnPageIndexChanging="grdData_PageIndexChanging" PageSize="5">
+                                                    <Columns>
+
+                                                        <asp:BoundField DataField="nsocio" HeaderText="Nr." />
+                                                        <asp:BoundField DataField="nome" HeaderText="Nome" />
+                                                        <asp:BoundField DataFormatString="{0:dd/MM/yyyy}" DataField="data" HeaderText="Data">
+                                                            <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                        </asp:BoundField>
+                                                        <asp:BoundField DataFormatString="{0:c} &euro;" DataField="importo" HeaderText="Quota" />
+                                                    </Columns>
+                                                    <PagerStyle BackColor="#CCCCCC" ForeColor="Black" CssClass="cssPager"
+                                                        HorizontalAlign="Center"></PagerStyle>
+                                                </asp:GridView>
+
+                                            </asp:Panel>
                                         </div>
                                     </div>
                                 </div>
@@ -502,10 +495,17 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script type="text/javascript">
-      
+        /*
+        $(window).load(function () {
         
-        
-        
+            $(".se-pre-con").fadeOut("slow");;
+        });
+        $('#form1').submit(function () {
+            $(".se-pre-con").fadeOut("slow");;
+        });*/
+
+
+
     </script>
 
 </body>

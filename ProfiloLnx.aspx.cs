@@ -68,6 +68,12 @@ namespace pa_taverne
             }
         }
 
+        protected void grdData_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            dgPagamentiOnline.PageIndex = e.NewPageIndex;
+            btnPagamentiOnline_click(null,null);
+        }
+
         private void scriviAlert(String testo, bool ko)
         {
             if (ko)

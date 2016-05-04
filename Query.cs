@@ -1586,8 +1586,10 @@ namespace pa_taverne
         {
             string SQL;
 
-            SQL = "select * from e_pagati_online ";
-            SQL = SQL + "where  year(data)=" + anno;
+            SQL = "select e.*, concat(e1.Cognome,' ',e1.Nome) as nome from e_pagati_online e,E_Soci e1 ";
+            SQL = SQL + "where  year(data)>=" + (anno-1).ToString();
+            SQL = SQL + " and e.nsocio=e1.Nsocio ";
+            SQL = SQL + " order by data desc";
             try
             {
                 return objAcc.getDT(SQL);
