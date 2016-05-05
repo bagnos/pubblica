@@ -71,7 +71,7 @@
                                             <h4 class="panel-title">Carica Dati</h4>
                                         </div>
                                         <div class="panel-body">
-                                                    <table cellpadding="3" class="table" cellspacing="0" width="100%">
+                                                    <table cellpadding="3" id="tblCaricamento" class="table" cellspacing="0" width="100%">
 
                                                         <tr>
                                                             <td style="border: none" align="center">Il file da caricare si deve chiamare DatiXsito.mdb<br />
@@ -426,7 +426,7 @@
 
                                 </div>
                             </div>
-                            <asp:ImageButton OnClick="pagaClick" CssClass="margin10" runat="server" ImageUrl="https://www.paypal.com/it_IT/i/btn/btn_xpressCheckout.gif" BorderStyle="None" />
+                            <asp:ImageButton OnClick="pagaClick" CssClass="margin10" ID="payPalCheckout" runat="server" ImageUrl="https://www.paypal.com/it_IT/i/btn/btn_xpressCheckout.gif" BorderStyle="None" />
 
                         </asp:Panel>
 
@@ -503,9 +503,21 @@
         $('#form1').submit(function () {
             $(".se-pre-con").fadeOut("slow");;
         });*/
+        $(document).ready(function () {
+            $('#btnSalva').click(function () {                                
+                $('#btnSalva').after('<div class="margin10"><img class="loading-ajax" src="/images/loader.gif" alt="Loading" /><div>')
+                
 
+            });
+            $('#btnPagamentiOnline').click(function () {
+                $('#btnPagamentiOnline').after('<div class="margin10"><img class="loading-ajax" src="/images/loader.gif" alt="Loading" /><div>')
+            });
+            $('#payPalCheckout').click(function () {
+                $('#payPalCheckout').after('<div class="margin10"><img class="loading-ajax" src="/images/loader.gif" alt="Loading" /><div>')
+            });
+            
 
-
+        });
     </script>
 
 </body>

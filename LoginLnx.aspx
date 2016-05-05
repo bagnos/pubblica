@@ -66,6 +66,13 @@
                 // Animate loader off screen
                 $(".se-pre-con").fadeOut("slow");;
             });*/
+            $(document).ready(function () {
+                $('#btnLogin').click(function () {
+                    $('#btnLogin').after('<div class="margin10"><img class="loading-ajax" src="/images/loader.gif" alt="Loading" /><div>')
+
+
+                });
+            });
         </script>
 </body>
 </html>

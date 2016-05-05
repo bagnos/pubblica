@@ -104,10 +104,11 @@
     <Content Include="Global.asax" />
     <Content Include="Header.ascx" />
     <Content Include="Home.aspx" />
-    <Content Include="iframeSample\avalon.security.js" />
-    <Content Include="iframeSample\hidden-login.html" />
-    <Content Include="iframeSample\login.html" />
-    <Content Include="iframeSample\login.js" />
+    <Content Include="images\iframeSample\avalon.security.js" />
+    <Content Include="images\iframeSample\hidden-login.html" />
+    <Content Include="images\iframeSample\loading.gif" />
+    <Content Include="images\iframeSample\login.html" />
+    <Content Include="images\iframeSample\login.js" />
     <Content Include="images\bullet.gif" />
     <Content Include="images\close.gif" />
     <Content Include="images\closelabel.gif" />
