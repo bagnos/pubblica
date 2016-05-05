@@ -515,6 +515,9 @@
             $('#payPalCheckout').click(function () {
                 $('#payPalCheckout').after('<div class="margin10"><img class="loading-ajax" src="/images/loader.gif" alt="Loading" /><div>')
             });
+
+            
+
             
 
         });
