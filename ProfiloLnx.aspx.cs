@@ -206,21 +206,32 @@ namespace pa_taverne
                 dtFamiglia.Columns.Add(new DataColumn("quota"));
                 dtPagamentiDaFare = dtFamiglia.Clone();
                 int quotaSocio;
+                int quotaBase;
+                totaleFamigliaDaPagare = 0;
                 if (dtFamiglia.Rows.Count > 0)
                 {
                     for (int i = 0; i <= dtFamiglia.Rows.Count - 1; i++)
                     {
                         dtFamiglia.Rows[i]["quota"] = objQry.Quota(dtFamiglia.Rows[i]["NSocio"].ToString());
                         dtFamiglia.Rows[i]["quotaRisc"] = objQry.Pagato(dtFamiglia.Rows[i]["NSocio"].ToString()) == true ? dtFamiglia.Rows[i]["quota"].ToString() : "0";
+                        Int32.TryParse(dtFamiglia.Rows[i]["quota"].ToString(), out quotaBase);
                         Int32.TryParse(dtFamiglia.Rows[i]["quotaRisc"].ToString(), out quotaSocio);
-                        if (quotaSocio==0)
+                        if (dtFamiglia.Rows[i]["FL_FINEISCR"].ToString() != "1")
                         {
-                            dtPagamentiDaFare.ImportRow(dtFamiglia.Rows[i]);
+                            totaleFamigliaDaPagare+= quotaBase;
+                            if (quotaSocio == 0 && quotaBase != 0 && dtFamiglia.Rows[i]["FL_FINEISCR"].ToString() != "1")
+                            {
+                                dtPagamentiDaFare.ImportRow(dtFamiglia.Rows[i]);
+                            }
+                            totaleFamigliaRiscosso += quotaSocio;
                         }
-                        totaleFamigliaRiscosso += quotaSocio;
+                        
+                        
                     }
+                   
                     Int32.TryParse(objQry.Quota(Session["idsocio"].ToString()), out quotaSocio);
                     quotaSocioLogin = quotaSocio;
+                    totaleFamigliaDaPagare += quotaSocioLogin;
                     daDareSocio = objQry.Pagato(Session["idsocio"].ToString()) == true ? 0 : quotaSocio;
                     if (daDareSocio == 0)
                     {
@@ -249,9 +260,10 @@ namespace pa_taverne
                     lblReferente.Text = dtReferente.Rows[0]["NomeCognome"].ToString();
                     lblMailReferente.Text = dtReferente.Rows[0]["S_Mail"].ToString();
 
+                   
+                    //Int32.TryParse(dtReferente.Rows[0]["impFamiglia"].ToString(), out totaleFamigliaQuota);
+                    totaleFamigliaDaPagare = totaleFamigliaRiscosso - totaleFamigliaRiscosso;
                     txtImporto.Text = totaleFamigliaDaPagare.ToString();
-                    Int32.TryParse(dtReferente.Rows[0]["impFamiglia"].ToString(), out totaleFamigliaQuota);
-                    totaleFamigliaDaPagare = totaleFamigliaQuota - totaleFamigliaRiscosso;
                 }
                 else
                 {
