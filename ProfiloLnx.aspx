@@ -13,7 +13,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
 <body class="body-iframe">
-    
+
     <div id="area-riservate" class="">
 
         <form id="form1" runat="server" class="form-horizontal">
@@ -33,7 +33,7 @@
 
                     <div class="col-sm-1 col-sm-offset-11 text-right">
                         <button runat="server" id="Button1" type="button" class="btn btn-default btn-md" onserverclick="btnLogout_Click">
-                            <span class=" glyphicon glyphicon-off" aria-hidden="true"></span>Esci</button>
+                            <span class=" glyphicon glyphicon-off" aria-hidden="true"></span> Esci</button>
                     </div>
 
                 </div>
@@ -64,6 +64,11 @@
                         </div>
                         <div class="panel-body">
                             <div class="row">
+                                <div class="col-sm-2">
+                                    <a target="_blank" href="http://lnx.pa-taverne.it/wp-admin">Amministra Sito</a>
+                                </div>
+                            </div>
+                            <div class="row margin10">
 
                                 <div class="col-sm-6">
                                     <div class="panel panel-default ">
@@ -71,25 +76,25 @@
                                             <h4 class="panel-title">Carica Dati</h4>
                                         </div>
                                         <div class="panel-body">
-                                                    <table cellpadding="3" id="tblCaricamento" class="table" cellspacing="0" width="100%">
+                                            <table cellpadding="3" id="tblCaricamento" class="table" cellspacing="0" width="100%">
 
-                                                        <tr>
-                                                            <td style="border: none" align="center">Il file da caricare si deve chiamare DatiXsito.mdb<br />
-                                                                <br />
-                                                                <asp:Label ID="Label3" runat="server" Font-Bold="True" ForeColor="#EE0000"></asp:Label>
-                                                                <asp:Panel ID="pnlUpload" runat="server">
-                                                                    <asp:FileUpload ID="flDati" runat="server" />
-                                                                    <br />
-                                                                    <br />
-                                                                    <asp:Button ID="btnSalva" runat="server" CssClass="btn btn-primary"
-                                                                        OnClick="btnSalva_Click" Text="Aggiorna i Dati" />
-                                                                </asp:Panel>
-                                                                <br />
-                                                                <asp:Label ID="lblLog" runat="server" Font-Bold="True"></asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                            
+                                                <tr>
+                                                    <td style="border: none" align="center">Il file da caricare si deve chiamare DatiXsito.mdb<br />
+                                                        <br />
+                                                        <asp:Label ID="Label3" runat="server" Font-Bold="True" ForeColor="#EE0000"></asp:Label>
+                                                        <asp:Panel ID="pnlUpload" runat="server">
+                                                            <asp:FileUpload ID="flDati" runat="server" />
+                                                            <br />
+                                                            <br />
+                                                            <asp:Button ID="btnSalva" runat="server" CssClass="btn btn-primary"
+                                                                OnClick="btnSalva_Click" Text="Aggiorna i Dati" />
+                                                        </asp:Panel>
+                                                        <br />
+                                                        <asp:Label ID="lblLog" runat="server" Font-Bold="True"></asp:Label>
+                                                    </td>
+                                                </tr>
+                                            </table>
+
 
                                         </div>
                                     </div>
@@ -448,36 +453,57 @@
                             </asp:GridView>
                         </div>
 
-                        <div class="table-responsive margin20">
-                            <table class="table table-bordered" cellpadding="5" cellspacing="0">
-                                <caption>QUOTE SOCIALI ANNO IN CORSO</caption>
-                                <tr>
-                                    <th class="">Descrizione</th>
-                                    <th class="">Quota</th>
-                                </tr>
-                                <tr class="">
-                                    <td class="">Fino a 10 anni</td>
-                                    <td class="">Gratuita</td>
-                                </tr>
-                                <tr class="">
-                                    <td class="">Da 11 a 18 anni</td>
-                                    <td class="">5 &euro;</td>
-                                </tr>
-                                <tr class="">
-                                    <td class="">Oltre i 18 anni</td>
-                                    <td class="">10 &euro;</td>
-                                </tr>
-                                <tr class="">
-                                    <td class="">Donatori</td>
-                                    <td class="">Gratuita</td>
-                                </tr>
-                                <tr class="">
-                                    <td class="">Volontari</td>
-                                    <td>Gratuita</td>
-                                </tr>
-                            </table>
+                        <!-- Trigger the modal with a button -->
+                        <button type="button" id="showQuote" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Quote Sociali</button>
 
+                        <!-- Modal -->
+                        <div id="myModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="table-responsive margin20">                                            
+                                            <table class="table table-bordered" cellpadding="5" cellspacing="0">
+                                                <caption>QUOTE SOCIALI ANNO IN CORSO</caption>
+                                                <tr>
+                                                    <th class="">Descrizione</th>
+                                                    <th class="">Quota</th>
+                                                </tr>
+                                                <tr class="">
+                                                    <td class="">Fino a 10 anni</td>
+                                                    <td class="">Gratuita</td>
+                                                </tr>
+                                                <tr class="">
+                                                    <td class="">Da 11 a 18 anni</td>
+                                                    <td class="">5 &euro;</td>
+                                                </tr>
+                                                <tr class="">
+                                                    <td class="">Oltre i 18 anni</td>
+                                                    <td class="">10 &euro;</td>
+                                                </tr>
+                                                <tr class="">
+                                                    <td class="">Donatori</td>
+                                                    <td class="">Gratuita</td>
+                                                </tr>
+                                                <tr class="">
+                                                    <td class="">Volontari</td>
+                                                    <td>Gratuita</td>
+                                                </tr>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
+
+
+
                     </div>
                 </div>
 
@@ -503,10 +529,10 @@
         $('#form1').submit(function () {
             $(".se-pre-con").fadeOut("slow");;
         });*/
-        $(document).ready(function () {
-            $('#btnSalva').click(function () {                                
+        $(window).load(function () {
+            $('#btnSalva').click(function () {
                 $('#btnSalva').after('<div class="margin10"><img class="loading-ajax" src="/images/loader.gif" alt="Loading" /><div>')
-                
+
 
             });
             $('#btnPagamentiOnline').click(function () {
@@ -515,10 +541,16 @@
             $('#payPalCheckout').click(function () {
                 $('#payPalCheckout').after('<div class="margin10"><img class="loading-ajax" src="/images/loader.gif" alt="Loading" /><div>')
             });
-
+            $('#showQuote').click(function () {
+                var position = $("#showQuote").position().top - 260;
+                $('#myModal').css({ 'top': position + 'px' });
+            });
+           
+           
             
+          
 
-            
+
 
         });
     </script>
