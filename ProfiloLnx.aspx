@@ -30,8 +30,11 @@
 
 
 
-
-                    <div class="col-sm-1 col-sm-offset-11 text-right">
+                    <!-- Trigger the modal with a button -->
+                    <div class="col-sm-1 text-left">
+                        <button type="button" id="showQuote" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Quote Sociali</button>
+                     </div>
+                    <div class="col-sm-1 col-sm-offset-10 text-right">
                         <button runat="server" id="Button1" type="button" class="btn btn-default btn-md" onserverclick="btnLogout_Click">
                             <span class=" glyphicon glyphicon-off" aria-hidden="true"></span> Esci</button>
                     </div>
@@ -369,7 +372,7 @@
 
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h4 class="panel-title">PAGAMENTI</h4>
+                        <h4 class="panel-title">PAGAMENTI PERSONALI</h4>
                     </div>
                     <div class="panel-body">
 
@@ -453,19 +456,22 @@
                             </asp:GridView>
                         </div>
 
-                        <!-- Trigger the modal with a button -->
-                        <button type="button" id="showQuote" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Quote Sociali</button>
+                        
 
                         <!-- Modal -->
                         <div id="myModal" class="modal fade" role="dialog">
                             <div class="modal-dialog">
-                                
+
                                 <!-- Modal content-->
                                 <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">QUOTE SOCIALI ANNO IN CORSO</h4>
+                                    </div>
                                     <div class="modal-body">
-                                        <div class="table-responsive margin20">                                            
+                                        <div class="table-responsive margin20">
                                             <table class="table table-bordered" cellpadding="5" cellspacing="0">
-                                                <caption>QUOTE SOCIALI ANNO IN CORSO</caption>
+                                               
                                                 <tr>
                                                     <th class="">Descrizione</th>
                                                     <th class="">Quota</th>
@@ -517,6 +523,7 @@
             </div>
         </form>
         <div class="modal" id="modal" style="display: none"></div>
+        <div id="footerHidden" style="display: none"></div>
     </div>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
@@ -542,15 +549,13 @@
                 $('#payPalCheckout').after('<div class="margin10"><img class="loading-ajax" src="/images/loader.gif" alt="Loading" /><div>')
             });
             $('#showQuote').click(function () {
-                var position = $("#showQuote").position().top - 260;
+                var position = $("#showQuote").position().top + 20;
                 $('#myModal').css({ 'top': position + 'px' });
             });
-           
-           
+            var positionY = $("#footerHidden").position().top + 100;
             
-          
-
-
+            window.parent.postMessage(positionY, '*');
+            
 
         });
     </script>
