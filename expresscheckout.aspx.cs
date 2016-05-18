@@ -15,7 +15,7 @@ public partial class PayPalEC : System.Web.UI.Page
         {
             string amt = HttpContext.Current.Session["payment_amt"].ToString();
 
-            bool ret = test.ShortcutExpressCheckout(amt, ref token, ref retMsg, Session["anno"].ToString(), ((DataTable)Session["famiglia"]), Session["nome"].ToString(), Session["idsocio"].ToString(), Session["amt_socio"].ToString());
+            bool ret = test.ShortcutExpressCheckout(amt, ref token, ref retMsg, Session["anno"].ToString(), ((DataTable)Session["famiglia"]), Session["nome"].ToString(), Session["idsocio"].ToString());
             if (ret)
             {
 				HttpContext.Current.Session["token"] = token;

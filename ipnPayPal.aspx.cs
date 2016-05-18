@@ -76,10 +76,15 @@ namespace pa_taverne
                     }
                     String receiver_email = "othalaBusines2@othala.it";
                     String custom = responseMap["custom"];
-                    String[] items = custom.Split(':');
-                    String famiglia = items[0].Split('-')[0]; ;
-                    String quota = items[0].Split('-')[1]; ;
-                    String[] soci = items[1].Split(' ');
+
+                    
+
+                    String[] items = custom.Split(',');
+                    String famiglia = items[0];
+                    String quota = items[1];
+                    //String[] soci = items[1].Split(' ');
+                    String nome = items[2];
+                    String idSocio = items[3];
                     Query query = new Query();
 
                     bool errori = false;
@@ -120,13 +125,15 @@ namespace pa_taverne
                     {
                         //process payment
                         query.inserisciTxNid(famiglia, responseMap["txn_id"]);
-                        String[] itemSoci;
+                        //String[] itemSoci;
+                        query.inserisciPagamentoOnline(idSocio, quota, famiglia);
+                        /*
                         foreach (String socio in soci)
                         {
                             itemSoci = socio.Split('-');
                             query.incassoTesseraSocio(itemSoci[0], itemSoci[1]);
                             query.inserisciPagamentoOnline(itemSoci[0], itemSoci[1]);
-                        }
+                        }*/
                         Utility ut = new Utility();
                         try
                         {

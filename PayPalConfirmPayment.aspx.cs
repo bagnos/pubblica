@@ -35,9 +35,12 @@ namespace pa_taverne
             String retMsg = "";
             NVPCodec nvpCodec = null;
             NVPAPICaller test = new NVPAPICaller();
+            String nrFamiglia = dtFamiglia.Rows[0]["NumFamiglia"].ToString();
             bool esito=test.ConfirmPayment(paymentAmt, token, payerId, ref nvpCodec, ref retMsg);
             if (esito)
             {
+                query.inserisciPagamentoOnline(nSocio, paymentAmt, nrFamiglia);
+                /*
                 if (amtSocio != "0")
                 {
                     query.incassoTesseraSocio(nSocio, amtSocio);
@@ -50,7 +53,7 @@ namespace pa_taverne
                         query.incassoTesseraSocio(dtFamiglia.Rows[i]["nsocio"].ToString(), dtFamiglia.Rows[i]["quota"].ToString());
                         query.inserisciPagamentoOnline(dtFamiglia.Rows[i]["nsocio"].ToString(), dtFamiglia.Rows[i]["quota"].ToString());
                     }
-                }
+                }*/
 
                 try
                 {
@@ -63,7 +66,7 @@ namespace pa_taverne
                     Response.Redirect("ProfiloLnx.aspx?esitoPagamento=Pagamento effettuato con successo ma comunicate alla Pubblica di Taverne il pagamento effettuato online&esito=ok&eccezione="+e.Message);
                     return;
                 }
-                Response.Redirect("ProfiloLnx.aspx?esitoPagamento=Pagamento effettuato con successo&esito=ok");
+                Response.Redirect("ProfiloLnx.aspx?esitoPagamento=Pagamento effettuato con successo! I pagamenti saranno contabilizzati al perfezionamento delle operazioni bancarie.&esito=ok");
             }
             else {
                 Response.Redirect("ProfiloLnx.aspx?esitoPagamento="+ retMsg+ "&esito=ko");

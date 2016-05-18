@@ -274,6 +274,15 @@ namespace pa_taverne {
         protected global::System.Web.UI.WebControls.Label lblNumeroSocio;
         
         /// <summary>
+        /// lnlNrFamiglia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lnlNrFamiglia;
+        
+        /// <summary>
         /// lblFamiglia1 control.
         /// </summary>
         /// <remarks>

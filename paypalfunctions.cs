@@ -61,7 +61,7 @@ public class NVPAPICaller
     /// <param ref name="token"></param>
     /// <param ref name="retMsg"></param>
     /// <returns></returns>
-    public bool ShortcutExpressCheckout(string amt, ref string token, ref string retMsg, String anno, DataTable dtFamiglia, string nome, string socio, string amtSocio)
+    public bool ShortcutExpressCheckout(string amt, ref string token, ref string retMsg, String anno, DataTable dtFamiglia, string nome, string idSocio)
     {
         string host = "www.paypal.com";
         if (bSandbox)
@@ -77,6 +77,7 @@ public class NVPAPICaller
         string returnURL = baseUrl + "/PayPalConfirmPayment.aspx";
 
         string cancelURL = "http://lnx.pa-taverne.it/area-riservata-2/";
+        String nrFamiglia = dtFamiglia.Rows[0]["NumFamiglia"].ToString();
         String custom = "";
 
 
@@ -89,7 +90,11 @@ public class NVPAPICaller
         encoder["PAYMENTREQUEST_0_ITEMAMT"] = amt;
         encoder["PAYMENTREQUEST_0_PAYMENTACTION"] = "Sale";
         encoder["PAYMENTREQUEST_0_CURRENCYCODE"] = "EUR";
-        
+        encoder["L_PAYMENTREQUEST_0_DESC0"] = " Tessera Famiglia Numero "+nrFamiglia +" Anno " + anno;
+        encoder["L_PAYMENTREQUEST_0_AMT0"] = amt;
+        encoder["L_PAYMENTREQUEST_0_NUMER0"] = nrFamiglia;
+
+        /*
         int j = 0;
         DataTable dtSociDaRiscuotre = new DataTable();
 
@@ -110,9 +115,9 @@ public class NVPAPICaller
             encoder["L_PAYMENTREQUEST_0_AMT" + j] = amtSocio+".00";
             encoder["L_PAYMENTREQUEST_0_NUMER" + j] = socio;
             custom += " " + socio+"-"+amtSocio;
-        }
-        String nrFamiglia = dtFamiglia.Rows[0]["NumFamiglia"].ToString();
-        encoder["PAYMENTREQUEST_0_CUSTOM"] = nrFamiglia+"-"+amt+":"+custom.Trim();
+        }*/
+
+        encoder["PAYMENTREQUEST_0_CUSTOM"] = nrFamiglia + "," + amt + "," + nome + "," + idSocio;
 
 
         string pStrrequestforNvp = encoder.Encode();

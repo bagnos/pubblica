@@ -56,6 +56,9 @@
                             <asp:Label ID="lblEsitoPositivo" runat="server"></asp:Label>
                         </div>
                     </asp:Panel>
+                    
+                       
+                    
                 </div>
 
 
@@ -122,6 +125,8 @@
                                                     <Columns>
 
                                                         <asp:BoundField DataField="nsocio" HeaderText="Nr." />
+                                                        <asp:BoundField DataField="numFamiglia" HeaderText="Famiglia" />
+                                                        
                                                         <asp:BoundField DataField="nome" HeaderText="Nome" />
                                                         <asp:BoundField DataFormatString="{0:dd/MM/yyyy}" DataField="data" HeaderText="Data">
                                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -147,6 +152,10 @@
                         <h4 class="panel-title">DATI PERSONALI</h4>
                     </div>
                     <div class="panel-body">
+                         <div class="alert alert-info alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>                        
+                            <span>In caso di dati non corretti per anagrafica ed importi da pagare è possibile contattare la Pubblica Assistenza ai seguenti recapiti: </br> Tel. 0577 365000 Fax. 0577 365097 E-Mail pa.taverne@tin.it</span>
+                        </div>
 
                         <div class="row">
                             <div class="col-sm-6 col-md-3">
@@ -210,6 +219,12 @@
                             <div class="col-sm-6">
                                 <label for="lblNumeroSocio">Numero Socio:</label>
                                 <asp:Label ID="lblNumeroSocio" runat="server"></asp:Label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label for="lblNumeroSocio">Numero Famiglia:</label>
+                                <asp:Label ID="lnlNrFamiglia" runat="server"></asp:Label>
                             </div>
                         </div>
                     </div>
@@ -407,6 +422,7 @@
                         </div>
                         <asp:Panel ID="frmPayPal" Visible="false" runat="server" CssClass="margin20">
                             <h2 class="panel-title margin10">PAGAMENTO ONLINE TESSERE FAMIGLIA</h2>
+                            <!--
                             <div class="row">
                                 <div class="table-responsive margin10 col-sm-6">
                                     <asp:GridView ID="dgDaPagare" runat="server" AutoGenerateColumns="False" Caption="Tessere da Pagare"
@@ -422,6 +438,7 @@
                                     </asp:GridView>
                                 </div>
                             </div>
+                            -->
                             <div class="row">
                                 <div class="col-sm-4 col-md-2">
                                     <label for="txtAnno" class="control-label">Anno Tessera</label>

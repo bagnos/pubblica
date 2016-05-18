@@ -36,14 +36,14 @@ namespace pa_taverne
         private String getConnecctionString()
         {
             MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
-           builder.UserID = "root";
-           //builder.UserID = "Sql178902";
-            builder.Password = "root";
-            //builder.Password = "2af698be";
-            builder.Server = "localhost";
-            //builder.Server = "62.149.150.71";
-            builder.Database = "sql178902_2";
-            //builder.Database = "Sql178902_2";
+           //builder.UserID = "root";
+           builder.UserID = "Sql178902";
+            //builder.Password = "root";
+            builder.Password = "2af698be";
+            //builder.Server = "localhost";
+            builder.Server = "62.149.150.71";
+            //builder.Database = "sql178902_2";
+            builder.Database = "Sql178902_2";
             return builder.ConnectionString;
         }
 

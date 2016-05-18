@@ -216,6 +216,7 @@ namespace pa_taverne
                         dtFamiglia.Rows[i]["quotaRisc"] = objQry.Pagato(dtFamiglia.Rows[i]["NSocio"].ToString()) == true ? dtFamiglia.Rows[i]["quota"].ToString() : "0";
                         Int32.TryParse(dtFamiglia.Rows[i]["quota"].ToString(), out quotaBase);
                         Int32.TryParse(dtFamiglia.Rows[i]["quotaRisc"].ToString(), out quotaSocio);
+                        /*
                         if (dtFamiglia.Rows[i]["FL_FINEISCR"].ToString() != "1")
                         {
                             totaleFamigliaDaPagare+= quotaBase;
@@ -224,11 +225,12 @@ namespace pa_taverne
                                 dtPagamentiDaFare.ImportRow(dtFamiglia.Rows[i]);
                             }
                             totaleFamigliaRiscosso += quotaSocio;
-                        }
+                        }*/
                         
                         
                     }
                    
+                    /*
                     Int32.TryParse(objQry.Quota(Session["idsocio"].ToString()), out quotaSocio);
                     quotaSocioLogin = quotaSocio;
                     totaleFamigliaDaPagare += quotaSocioLogin;
@@ -251,18 +253,23 @@ namespace pa_taverne
                         dgDaPagare.DataSource = dtPagamentiDaFare;
                         dgDaPagare.DataBind();
                     }
-
+                    */
                     dgFamiglia.DataSource = dtFamiglia;
                     dgFamiglia.DataBind();
                     DataTable dtReferente = new DataTable();
                     dtReferente = objQry.DatiReferente(id_famiglia);
-
+                    lnlNrFamiglia.Text = id_famiglia;
                     lblReferente.Text = dtReferente.Rows[0]["NomeCognome"].ToString();
-                    lblMailReferente.Text = dtReferente.Rows[0]["S_Mail"].ToString();
+                    lblMailReferente.Text = dtReferente.Rows[0]["S_Mail"].ToString();                   
 
-                   
-                    //Int32.TryParse(dtReferente.Rows[0]["impFamiglia"].ToString(), out totaleFamigliaQuota);
-                    totaleFamigliaDaPagare = totaleFamigliaRiscosso - totaleFamigliaRiscosso;
+                    Int32.TryParse(dtReferente.Rows[0]["impFamiglia"].ToString(), out totaleFamigliaDaPagare);
+                    //totaleFamigliaDaPagare = totaleFamigliaRiscosso - totaleFamigliaRiscosso;
+                    int anno = DateTime.Now.Year;
+                    DataTable dtPagFamiglia= objQry.ricercaPagamentiOnline(anno, id_famiglia);
+                    if (dtPagFamiglia.Rows.Count>0)
+                    {
+                        totaleFamigliaDaPagare = 0;
+                    }
                     txtImporto.Text = totaleFamigliaDaPagare.ToString();
                 }
                 else

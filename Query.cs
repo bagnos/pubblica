@@ -1566,12 +1566,12 @@ namespace pa_taverne
             }
         }
 
-        public void inserisciPagamentoOnline(String idSocio, String importo)
+        public void inserisciPagamentoOnline(String idSocio, String importo,String nfamiglia)
         {
             string SQL;
 
             SQL = "INSERT INTO e_pagati_online ";
-            SQL = SQL + "values (" + idSocio + ",current_date(),'" + importo + "')";
+            SQL = SQL + "values (" + idSocio + ",current_date(),'" + importo + "',"+nfamiglia+")";
             try
             {
                 objAcc.Esegui(SQL);
@@ -1586,8 +1586,27 @@ namespace pa_taverne
         {
             string SQL;
 
-            SQL = "select e.*, concat(e1.Cognome,' ',e1.Nome) as nome from e_pagati_online e,E_Soci e1 ";
+            SQL = "select e.*, concat(e1.Cognome,' ',e1.Nome) as nome,e1.numFamiglia from e_pagati_online e,E_Soci e1 ";
             SQL = SQL + "where  year(data)>=" + (anno-1).ToString();
+            SQL = SQL + " and e.nsocio=e1.Nsocio ";
+            SQL = SQL + " order by data desc";
+            try
+            {
+                return objAcc.getDT(SQL);
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
+        }
+
+        public DataTable ricercaPagamentiOnline(int anno,String famiglia)
+        {
+            string SQL;
+
+            SQL = "select e.*, concat(e1.Cognome,' ',e1.Nome) as nome,e1.numFamiglia from e_pagati_online e,E_Soci e1 ";
+            SQL = SQL + "where  year(data)>=" + (anno - 1).ToString();
+            SQL = SQL + " and  numFamiglia=" + famiglia.ToString();
             SQL = SQL + " and e.nsocio=e1.Nsocio ";
             SQL = SQL + " order by data desc";
             try
