@@ -13,15 +13,11 @@ namespace pa_taverne
     public partial class ProfiloLnx : Page
     {
         public string id_famiglia = string.Empty;
-        public Utility objUti = new Utility();
-        private DataTable dtPagamenti;
-        private DataTable dtFamiglia;
-        private DataTable dtPagamentiDaFare;
-        private int daDareSocio;
-        private int quotaSocioLogin;
-        private int totaleFamigliaRiscosso;
+        public Utility objUti = new Utility();        
+        private DataTable dtFamiglia;        
+        private Boolean showPagamento;
         private int totaleFamigliaDaPagare;
-        private int totaleFamigliaQuota;
+
 
         public Query objQry = new Query(new AccessoDatiLnx());
         QueryScambio objQrySC = new QueryScambio();
@@ -71,7 +67,7 @@ namespace pa_taverne
         protected void grdData_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             dgPagamentiOnline.PageIndex = e.NewPageIndex;
-            btnPagamentiOnline_click(null,null);
+            btnPagamentiOnline_click(null, null);
         }
 
         private void scriviAlert(String testo, bool ko)
@@ -96,6 +92,7 @@ namespace pa_taverne
         {
             try
             {
+                showPagamento = false;
                 if (Request.QueryString["esitoPagamento"] != null)
                 {
                     if (Request.QueryString["esito"] == "ko")
@@ -130,27 +127,25 @@ namespace pa_taverne
                 FlagUltima();
                 Donazioni();
 
-                lblDaVersare.Text = "Ti ricordiamo che la tua quota annuale ammonta a " + quotaSocioLogin + " €";
+                //lblDaVersare.Text = "Ti ricordiamo che la tua quota annuale ammonta a " + quotaSocioLogin + " €";
 
-                Pagamenti();
-                if (totaleFamigliaDaPagare == 0)
+                //Pagamenti();
+                frmPayPal.Visible = true;
+
+                txtAnno.Text = DateTime.Now.Year.ToString();
+                if (showPagamento)
                 {
-                    //verifichiamo la quuota annuale
-                    lblVersato.Visible = false;
+                    btnPayPal.Visible = true;
+                    lblGiaPagato.Visible = false;
                 }
                 else
                 {
-                    frmPayPal.Visible = true;
-                    txtAnno.Text = DateTime.Now.Year.ToString();
-                    txtImporto.Text = totaleFamigliaDaPagare.ToString();
-                    if (daDareSocio != 0)
-                    {
-
-                        lblVersato.Text = "Ricorda che devi ancora versare la quota associativa relativa all'anno in corso.<br />Provvedi quanto prima!";
-                    }
-
+                    btnPayPal.Visible = false;
+                    lblGiaPagato.Visible = true;
                 }
-               
+
+
+
             }
             catch (Exception Ex)
             {
@@ -169,7 +164,7 @@ namespace pa_taverne
                 {
                     lblNome.Text = dtDatiSocio.Rows[0]["Nome"].ToString();
                     lblCognome.Text = dtDatiSocio.Rows[0]["Cognome"].ToString();
-                    lblSocioQuote.Text = lblNome.Text + " " + lblCognome.Text;
+                    //lblSocioQuote.Text = lblNome.Text + " " + lblCognome.Text;
                     lblNascita.Text = dtDatiSocio.Rows[0]["LuogoNascita"].ToString() + " " + dtDatiSocio.Rows[0]["DTNASC"].ToString();
                     lblIndirizzo.Text = dtDatiSocio.Rows[0]["Indirizzo"].ToString() + " " + dtDatiSocio.Rows[0]["Frazione"].ToString() + " " + dtDatiSocio.Rows[0]["Comune"].ToString();
                     lblIscrizione.Text = dtDatiSocio.Rows[0]["DTISCR"].ToString(); ;
@@ -202,75 +197,62 @@ namespace pa_taverne
             try
             {
                 dtFamiglia = objQry.DatiFamiglia(id_famiglia, Session["idsocio"].ToString());
-                dtFamiglia.Columns.Add(new DataColumn("quotaRisc"));
                 dtFamiglia.Columns.Add(new DataColumn("quota"));
-                dtPagamentiDaFare = dtFamiglia.Clone();
-                int quotaSocio;
+
                 int quotaBase;
                 totaleFamigliaDaPagare = 0;
+                showPagamento = false;
                 if (dtFamiglia.Rows.Count > 0)
                 {
+
                     for (int i = 0; i <= dtFamiglia.Rows.Count - 1; i++)
                     {
                         dtFamiglia.Rows[i]["quota"] = objQry.Quota(dtFamiglia.Rows[i]["NSocio"].ToString());
-                        dtFamiglia.Rows[i]["quotaRisc"] = objQry.Pagato(dtFamiglia.Rows[i]["NSocio"].ToString()) == true ? dtFamiglia.Rows[i]["quota"].ToString() : "0";
                         Int32.TryParse(dtFamiglia.Rows[i]["quota"].ToString(), out quotaBase);
-                        Int32.TryParse(dtFamiglia.Rows[i]["quotaRisc"].ToString(), out quotaSocio);
-                        /*
-                        if (dtFamiglia.Rows[i]["FL_FINEISCR"].ToString() != "1")
-                        {
-                            totaleFamigliaDaPagare+= quotaBase;
-                            if (quotaSocio == 0 && quotaBase != 0 && dtFamiglia.Rows[i]["FL_FINEISCR"].ToString() != "1")
-                            {
-                                dtPagamentiDaFare.ImportRow(dtFamiglia.Rows[i]);
-                            }
-                            totaleFamigliaRiscosso += quotaSocio;
-                        }*/
-                        
-                        
                     }
-                   
-                    /*
-                    Int32.TryParse(objQry.Quota(Session["idsocio"].ToString()), out quotaSocio);
-                    quotaSocioLogin = quotaSocio;
-                    totaleFamigliaDaPagare += quotaSocioLogin;
-                    daDareSocio = objQry.Pagato(Session["idsocio"].ToString()) == true ? 0 : quotaSocio;
-                    if (daDareSocio == 0)
-                    {
-                        totaleFamigliaRiscosso += quotaSocio;
-                    }
-                    else
-                    {
-                        DataRow rowSocio = dtPagamentiDaFare.NewRow();
-                        rowSocio["quota"] = quotaSocio;
-                        rowSocio["NomeCognome"] = lblSocioQuote.Text;
-                        rowSocio["nsocio"] = Session["idsocio"].ToString();
-                        dtPagamentiDaFare.Rows.Add(rowSocio);
-                        
-                    }
-                    if (dtPagamentiDaFare.Rows.Count!=0)
-                    {
-                        dgDaPagare.DataSource = dtPagamentiDaFare;
-                        dgDaPagare.DataBind();
-                    }
-                    */
+
+
                     dgFamiglia.DataSource = dtFamiglia;
                     dgFamiglia.DataBind();
+
                     DataTable dtReferente = new DataTable();
                     dtReferente = objQry.DatiReferente(id_famiglia);
                     lnlNrFamiglia.Text = id_famiglia;
                     lblReferente.Text = dtReferente.Rows[0]["NomeCognome"].ToString();
-                    lblMailReferente.Text = dtReferente.Rows[0]["S_Mail"].ToString();                   
+                    lblMailReferente.Text = dtReferente.Rows[0]["S_Mail"].ToString();
 
+                    int ult_pag;
+                    Int32.TryParse(dtReferente.Rows[0]["ult_pag"].ToString(), out ult_pag);
                     Int32.TryParse(dtReferente.Rows[0]["impFamiglia"].ToString(), out totaleFamigliaDaPagare);
-                    //totaleFamigliaDaPagare = totaleFamigliaRiscosso - totaleFamigliaRiscosso;
+
                     int anno = DateTime.Now.Year;
-                    DataTable dtPagFamiglia= objQry.ricercaPagamentiOnline(anno, id_famiglia);
-                    if (dtPagFamiglia.Rows.Count>0)
+
+                    if (ult_pag == anno && totaleFamigliaDaPagare > 0)
                     {
-                        totaleFamigliaDaPagare = 0;
+                        showPagamento = false;
+                        lblGiaPagato.Text = "GIA' PAGATO";
+                    }
+                    else if (ult_pag <= anno && totaleFamigliaDaPagare == 0)
+                    {
+                        showPagamento = false;
+                        lblGiaPagato.Text = "PAGAMENTO NON DOVUTO";
+                    }
+                    else if (ult_pag==0 || (ult_pag < anno && totaleFamigliaDaPagare > 0))
+                    {
+                        showPagamento = true;
+                    }
+
+                    DataTable dtPagFamiglia = objQry.ricercaPagamentiOnline(anno, id_famiglia);
+                    if (dtPagFamiglia.Rows.Count > 0)
+                    {
+                        showPagamento = false;
+                        lblGiaPagato.Text = "GIA' PAGATO";
                     }
                     txtImporto.Text = totaleFamigliaDaPagare.ToString();
+
+                    DataTable dtPagFamigliaUltimiAnni = objQry.ricercaPagamentiFamiglia(anno - 2,id_famiglia);
+                    dgQuote.DataSource = dtPagFamigliaUltimiAnni;
+                    dgQuote.DataBind();
                 }
                 else
                 {
@@ -378,6 +360,7 @@ namespace pa_taverne
 
         }
 
+        /*
         public void Pagamenti()
         {
             dtPagamenti = new DataTable();
@@ -401,7 +384,7 @@ namespace pa_taverne
                 throw Ex;
             }
 
-        }
+        }*/
 
         protected void dgFamiglia_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -419,8 +402,7 @@ namespace pa_taverne
         public void pagaClick(object sender, EventArgs e)
         {
             HttpContext.Current.Session["payment_amt"] = txtImporto.Text + ".00";
-            HttpContext.Current.Session["anno"] = txtAnno.Text;
-            HttpContext.Current.Session["amt_socio"] = daDareSocio;
+            HttpContext.Current.Session["anno"] = txtAnno.Text;            
             HttpContext.Current.Session["nome"] = lblNome.Text + " " + lblCognome.Text;
             HttpContext.Current.Session["famiglia"] = dtFamiglia;
             Response.Redirect("expresscheckout.aspx");
@@ -768,8 +750,8 @@ namespace pa_taverne
                 if (dtErroriLettura.Rows.Count == 0)
                 {
                     Path = @"d:\\inetpub\\webs\\pa-taverneit\\public\\dati\\";
-                    //Path = @"c:\\sito\\";
-                   
+                   //Path = @"c:\\sito\\";
+
                     #region CREAFILES
 
                     // Consiglio
@@ -1206,6 +1188,9 @@ namespace pa_taverne
                                 {
                                     riga = riga + dtReferenti.Rows[i]["DATA_FINE"].ToString();
                                 }
+                                riga = riga + ";";
+                                riga = riga + dtReferenti.Rows[i]["ULT_PAG"].ToString();
+                                //riga = riga + dtReferenti.Rows[i]["DESCR_PAG"].ToString();
                                 sw.WriteLine(riga);
                             }
 

@@ -33,7 +33,7 @@
                     <!-- Trigger the modal with a button -->
                     <div class="col-sm-1 text-left">
                         <button type="button" id="showQuote" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Quote Sociali</button>
-                     </div>
+                    </div>
                     <div class="col-sm-1 col-sm-offset-10 text-right">
                         <button runat="server" id="Button1" type="button" class="btn btn-default btn-md" onserverclick="btnLogout_Click">
                             <span class=" glyphicon glyphicon-off" aria-hidden="true"></span> Esci</button>
@@ -56,9 +56,9 @@
                             <asp:Label ID="lblEsitoPositivo" runat="server"></asp:Label>
                         </div>
                     </asp:Panel>
-                    
-                       
-                    
+
+
+
                 </div>
 
 
@@ -126,7 +126,7 @@
 
                                                         <asp:BoundField DataField="nsocio" HeaderText="Nr." />
                                                         <asp:BoundField DataField="numFamiglia" HeaderText="Famiglia" />
-                                                        
+
                                                         <asp:BoundField DataField="nome" HeaderText="Nome" />
                                                         <asp:BoundField DataFormatString="{0:dd/MM/yyyy}" DataField="data" HeaderText="Data">
                                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -152,181 +152,140 @@
                         <h4 class="panel-title">DATI PERSONALI</h4>
                     </div>
                     <div class="panel-body">
-                         <div class="alert alert-info alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>                        
+                        <div class="alert alert-info alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <span>In caso di dati non corretti per anagrafica ed importi da pagare è possibile contattare la Pubblica Assistenza ai seguenti recapiti: </br> Tel. 0577 365000 Fax. 0577 365097 E-Mail pa.taverne@tin.it</span>
                         </div>
+                        <div class="col-sm-7">
+                            <div class="row">
 
-                        <div class="row">
-                            <div class="col-sm-6 col-md-3">
-                                <label for="lblNome">Nome:</label>
-                                <asp:Label ID="lblNome" runat="server" />
+                                <div class="col-sm-6 col-md-4">
+                                    <label for="lblNome">Nome:</label>
+                                    <asp:Label ID="lblNome" runat="server" />
+                                </div>
+                                <div class="col-sm-6 col-md-4">
+                                    <label for="lblCognome">Cognome:</label>
+                                    <asp:Label ID="lblCognome" runat="server" />
+                                </div>
                             </div>
-                            <div class="col-sm-6 col-md-3">
-                                <label for="lblCognome">Cognome:</label>
-                                <asp:Label ID="lblCognome" runat="server" />
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label for="lblNascita">Luogo e data di nascita:</label>
+                                    <asp:Label ID="lblNascita" runat="server" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <label for="lblNascita">Luogo e data di nascita:</label>
-                                <asp:Label ID="lblNascita" runat="server" />
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <label for="lblIndirizzo">Indirizzo:</label>
-                                <asp:Label ID="lblIndirizzo" runat="server"></asp:Label>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label for="lblIndirizzo">Indirizzo:</label>
+                                    <asp:Label ID="lblIndirizzo" runat="server"></asp:Label>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <label for="lblIscrizione">Iscritto dal:</label>
-                                <asp:Label ID="lblIscrizione" runat="server"></asp:Label>
-                                &nbsp; 
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="lblIscrizione">Iscritto dal:</label>
+                                    <asp:Label ID="lblIscrizione" runat="server"></asp:Label>
+                                    &nbsp; 
                 <asp:Label ID="lblFineIscrizione" runat="server"></asp:Label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6 col-md-3">
-                                <label for="lblTelefono">Telefono:</label>
-                                <asp:Label ID="lblTelefono" runat="server"></asp:Label>
-                            </div>
-                            <div class="col-sm-6 col-md-3">
-                                <label for="lblCellulare">Cellulare:</label>
-                                <asp:Label ID="lblCellulare" runat="server"></asp:Label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6 col-md-3">
-                                <label for="lblCodSan">Codice Sanitario:</label>
-                                <asp:Label ID="lblCodSan" runat="server"></asp:Label>
-                            </div>
-                            <div class="col-sm-6 col-md-3">
-                                <label for="lblAnpas">Tessera Anpas:</label>
-                                <asp:Label ID="lblAnpas" runat="server"></asp:Label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <label for="lblMedico">Medico Curante:</label>
-                                <asp:Label ID="lblMedico" runat="server"></asp:Label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <label for="lblNumeroSocio">Numero Socio:</label>
-                                <asp:Label ID="lblNumeroSocio" runat="server"></asp:Label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <label for="lblNumeroSocio">Numero Famiglia:</label>
-                                <asp:Label ID="lnlNrFamiglia" runat="server"></asp:Label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <asp:Label ID="lblFamiglia1" runat="server"
-                                Text="ALTRI COMPONENTI DELLA FAMIGLIA ISCRITTI"></asp:Label></h4>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <label for="lblMedico">Referente Famiglia:</label>
-                                <asp:Label ID="lblReferente" runat="server"></asp:Label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <label for="lblMedico">Mail Referente:</label>
-                                <asp:Label ID="lblMailReferente" runat="server"></asp:Label>
-                            </div>
-                        </div>
-                        <div class="table-responsive">
-
-                            <asp:GridView ID="dgFamiglia" runat="server" AutoGenerateColumns="False"
-                                CellPadding="1" CssClass="table table-bordered"
-                                OnRowDataBound="dgFamiglia_RowDataBound">
-                                <Columns>
-
-                                    <asp:BoundField DataField="nsocio" HeaderText="Nr.Socio" />
-                                    <asp:BoundField DataField="NomeCognome" HeaderText="Nome">
-                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                    </asp:BoundField>
-                                    <asp:BoundField DataField="DTNASC" HeaderText="Data di Nascita">
-                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
-                                    </asp:BoundField>
-                                    <asp:BoundField DataField="Indirizzo" HeaderText="Indirizzo">
-                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="True" />
-                                    </asp:BoundField>
-                                    <asp:BoundField DataField="Frazione" HeaderText="Frazione">
-                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                    </asp:BoundField>
-                                    <asp:BoundField DataField="Volontario" HeaderText="Volont.">
-                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                    </asp:BoundField>
-                                    <asp:BoundField DataField="Donatore" HeaderText="Donat.">
-                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                    </asp:BoundField>
-                                    <asp:BoundField DataField="FL_FINEISCR" HeaderText="FL_FINEISCR" />
-                                    <asp:BoundField DataFormatString="{0:c} &euro;" DataField="quota" HeaderText="Quota" />
-                                    <asp:BoundField DataFormatString="{0:c} &euro;" DataField="quotaRisc" HeaderText="Pagato" />
-
-
-                                </Columns>
-                                <HeaderStyle CssClass="" />
-                            </asp:GridView>
-                        </div>
-                    </div>
-                </div>
-
-                <asp:Panel ID="pnlVolontariato" runat="server">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <asp:Label ID="Label1" runat="server"
-                                    Text="ATTIVITA' DI VOLONTARIATO"></asp:Label></h4>
-                        </div>
-                        <div class="panel-body">
                             <div class="row">
-                                <div class="col-sm-6">
-                                    <label for="lblVolint">Codice interno associazione:</label>
-                                    <asp:Label ID="lblVolint" runat="server"></asp:Label>
+                                <div class="col-sm-6 col-md-3">
+                                    <label for="lblTelefono">Telefono:</label>
+                                    <asp:Label ID="lblTelefono" runat="server"></asp:Label>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <label for="lblCellulare">Cellulare:</label>
+                                    <asp:Label ID="lblCellulare" runat="server"></asp:Label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-md-3">
+                                    <label for="lblCodSan">Codice Sanitario:</label>
+                                    <asp:Label ID="lblCodSan" runat="server"></asp:Label>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <label for="lblAnpas">Tessera Anpas:</label>
+                                    <asp:Label ID="lblAnpas" runat="server"></asp:Label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <label for="lblVolAnpas">Codice Anpas:</label>
-                                    <asp:Label ID="lblVolAnpas" runat="server"></asp:Label>
+                                    <label for="lblMedico">Medico Curante:</label>
+                                    <asp:Label ID="lblMedico" runat="server"></asp:Label>
                                 </div>
                             </div>
-                            <div class="table-responsive">
-                                <asp:GridView ID="dgVolontariato" runat="server" AutoGenerateColumns="False"
-                                    CellPadding="1" CssClass="table table-bordered">
-                                    <Columns>
-                                        <asp:BoundField DataField="TipoVol" HeaderText="Tipo">
-                                            <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                        </asp:BoundField>
-                                        <asp:BoundField DataField="DTINIZ" HeaderText="Data Inizio">
-                                            <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                        </asp:BoundField>
-                                        <asp:BoundField DataField="DTFINE" HeaderText="Data Fine" />
-                                    </Columns>
-                                    <HeaderStyle CssClass="" />
-                                </asp:GridView>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="lblNumeroSocio">Numero Socio:</label>
+                                    <asp:Label ID="lblNumeroSocio" runat="server"></asp:Label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="lblNumeroSocio">Numero Famiglia:</label>
+                                    <asp:Label ID="lnlNrFamiglia" runat="server"></asp:Label>
+                                </div>
+                            </div>
+                            <div class="row margin10">
+                                <div class="col-sm-6">
+                                    <!--<a id="showComponenti" href="#">Vedi altri Componenti Famiglia ></a>-->
+                                    <button  id="showComponentiFamiglia" type="button" class="btn btn-default btn-md">Altri Componenti della Famiglia ></button>
+
+                                </div>
                             </div>
                         </div>
+                        <div class="col-sm-5">
+                            <asp:Panel ID="frmPayPal" Visible="false" runat="server" CssClass="margin20">
+                                <h2 class="panel-title margin10">PAGAMENTO ONLINE TESSERE FAMIGLIA</h2>
+                                <!--
+                            <div class="row">
+                                <div class="table-responsive margin10 col-sm-6">
+                                    <asp:GridView ID="dgDaPagare" runat="server" AutoGenerateColumns="False" Caption="Tessere da Pagare"
+                                        CellPadding="1" CssClass="table table-bordered">
+                                        <Columns>
+                                            <asp:BoundField DataField="NomeCognome" HeaderText="Socio">
+                                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            </asp:BoundField>
+                                            <asp:BoundField DataFormatString="{0:c} &euro;" DataField="quota" HeaderText="Quota"></asp:BoundField>
+
+                                        </Columns>
+                                        <HeaderStyle CssClass="" />
+                                    </asp:GridView>
+                                </div>
+                            </div>
+                            -->
+                                <div class="row margin10">
+
+                                    <label for="txtAnno" class="control-label col-sm-8">Anno Tesseramento</label>
+                                    <div class="col-sm-4">
+                                        <asp:TextBox ReadOnly="true" ID="txtAnno" CssClass="form-control" runat="server"></asp:TextBox>
+                                    </div>
+
+
+
+                                </div>
+                                <div class="row margin10">
+                                    <label for="txtImporto" class="control-label col-sm-8">Importo Famiglia (&euro;)</label>
+                                    <div class="col-sm-4">
+                                        <asp:TextBox ID="txtImporto" MaxLength="16" ReadOnly="true" CssClass="form-control col-md-4 col-sm-6 col-xs-12 " runat="server"></asp:TextBox>
+
+                                    </div>
+                                </div>
+                                <asp:ImageButton ID="btnPayPal" OnClick="pagaClick" CssClass="margin10" alt="PayPal è il metodo rapido e sicuro per pagare e farsi pagare online." runat="server" ImageUrl="https://www.paypalobjects.com/it_IT/IT/i/btn/btn_buynowCC_LG.gif" BorderStyle="None"></asp:ImageButton>
+                                <h3>
+                                    <asp:Label ID="lblGiaPagato" CssClass="margin10" ForeColor="Green" Text="GIA' PAGATO" runat="server"></asp:Label>
+                                </h3>
+                                <div class="row margin10">
+                                <div class="col-sm-6">                                    
+                                    <button  id="showUltQuoteFamiglia" type="button" class="btn btn-default btn-md">Vedi Ultimi Pagamenti ></button>
+                                </div>
+                            </div>
+                            </asp:Panel>
+                        </div>
                     </div>
-
-                </asp:Panel>
-
+                </div>
 
                 <asp:Panel ID="pnlDonatore" runat="server">
                     <div class="panel panel-primary">
@@ -385,95 +344,131 @@
 
                 </asp:Panel>
 
-                <div class="panel panel-primary">
+                <asp:Panel ID="pnlVolontariato" runat="server">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <asp:Label ID="Label1" runat="server"
+                                    Text="ATTIVITA' DI VOLONTARIATO"></asp:Label></h4>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="lblVolint">Codice interno associazione:</label>
+                                    <asp:Label ID="lblVolint" runat="server"></asp:Label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="lblVolAnpas">Codice Anpas:</label>
+                                    <asp:Label ID="lblVolAnpas" runat="server"></asp:Label>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <asp:GridView ID="dgVolontariato" runat="server" AutoGenerateColumns="False"
+                                    CellPadding="1" CssClass="table table-bordered">
+                                    <Columns>
+                                        <asp:BoundField DataField="TipoVol" HeaderText="Tipo">
+                                            <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="DTINIZ" HeaderText="Data Inizio">
+                                            <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="DTFINE" HeaderText="Data Fine" />
+                                    </Columns>
+                                    <HeaderStyle CssClass="" />
+                                </asp:GridView>
+                            </div>
+                        </div>
+                    </div>
+
+                </asp:Panel>
+
+                <div class="panel panel-primary" id="famiglia">
                     <div class="panel-heading">
-                        <h4 class="panel-title">PAGAMENTI PERSONALI</h4>
+                        <h4 class="panel-title">
+                            <asp:Label ID="lblFamiglia1" runat="server"
+                                Text="ALTRI COMPONENTI DELLA FAMIGLIA ISCRITTI"></asp:Label></h4>
                     </div>
                     <div class="panel-body">
-
                         <div class="row">
                             <div class="col-sm-6">
-                                <asp:Label ID="lblSocioQuote" runat="server"
-                                    Font-Bold="True"></asp:Label>
+                                <label for="lblMedico">Referente Famiglia:</label>
+                                <asp:Label ID="lblReferente" runat="server"></asp:Label>
                             </div>
-
                         </div>
-
-
                         <div class="row">
                             <div class="col-sm-6">
-                                <asp:Label ID="lblQuote" runat="server" Text=""
-                                    Font-Bold="True"></asp:Label>
-                            </div>
-
-                        </div>
-
-
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <asp:Label ID="lblDaVersare" runat="server" Font-Bold="True"></asp:Label>
+                                <label for="lblMedico">Mail Referente:</label>
+                                <asp:Label ID="lblMailReferente" runat="server"></asp:Label>
                             </div>
                         </div>
+                        <div class="table-responsive">
 
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <asp:Label ID="lblVersato" runat="server" Font-Bold="True"></asp:Label>
-                            </div>
+                            <asp:GridView ID="dgFamiglia" runat="server" AutoGenerateColumns="False"
+                                CellPadding="1" CssClass="table table-bordered"
+                                OnRowDataBound="dgFamiglia_RowDataBound">
+                                <Columns>
+
+                                    <asp:BoundField DataField="nsocio" HeaderText="Nr.Socio" />
+                                    <asp:BoundField DataField="NomeCognome" HeaderText="Nome">
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="DTNASC" HeaderText="Data di Nascita">
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="Indirizzo" HeaderText="Indirizzo">
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="True" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="Frazione" HeaderText="Frazione">
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="Volontario" HeaderText="Volont.">
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="Donatore" HeaderText="Donat.">
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="FL_FINEISCR" HeaderText="FL_FINEISCR" />
+                                    <asp:BoundField DataFormatString="{0:c} &euro;" DataField="quota" HeaderText="Quota" />
+
+
+
+                                </Columns>
+                                <HeaderStyle CssClass="" />
+                            </asp:GridView>
                         </div>
-                        <asp:Panel ID="frmPayPal" Visible="false" runat="server" CssClass="margin20">
-                            <h2 class="panel-title margin10">PAGAMENTO ONLINE TESSERE FAMIGLIA</h2>
-                            <!--
-                            <div class="row">
-                                <div class="table-responsive margin10 col-sm-6">
-                                    <asp:GridView ID="dgDaPagare" runat="server" AutoGenerateColumns="False" Caption="Tessere da Pagare"
-                                        CellPadding="1" CssClass="table table-bordered">
-                                        <Columns>
-                                            <asp:BoundField DataField="NomeCognome" HeaderText="Socio">
-                                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                            </asp:BoundField>
-                                            <asp:BoundField DataFormatString="{0:c} &euro;" DataField="quota" HeaderText="Quota"></asp:BoundField>
+                    </div>
+                </div>
 
-                                        </Columns>
-                                        <HeaderStyle CssClass="" />
-                                    </asp:GridView>
-                                </div>
-                            </div>
-                            -->
-                            <div class="row">
-                                <div class="col-sm-4 col-md-2">
-                                    <label for="txtAnno" class="control-label">Anno Tessera</label>
-                                    <asp:TextBox ReadOnly="true" ID="txtAnno" CssClass="form-control" runat="server"></asp:TextBox>
-                                </div>
-                                <div class="col-sm-4 col-md-3">
 
-                                    <label for="txtImporto" class="control-label">Importo Famiglia da Pagare (&euro;)</label>
-                                    <asp:TextBox ID="txtImporto" MaxLength="16" ReadOnly="true" CssClass="form-control col-md-4 col-sm-6 col-xs-12 " runat="server"></asp:TextBox>
-
-                                </div>
-                            </div>
-                            <asp:ImageButton OnClick="pagaClick" CssClass="margin10" ID="payPalCheckout" runat="server" ImageUrl="https://www.paypal.com/it_IT/i/btn/btn_xpressCheckout.gif" BorderStyle="None" />
-
-                        </asp:Panel>
-
+                <div id="ultQuoteFamiglia" class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">ULTIME QUOTE PAGATE DALLA FAMIGLIA</h4>
+                    </div>
+                    <div class="panel-body">
 
                         <div class="table-responsive margin10">
                             <asp:GridView ID="dgQuote" runat="server" AutoGenerateColumns="False" Caption="Ultimi Pagamenti"
                                 CellPadding="1" CssClass="table table-bordered">
                                 <Columns>
-                                    <asp:BoundField DataField="DTPAG" HeaderText="Data Pagamento">
+                                    <asp:BoundField DataField="NomeSocio" HeaderText="Socio">
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataFormatString="{0:dd/MM/yyyy}" DataField="DataPagamento" HeaderText="Data Pagamento">
                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:BoundField>
                                     <asp:BoundField DataField="LuogoPagamento" HeaderText="Luogo Pagamento">
                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:BoundField>
-                                    <asp:BoundField DataFormatString="{0:c} &euro;" DataField="QUOTA" HeaderText="Quota versata"></asp:BoundField>
+                                    <asp:BoundField DataFormatString="{0:c} &euro;" DataField="QuotaRisc" HeaderText="Quota versata"></asp:BoundField>
 
                                 </Columns>
                                 <HeaderStyle CssClass="" />
                             </asp:GridView>
                         </div>
 
-                        
+
 
                         <!-- Modal -->
                         <div id="myModal" class="modal fade" role="dialog">
@@ -488,7 +483,7 @@
                                     <div class="modal-body">
                                         <div class="table-responsive margin20">
                                             <table class="table table-bordered" cellpadding="5" cellspacing="0">
-                                               
+
                                                 <tr>
                                                     <th class="">Descrizione</th>
                                                     <th class="">Quota</th>
@@ -513,6 +508,10 @@
                                                     <td class="">Volontari</td>
                                                     <td>Gratuita</td>
                                                 </tr>
+                                                <tr class="">
+                                                    <td class="">Soci Onorari</td>
+                                                    <td>Gratuita</td>
+                                                </tr>
                                             </table>
 
                                         </div>
@@ -529,9 +528,6 @@
 
                     </div>
                 </div>
-
-
-
             </div>
 
             <div class="loading" id="loading" align="center">
@@ -540,7 +536,7 @@
             </div>
         </form>
         <div class="modal" id="modal" style="display: none"></div>
-        <div id="footerHidden" style="display: none"></div>
+        <div id="footerHidden"></div>
     </div>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
@@ -557,8 +553,20 @@
             $('#btnSalva').click(function () {
                 $('#btnSalva').after('<div class="margin10"><img class="loading-ajax" src="/images/loader.gif" alt="Loading" /><div>')
 
-
+                 
             });
+            $('#showComponentiFamiglia').click(function () {
+                //window.parent.scroll(1100, 0);
+                top.postMessage($('#famiglia').offset().top, '*');
+            });
+
+            $('#showUltQuoteFamiglia').click(function () {                
+                top.postMessage($('#ultQuoteFamiglia').offset().top, '*');
+                //window.parent.postMessage(JSON.stringify({ "scroll_at": $('#ultQuoteFamiglia').offset().top }), '*');
+            });
+
+            
+
             $('#btnPagamentiOnline').click(function () {
                 $('#btnPagamentiOnline').after('<div class="margin10"><img class="loading-ajax" src="/images/loader.gif" alt="Loading" /><div>')
             });
@@ -570,9 +578,10 @@
                 $('#myModal').css({ 'top': position + 'px' });
             });
             var positionY = $("#footerHidden").position().top + 100;
+            window.parent.postMessage({ "resize_at": positionY }, '*');
+
             
-            window.parent.postMessage(positionY, '*');
-            
+
 
         });
     </script>

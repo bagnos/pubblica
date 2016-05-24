@@ -1619,6 +1619,25 @@ namespace pa_taverne
             }
         }
 
+        public DataTable ricercaPagamentiFamiglia(int anno, String famiglia)
+        {
+            string SQL;
+
+            SQL = "select e.*, concat(e1.Cognome,' ',e1.Nome) as NomeSocio,e1.numFamiglia from E_Quote e,E_Soci e1 ";
+            SQL = SQL + "where  year(dataPagamento)>=" + (anno).ToString();
+            SQL = SQL + " and  numFamiglia=" + famiglia.ToString();
+            SQL = SQL + " and e.nsocio=e1.Nsocio ";
+            SQL = SQL + " order by dataPagamento desc";
+            try
+            {
+                return objAcc.getDT(SQL);
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
+        }
+
         public DataTable verificaTxNid(String idSocio, String txn)
         {
             string SQL;
@@ -1997,7 +2016,7 @@ namespace pa_taverne
 
         public DataTable DatiReferente(String famiglia)
         {
-            String SQL = "SELECT CONCAT_WS(' ',A.Nome,A.Cognome) as NomeCognome,E.S_MAIL,E.imp_fam as impFamiglia ";
+            String SQL = "SELECT CONCAT_WS(' ',A.Nome,A.Cognome) as NomeCognome,E.S_MAIL,E.imp_fam as impFamiglia,E.ult_pag as ult_pag ";
             SQL = SQL + "FROM E_Soci A, E_Referenti E   ";
             SQL = SQL + "WHERE A.NumFamiglia=" + famiglia;
             SQL = SQL + " AND A.NSocio=E.N_SOCIO";

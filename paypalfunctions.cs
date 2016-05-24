@@ -30,8 +30,11 @@ public class NVPAPICaller
     //Replace <API_SIGNATURE> with your Signature
 
     public string APIUsername = "othalaBusines2_api1.othala.it";
+    //pa.taverne_api1.tin.it
     private string APIPassword = "1401144172";
+    //ZNTW254HTDGH7BQY
     private string APISignature = "Arn.ArK3PQZHb0dhe4Iiiho9z4kmAZqz9IGTatMji0-4GXfaQEx4I-2S";
+    //AiMCyfrVnyW78TFwENI0yoJhxy8oADjB2EGRM0ZM9-O9zR6uyRX6E4dU
     private string Subject = "";
     private string BNCode = "PP-ECWizard";
 

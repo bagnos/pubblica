@@ -283,85 +283,58 @@ namespace pa_taverne {
         protected global::System.Web.UI.WebControls.Label lnlNrFamiglia;
         
         /// <summary>
-        /// lblFamiglia1 control.
+        /// frmPayPal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFamiglia1;
+        protected global::System.Web.UI.WebControls.Panel frmPayPal;
         
         /// <summary>
-        /// lblReferente control.
+        /// dgDaPagare control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblReferente;
+        protected global::System.Web.UI.WebControls.GridView dgDaPagare;
         
         /// <summary>
-        /// lblMailReferente control.
+        /// txtAnno control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMailReferente;
+        protected global::System.Web.UI.WebControls.TextBox txtAnno;
         
         /// <summary>
-        /// dgFamiglia control.
+        /// txtImporto control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgFamiglia;
+        protected global::System.Web.UI.WebControls.TextBox txtImporto;
         
         /// <summary>
-        /// pnlVolontariato control.
+        /// btnPayPal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlVolontariato;
+        protected global::System.Web.UI.WebControls.ImageButton btnPayPal;
         
         /// <summary>
-        /// Label1 control.
+        /// lblGiaPagato control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-        
-        /// <summary>
-        /// lblVolint control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblVolint;
-        
-        /// <summary>
-        /// lblVolAnpas control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblVolAnpas;
-        
-        /// <summary>
-        /// dgVolontariato control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgVolontariato;
+        protected global::System.Web.UI.WebControls.Label lblGiaPagato;
         
         /// <summary>
         /// pnlDonatore control.
@@ -409,85 +382,85 @@ namespace pa_taverne {
         protected global::System.Web.UI.WebControls.Label lblUltima;
         
         /// <summary>
-        /// lblSocioQuote control.
+        /// pnlVolontariato control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSocioQuote;
+        protected global::System.Web.UI.WebControls.Panel pnlVolontariato;
         
         /// <summary>
-        /// lblQuote control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblQuote;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// lblDaVersare control.
+        /// lblVolint control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDaVersare;
+        protected global::System.Web.UI.WebControls.Label lblVolint;
         
         /// <summary>
-        /// lblVersato control.
+        /// lblVolAnpas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblVersato;
+        protected global::System.Web.UI.WebControls.Label lblVolAnpas;
         
         /// <summary>
-        /// frmPayPal control.
+        /// dgVolontariato control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel frmPayPal;
+        protected global::System.Web.UI.WebControls.GridView dgVolontariato;
         
         /// <summary>
-        /// dgDaPagare control.
+        /// lblFamiglia1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgDaPagare;
+        protected global::System.Web.UI.WebControls.Label lblFamiglia1;
         
         /// <summary>
-        /// txtAnno control.
+        /// lblReferente control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAnno;
+        protected global::System.Web.UI.WebControls.Label lblReferente;
         
         /// <summary>
-        /// txtImporto control.
+        /// lblMailReferente control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtImporto;
+        protected global::System.Web.UI.WebControls.Label lblMailReferente;
         
         /// <summary>
-        /// payPalCheckout control.
+        /// dgFamiglia control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton payPalCheckout;
+        protected global::System.Web.UI.WebControls.GridView dgFamiglia;
         
         /// <summary>
         /// dgQuote control.

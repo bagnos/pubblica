@@ -331,11 +331,16 @@ namespace pa_taverne
         {
             string SQL;
 
-            SQL = "SELECT N_FAMI ";
+            SQL = "SELECT ULT_PAG ";
+            SQL = SQL + ", N_FAMI ";
             SQL = SQL + ", N_SOCIO ";
             SQL = SQL + ", IMP_FAM ";
             SQL = SQL + ", S_Mail ";
             SQL = SQL + ", DATA_FINE ";
+            SQL = SQL + ", DESCR_PAG ";
+            
+
+
             SQL = SQL + "FROM Referenti ";
             try
             {
