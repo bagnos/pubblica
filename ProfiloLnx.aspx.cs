@@ -941,7 +941,8 @@ namespace pa_taverne
                                 riga = riga + dtSoci.Rows[i]["MotivoFine"].ToString() + ";";
                                 riga = riga + dtSoci.Rows[i]["NumVolontario"].ToString() + ";";
                                 riga = riga + dtSoci.Rows[i]["COD_SAN"].ToString() + ";";
-                                riga = riga + dtSoci.Rows[i]["MED_CUR"].ToString();
+                                riga = riga + dtSoci.Rows[i]["MED_CUR"].ToString() +";";
+                                riga = riga + dtSoci.Rows[i]["ONOR"].ToString();
                                 sw.WriteLine(riga);
                             }
 

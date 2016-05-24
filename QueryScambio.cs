@@ -180,6 +180,7 @@ namespace pa_taverne
             SQL = SQL + ", Soci.NumVolontario ";
             SQL = SQL + ", Soci.COD_SAN ";
             SQL = SQL + ", Soci.MED_CUR ";
+            SQL = SQL + ", Soci.ONOR ";
             SQL = SQL + "FROM Soci ";
 
 
@@ -558,7 +559,7 @@ namespace pa_taverne
         public void InsSoci(string NSocio, string NumFamiglia, string Nome, string Cognome, string DataNascita
             , string LuogoNascita, string Indirizzo, string Frazione, string Comune, string Telefono, string Cellulare
             , string CodFiscale, string DataIscrizione, string DataFineIscrizione, string MotivoFine
-            , string NumVolontario, string COD_SAN, string MED_CUR)
+            , string NumVolontario, string COD_SAN, string MED_CUR,String onor)
         {
             string SQL;
 
@@ -644,6 +645,7 @@ namespace pa_taverne
                 SQL = SQL + ", " + NumVolontario + "  AS NumVolontario ";
                 SQL = SQL + ", '" + COD_SAN.Replace("'", "`") + "'  AS COD_SAN ";
                 SQL = SQL + ", '" + MED_CUR.Replace("'", "`") + "'  AS MED_CUR ";
+                SQL = SQL + ", '" + onor.Replace("'", "`") + "'  AS ONOR ";
                 SQL = SQL + "FROM DUAL ";
             }
 

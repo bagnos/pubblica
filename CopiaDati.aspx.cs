@@ -295,7 +295,8 @@ namespace pa_taverne
                                         dtSoci.Rows[i]["MotivoFine"].ToString(),
                                         dtSoci.Rows[i]["NumVolontario"].ToString(),
                                         dtSoci.Rows[i]["COD_SAN"].ToString(),
-                                        dtSoci.Rows[i]["MED_CUR"].ToString());
+                                        dtSoci.Rows[i]["MED_CUR"].ToString(),
+                                        dtSoci.Rows[i]["ONOR"].ToString());
                                 }
                                 log = log + "Tabella Soci inserita correttamente <BR /><BR />";
                             }

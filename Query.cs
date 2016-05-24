@@ -1994,6 +1994,7 @@ namespace pa_taverne
                 SQL = SQL + ", CASE WHEN B.DataInizioDon Is Not Null AND B.DataInizioDon<>DATE('0000-00-00') THEN 'Si' ELSE 'No' END AS Donatore   ";
                 SQL = SQL + ", CASE WHEN C.NVolInt Is Not Null THEN 'Si' ELSE 'No' END AS Volontario   ";
                 SQL = SQL + ", CASE WHEN A.DataFineIscrizione Is Not Null AND A.DataFineIscrizione<>DATE('0000-00-00') THEN 1 ELSE 0 END AS FL_FINEISCR   ";
+                SQL = SQL + ", A.ONOR as ONOR   ";
                 SQL = SQL + "FROM E_Soci A   ";
                 SQL = SQL + "LEFT JOIN (SELECT * FROM E_Donatori WHERE (DataFineDon Is Null OR DataFineDon=DATE('0000-00-00'))) B ON A.NSocio = B.NSocio    ";
                 SQL = SQL + "LEFT JOIN (SELECT DISTINCT NVolInt FROM E_VolAttivita WHERE (DataFineVolAtt Is Null OR DataFineVolAtt=DATE('0000-00-00'))) C ON A.NumVolontario = C.NVolInt   ";

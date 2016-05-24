@@ -430,6 +430,9 @@
                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:BoundField>
                                     <asp:BoundField DataField="FL_FINEISCR" HeaderText="FL_FINEISCR" />
+                                    <asp:BoundField DataField="ONOR" HeaderText="Onorario">
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:BoundField>
                                     <asp:BoundField DataFormatString="{0:c} &euro;" DataField="quota" HeaderText="Quota" />
 
 

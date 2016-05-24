@@ -19,7 +19,7 @@ public class NVPAPICaller
     private const string CVV2 = "CVV2";
 
     //Flag that determines the PayPal environment (live or sandbox)
-    private const bool bSandbox = true;
+    private const bool bSandbox = false;
 
     private const string SIGNATURE = "SIGNATURE";
     private const string PWD = "PWD";
@@ -29,11 +29,13 @@ public class NVPAPICaller
     //Replace <API_PASSWORD> with your API Password
     //Replace <API_SIGNATURE> with your Signature
 
-    public string APIUsername = "othalaBusines2_api1.othala.it";
-    //pa.taverne_api1.tin.it
-    private string APIPassword = "1401144172";
+    //public string APIUsername = "othalaBusines2_api1.othala.it";
+    public string APIUsername = "pa.taverne_api1.tin.it";
+    //private string APIPassword = "1401144172";
+    private string APIPassword = "ZNTW254HTDGH7BQY";
     //ZNTW254HTDGH7BQY
-    private string APISignature = "Arn.ArK3PQZHb0dhe4Iiiho9z4kmAZqz9IGTatMji0-4GXfaQEx4I-2S";
+    //private string APISignature = "Arn.ArK3PQZHb0dhe4Iiiho9z4kmAZqz9IGTatMji0-4GXfaQEx4I-2S";
+    private string APISignature = "AiMCyfrVnyW78TFwENI0yoJhxy8oADjB2EGRM0ZM9-O9zR6uyRX6E4dU";
     //AiMCyfrVnyW78TFwENI0yoJhxy8oADjB2EGRM0ZM9-O9zR6uyRX6E4dU
     private string Subject = "";
     private string BNCode = "PP-ECWizard";
