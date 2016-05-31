@@ -555,7 +555,7 @@
         $(window).load(function () {
             $('#btnSalva').click(function () {
                 $('#btnSalva').after('<div class="margin10"><img class="loading-ajax" src="/images/loader.gif" alt="Loading" /><div>')
-
+                //window.parent.postMessage({ "submit": true }, '*');
                  
             });
             $('#showComponentiFamiglia').click(function () {
@@ -570,8 +570,9 @@
 
             
 
-            $('#btnPagamentiOnline').click(function () {
-                $('#btnPagamentiOnline').after('<div class="margin10"><img class="loading-ajax" src="/images/loader.gif" alt="Loading" /><div>')
+            $('#btnPayPal').click(function () {
+                $('#btnPayPal').after('<div class="margin10"><img class="loading-ajax" src="/images/loader.gif" alt="Loading" /><div>');
+                //window.parent.postMessage({ "submit": true }, '*');
             });
             $('#payPalCheckout').click(function () {
                 $('#payPalCheckout').after('<div class="margin10"><img class="loading-ajax" src="/images/loader.gif" alt="Loading" /><div>')

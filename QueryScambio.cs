@@ -1045,6 +1045,7 @@ namespace pa_taverne
             string SQL9;
             string SQL10;
             string SQL11;
+            string SQL12;
 
             if (ConfigurationManager.AppSettings["DB"] == "Access")
             {
@@ -1073,6 +1074,7 @@ namespace pa_taverne
                 SQL9 = "DELETE FROM APP_TipoVolontariato";
                 SQL10 = "DELETE FROM APP_VolAttivita";
                 SQL11 = "DELETE FROM APP_Volontari";
+                SQL11 = "DELETE FROM APP_Referenti";
             }
 
             try
