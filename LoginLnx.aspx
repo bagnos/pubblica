@@ -42,6 +42,7 @@
                         </div>
 
                         <asp:Button ID="btnLogin" runat="server" CssClass="margin10 btn btn-md btn-primary" Text="Login" OnClick="btnLogin_Click" />
+                        <div style="display:none" id="imgBtnLoginLoading" class="margin10"><img class="loading-ajax" src="/images/loader.gif" alt="Loading" /></div>
 
 
                         <div class="form-group">
@@ -67,8 +68,9 @@
                 $(".se-pre-con").fadeOut("slow");;
             });*/
             $(document).ready(function () {
+              
                 $('#btnLogin').click(function () {
-                    $('#btnLogin').after('<div class="margin10"><img class="loading-ajax" src="/images/loader.gif" alt="Loading" /><div>')
+                   //$('#btnLogin').after('<div class="margin10"><img class="loading-ajax" src="/images/loader.gif" alt="Loading" /><div>')
                 });
                 
             });

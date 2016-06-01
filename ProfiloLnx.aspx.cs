@@ -92,6 +92,9 @@ namespace pa_taverne
         {
             try
             {
+                btnPayPal.Attributes.Add("onclick", " this.disabled = true;document.getElementById('imgPayPalLoading').style.display='block';" + ClientScript.GetPostBackEventReference(btnPayPal, null) + ";");
+                btnSalva.Attributes.Add("onclick", " this.disabled = true;document.getElementById('imgBtnSalvaLoading').style.display='block';" + ClientScript.GetPostBackEventReference(btnSalva, null) + ";");
+
                 showPagamento = false;
                 if (Request.QueryString["esitoPagamento"] != null)
                 {

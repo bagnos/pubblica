@@ -19,7 +19,12 @@ public partial class PayPalEC : System.Web.UI.Page
             if (ret)
             {
 				HttpContext.Current.Session["token"] = token;
-                Response.Redirect( retMsg );
+                ClientScript.RegisterStartupScript(this.GetType(), "loadPayPal", "top.postMessage({ \"reload\": \"" + retMsg + "\" }, '*');", true);
+                //Response.Redirect( retMsg );
+                Response.Write("<script>top.postMessage({ \"reload\": \"" + retMsg + "\" }, '*');</script>");
+
+
+
             }
             else
             {

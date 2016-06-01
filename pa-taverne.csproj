@@ -112,6 +112,7 @@
     <Content Include="images\bullet.gif" />
     <Content Include="images\close.gif" />
     <Content Include="images\closelabel.gif" />
+    <Content Include="images\load-rotelle.gif" />
     <Content Include="images\loader.gif" />
     <Content Include="images\loading.gif" />
     <Content Include="images\nextlabel.gif" />

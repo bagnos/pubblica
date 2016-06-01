@@ -36,7 +36,7 @@
                     </div>
                     <div class="col-sm-1 col-sm-offset-10 text-right">
                         <button runat="server" id="Button1" type="button" class="btn btn-default btn-md" onserverclick="btnLogout_Click">
-                            <span class=" glyphicon glyphicon-off" aria-hidden="true"></span> Esci</button>
+                            <span class=" glyphicon glyphicon-off" aria-hidden="true"></span>Esci</button>
                     </div>
 
                 </div>
@@ -94,6 +94,7 @@
                                                             <br />
                                                             <asp:Button ID="btnSalva" runat="server" CssClass="btn btn-primary"
                                                                 OnClick="btnSalva_Click" Text="Aggiorna i Dati" />
+                                                             <div style="display:none" id="imgBtnSalvaLoading" class="margin10"><img class="loading-ajax" src="/images/loader.gif" alt="Loading" /></div>
                                                         </asp:Panel>
                                                         <br />
                                                         <asp:Label ID="lblLog" runat="server" Font-Bold="True"></asp:Label>
@@ -231,7 +232,7 @@
                             <div class="row margin10">
                                 <div class="col-sm-6">
                                     <!--<a id="showComponenti" href="#">Vedi altri Componenti Famiglia ></a>-->
-                                    <button  id="showComponentiFamiglia" type="button" class="btn btn-default btn-md">Altri Componenti della Famiglia ></button>
+                                    <button id="showComponentiFamiglia" type="button" class="btn btn-info btn-md">Altri Componenti della Famiglia ></button>
 
                                 </div>
                             </div>
@@ -273,15 +274,16 @@
 
                                     </div>
                                 </div>
-                                <asp:ImageButton ID="btnPayPal" OnClick="pagaClick" CssClass="margin10" alt="PayPal è il metodo rapido e sicuro per pagare e farsi pagare online." runat="server" ImageUrl="https://www.paypalobjects.com/it_IT/IT/i/btn/btn_buynowCC_LG.gif" BorderStyle="None"></asp:ImageButton>
+                                <asp:ImageButton  ID="btnPayPal" OnClick="pagaClick" CssClass="margin10" alt="PayPal è il metodo rapido e sicuro per pagare e farsi pagare online." runat="server" ImageUrl="https://www.paypalobjects.com/it_IT/IT/i/btn/btn_buynowCC_LG.gif" BorderStyle="None"></asp:ImageButton>
+                                <div style="display:none" id="imgPayPalLoading" class="margin10"><img class="loading-ajax" src="/images/loader.gif" alt="Loading" /></div>
                                 <h3>
                                     <asp:Label ID="lblGiaPagato" CssClass="margin10" ForeColor="Green" Text="GIA' PAGATO" runat="server"></asp:Label>
                                 </h3>
                                 <div class="row margin10">
-                                <div class="col-sm-6">                                    
-                                    <button  id="showUltQuoteFamiglia" type="button" class="btn btn-default btn-md">Vedi Ultimi Pagamenti ></button>
+                                    <div class="col-sm-6">
+                                        <button id="showUltQuoteFamiglia" type="button" class="btn btn-info btn-md">Vedi Ultimi Pagamenti ></button>
+                                    </div>
                                 </div>
-                            </div>
                             </asp:Panel>
                         </div>
                     </div>
@@ -553,29 +555,37 @@
             $(".se-pre-con").fadeOut("slow");;
         });*/
         $(window).load(function () {
+
+            /*
             $('#btnSalva').click(function () {
                 $('#btnSalva').after('<div class="margin10"><img class="loading-ajax" src="/images/loader.gif" alt="Loading" /><div>')
                 //window.parent.postMessage({ "submit": true }, '*');
-                 
-            });
+
+            });*/
             $('#showComponentiFamiglia').click(function () {
                 //window.parent.scroll(1100, 0);
                 top.postMessage($('#famiglia').offset().top, '*');
             });
 
-            $('#showUltQuoteFamiglia').click(function () {                
+            $('#showUltQuoteFamiglia').click(function () {
                 top.postMessage($('#ultQuoteFamiglia').offset().top, '*');
                 //window.parent.postMessage(JSON.stringify({ "scroll_at": $('#ultQuoteFamiglia').offset().top }), '*');
             });
 
-            
+
 
             $('#btnPayPal').click(function () {
-                $('#btnPayPal').after('<div class="margin10"><img class="loading-ajax" src="/images/loader.gif" alt="Loading" /><div>');
+                //$('#btnPayPal').attr('disabled', 'disabled');
+                // $('#<%= btnPayPal.ClientID %>').prop("disabled", true);
+                //$('#btnPayPal').after('<div class="margin10"><img class="loading-ajax" src="/images/loader.gif" alt="Loading" /><div>');
+               
+             
+                //$('#form1').submit();
                 //window.parent.postMessage({ "submit": true }, '*');
             });
             $('#payPalCheckout').click(function () {
                 $('#payPalCheckout').after('<div class="margin10"><img class="loading-ajax" src="/images/loader.gif" alt="Loading" /><div>')
+                
             });
             $('#showQuote').click(function () {
                 var position = $("#showQuote").position().top + 20;
@@ -584,7 +594,7 @@
             var positionY = $("#footerHidden").position().top + 100;
             window.parent.postMessage({ "resize_at": positionY }, '*');
 
-            
+
 
 
         });

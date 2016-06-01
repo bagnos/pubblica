@@ -15,7 +15,7 @@ namespace pa_taverne
 
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+            btnLogin.Attributes.Add("onclick", " this.disabled = true;document.getElementById('imgBtnLoginLoading').style.display='block';" + ClientScript.GetPostBackEventReference(btnLogin, null) + ";");
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
