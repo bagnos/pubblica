@@ -13,7 +13,7 @@ namespace pa_taverne
         
         
         String token = null;
-        String amtSocio=null;
+        //String amtSocio=null;
         String payerId = null;
         String nSocio = null;
         String paymentAmt = null;
@@ -22,7 +22,7 @@ namespace pa_taverne
         protected void Page_Load(object sender, EventArgs e)
         {
             token = Request.QueryString["token"];
-            amtSocio = HttpContext.Current.Session["amt_socio"].ToString();
+            //amtSocio = HttpContext.Current.Session["amt_socio"].ToString();
             payerId=Request.QueryString["PayerID"];
             paymentAmt = Session["payment_amt"].ToString();
             nSocio = Session["idsocio"].ToString();
@@ -58,15 +58,16 @@ namespace pa_taverne
                 try
                 {
                     Utility ut = new Utility();
-                    //ut.invioMailIncassoOnline(nSocio);
+                    ut.invioMailIncassoOnline(nSocio);
 
                 }
                 catch (Exception e)
                 { 
-                    Response.Redirect("ProfiloLnx.aspx?esitoPagamento=Pagamento effettuato con successo ma comunicate alla Pubblica di Taverne il pagamento effettuato online&esito=ok&eccezione="+e.Message);
-                    return;
+                    //Response.Redirect("ProfiloLnx.aspx?esitoPagamento=Pagamento effettuato con successo ma comunicate alla Pubblica di Taverne il pagamento effettuato online&esito=ok&eccezione="+e.Message);
+                    //return;
+                    
                 }
-                Response.Redirect("ProfiloLnx.aspx?esitoPagamento=Pagamento effettuato con successo! I pagamenti saranno contabilizzati al perfezionamento delle operazioni bancarie.&esito=ok");
+                Response.Redirect("ProfiloLnx.aspx?esitoPagamento=Pagamento effettuato con successo, i pagamenti saranno contabilizzati al perfezionamento delle operazioni bancarie.&esito=ok");
             }
             else {
                 Response.Redirect("ProfiloLnx.aspx?esitoPagamento="+ retMsg+ "&esito=ko");
