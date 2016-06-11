@@ -36,7 +36,7 @@
                     </div>
                     <div class="col-sm-1 col-sm-offset-10 text-right">
                         <button runat="server" id="Button1" type="button" class="btn btn-default btn-md" onserverclick="btnLogout_Click">
-                            <span class=" glyphicon glyphicon-off" aria-hidden="true"></span>Esci</button>
+                            <span class=" glyphicon glyphicon-off" aria-hidden="true"></span> Esci</button>
                     </div>
 
                 </div>

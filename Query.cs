@@ -1586,9 +1586,11 @@ namespace pa_taverne
         {
             string SQL;
 
-            SQL = "select e.*, concat(e1.Cognome,' ',e1.Nome) as nome,e1.numFamiglia from e_pagati_online e,E_Soci e1 ";
-            SQL = SQL + "where  year(data)>=" + (anno-1).ToString();
-            SQL = SQL + " and e.nsocio=e1.Nsocio ";
+            SQL = "select e.*, concat(e1.Cognome,' ',e1.Nome) as nome,e1.numFamiglia from e_pagati_online e,E_Soci e1, E_Referenti er ";
+            //SQL = SQL + "where  year(data)>=" + (anno-1).ToString();
+            SQL = SQL + " where e.nsocio=e1.Nsocio ";
+            SQL = SQL + " and er.n_fami=e.nfamiglia ";
+            SQL = SQL + " and er.ult_pag<YEAR(CURDATE())";
             SQL = SQL + " order by data desc";
             try
             {
