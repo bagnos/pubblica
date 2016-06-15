@@ -29,16 +29,17 @@
                 <div class="panel-body">
                     <form id="form1" runat="server">
                         <div class="form-group">
-                            <label for="txCF" class="control-label">Codice Fiscale</label>
+                            <label for="txCF" class="control-label">Codice Fiscale  <a href="Immagini/TesseraSocialeDati.png" target="_blank">(?)</a></label>
 
                             <asp:TextBox ID="txCF" MaxLength="16" CssClass="form-control " runat="server"></asp:TextBox>
+                           
                         </div>
 
                         <div class="form-group">
-                            <label for="txSocio" class="control-label">Numero Socio</label>
+                            <label for="txSocio" class="control-label">Numero Socio  <a href="Immagini/TesseraSociale.png" target="_blank">(?)</a></label>
 
                             <asp:TextBox ID="txSocio" CssClass="form-control  col-md-4 col-sm-4 col-xs-12" runat="server" TextMode="Password"></asp:TextBox>
-
+                           
                         </div>
 
                         <asp:Button ID="btnLogin" runat="server" CssClass="margin10 btn btn-md btn-primary" Text="Login" OnClick="btnLogin_Click" />

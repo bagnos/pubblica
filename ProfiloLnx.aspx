@@ -274,6 +274,9 @@
 
                                     </div>
                                 </div>
+                                <div class="row">
+                                <a href="InfoPagamentoOnLine.pdf" target="_blank">Vedi come pagare con Carta di Credito</a>
+                                </div>
                                 <asp:ImageButton  ID="btnPayPal" OnClick="pagaClick" CssClass="margin10" alt="PayPal è il metodo rapido e sicuro per pagare e farsi pagare online." runat="server" ImageUrl="https://www.paypalobjects.com/it_IT/IT/i/btn/btn_buynowCC_LG.gif" BorderStyle="None"></asp:ImageButton>
                                 <div style="display:none" id="imgPayPalLoading" class="margin10"><img class="loading-ajax" src="/images/loader.gif" alt="Loading" /></div>
                                 <h3>

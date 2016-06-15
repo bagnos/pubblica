@@ -164,6 +164,8 @@
     <Content Include="Immagini\modifica.png" />
     <Content Include="Immagini\NEW.gif" />
     <Content Include="Immagini\nuovo.png" />
+    <Content Include="Immagini\TesseraSociale.png" />
+    <Content Include="Immagini\TesseraSocialeDati.png" />
     <Content Include="Immagini\toglifilto.png" />
     <Content Include="Immagini\OrariAmb.jpg" />
     <Content Include="Immagini\organigramma.JPG" />
@@ -664,6 +666,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Immagini\AgendaDona_sito.pdf" />
+    <Content Include="InfoPagamentoOnLine.pdf" />
     <None Include="public\Doc\RegIscrizioneDon.doc" />
     <None Include="public\Doc\TabEsclusioneDon.doc" />
   </ItemGroup>
