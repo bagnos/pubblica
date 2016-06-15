@@ -2121,6 +2121,13 @@ namespace pa_taverne
                 SQL = SQL + "    ) BBB ";
                 SQL = SQL + "    ON AAA.NSocio=BBB.VolNsocio AND AAA.NVolInt=BBB.NumVolontario ";
                 SQL = SQL + "WHERE AAA.NSocio=" + socio + "  ";
+                SQL = SQL + "group by AAA.NSocio ";
+                SQL = SQL + ", AAA.NVolInt ";
+                SQL = SQL + ", AAA.DataInizioVolAtt ";
+                SQL = SQL + ", AAA.DTINIZ ";
+                SQL = SQL + ", AAA.DTFINE ";
+                SQL = SQL + ", AAA.TipoVol ";
+                SQL = SQL + ", BBB.N_Vol_Anpas ";
                 SQL = SQL + "ORDER BY AAA.DataInizioVolAtt DESC ";
 
             }

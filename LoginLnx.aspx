@@ -29,7 +29,7 @@
                 <div class="panel-body">
                     <form id="form1" runat="server">
                         <div class="form-group">
-                            <label for="txCF" class="control-label">Codice Fiscale  <a href="Immagini/TesseraSocialeDati.png" target="_blank">(?)</a></label>
+                            <label for="txCF" class="control-label">Codice Fiscale  <a href="Immagini/TesseraSociale.png" target="_blank">(?)</a></label>
 
                             <asp:TextBox ID="txCF" MaxLength="16" CssClass="form-control " runat="server"></asp:TextBox>
                            

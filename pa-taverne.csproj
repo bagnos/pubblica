@@ -165,6 +165,7 @@
     <Content Include="Immagini\NEW.gif" />
     <Content Include="Immagini\nuovo.png" />
     <Content Include="Immagini\TesseraSociale.png" />
+    <Content Include="Immagini\TesseraSocialeOld.png" />
     <Content Include="Immagini\TesseraSocialeDati.png" />
     <Content Include="Immagini\toglifilto.png" />
     <Content Include="Immagini\OrariAmb.jpg" />
