@@ -39,7 +39,7 @@ namespace pa_taverne
            //builder.UserID = "root";
            builder.UserID = "Sql178902";
            //builder.Password = "root";
-           builder.Password = "2af698be";
+           builder.Password = "2af698be"; 
             //builder.Server = "localhost";
            builder.Server = "62.149.150.71";
             //builder.Database = "sql178902_2";
