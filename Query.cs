@@ -1590,7 +1590,7 @@ namespace pa_taverne
             //SQL = SQL + "where  year(data)>=" + (anno-1).ToString();
             SQL = SQL + " where e.nsocio=e1.Nsocio ";
             SQL = SQL + " and er.n_fami=e.nfamiglia ";
-            SQL = SQL + " and er.ult_pag<YEAR(CURDATE())";
+            SQL = SQL + " and er.ult_pag=YEAR(CURDATE())";
             SQL = SQL + " order by data desc";
             try
             {
